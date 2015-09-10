@@ -4,6 +4,7 @@
 angular.module('myApp', [
     'ngRoute',
     'myApp.inicio',
+    'myApp.sites',
 ]).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/inicio'});
