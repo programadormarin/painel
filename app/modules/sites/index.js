@@ -10,21 +10,13 @@ angular.module('myApp.sites', ['ngRoute'])
         ;
     }])
 
-    .controller('SitesController', ['$scope', function ($scope) {
+    .controller('SitesController', ['$scope', 'api', function ($scope, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-                
-            $scope.editor = function () {
-                $('.editor').wysiwyg();
-                $('textarea').autosize();
-                $('.datepicker').datepicker({
-                    format: 'dd-mm-yyyy'
-                });
-            };
 
             $scope.load = function () {
                 api
-                    .get('aviso?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('site?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (result) {
                         $scope.linhas = (result.data);
                     });
@@ -32,22 +24,22 @@ angular.module('myApp.sites', ['ngRoute'])
 
             $scope.add = function () {
                 api
-                    .post('aviso', $scope.aviso)
+                    .post('site', $scope.site)
                     .then(function (data, status) {
                         $scope.status = {
                             type: 'success',
                             message: 'inserida com sucesso!'
                         }
 
-                        $scope.aviso = '';
-                        $scope.avisoForm.$setPristine();
+                        $scope.site = '';
+                        $scope.siteForm.$setPristine();
                     });
             };
 
             $scope.delete = function (id) {
                 if (confirm('Você deseja realmente apagar o ítem?\nEste procedimento é irreversível!')) {
                     api
-                        .delete('aviso/' + id)
+                        .delete('site/' + id)
                         .then(function (data) {
                             if (data.status == 200) {
                                 $scope.status = {
@@ -55,7 +47,7 @@ angular.module('myApp.sites', ['ngRoute'])
                                     message: 'removida com sucesso!'
                                 }
 
-                                $location.path('/aviso');
+                                $location.path('/site');
                                 $scope.load();
                             } else {
                                 $scope.status = {
@@ -69,7 +61,7 @@ angular.module('myApp.sites', ['ngRoute'])
 
             $scope.edit = function () {
                 api
-                    .put('aviso/' + $routeParams.id, $scope.aviso)
+                    .put('site/' + $routeParams.id, $scope.site)
                     .success(function (data) {
                         $scope.status = {
                             type: 'success',
@@ -86,9 +78,9 @@ angular.module('myApp.sites', ['ngRoute'])
 
             $scope.get = function () {
                 api
-                    .get('aviso/' + $routeParams.id)
+                    .get('site/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.aviso = (data.data);
+                        $scope.site = (data.data);
                     });
             }
         }
