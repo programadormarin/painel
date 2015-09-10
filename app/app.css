@@ -112,6 +112,7 @@ body {
 #editor, .editor1, .editor2 {
     overflow: auto;
     max-height: 300px;
-    min-height: 10em;
+    min-height: 30em;
     border: 1px solid #ccc;
+    width: 100%;
 }

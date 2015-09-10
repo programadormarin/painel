@@ -18,7 +18,7 @@ angular.module('myApp.sites', ['ngRoute'])
         ;
     }])
 
-    .controller('SitesController', ['$scope', '$routeParams', 'api', function ($scope, $routeParams, api) {
+    .controller('SitesController', ['$scope', '$routeParams', 'api', '$window', function ($scope, $routeParams, api, $window) {
         $scope.curPage = 1;
         $scope.pageSize = 12;
 
@@ -90,6 +90,11 @@ angular.module('myApp.sites', ['ngRoute'])
                 .then(function (data) {
                     $scope.site = data.data.data;
                 });
-        }
-    }
-    ]);
+        };
+
+        $scope.login = function($site) {
+            localStorage.setItem('site', $site._id);
+
+            $window.location.reload();
+        };
+    }]);

@@ -12,7 +12,7 @@ angular.module('myApp.empresa', ['ngRoute'])
 
     .controller('EmpresaController', ['$scope', '$routeParams', '$location', 'api',
         function ($scope, $routeParams, $location, api) {
-            $scope.site_id = $("meta[name='site_id']").attr("content");
+            $scope.site_id = localStorage.getItem('site');
 
             $scope.removeTelefone = function (indice) {
                 $scope.empresa.telefones.splice(indice, 1);
@@ -24,11 +24,6 @@ angular.module('myApp.empresa', ['ngRoute'])
 
             $scope.removeEndereco = function (indice) {
                 $scope.empresa.enderecos.splice(indice, 1);
-            };
-
-            $scope.editor = function () {
-                $('.editor').wysiwyg();
-                $('textarea').autosize();
             };
 
             $scope.adicionaTelefone = function (telefone) {

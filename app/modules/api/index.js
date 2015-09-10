@@ -2,7 +2,7 @@
 
 /* Services */
 angular
-    .module('myApp.api', [])
+    .module('ngApi', [])
     .factory('api', ['$http',
         function ($http) {
             $http.defaults.headers.common.site = '55743d2101fdb1d6a267a345';

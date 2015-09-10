@@ -22,7 +22,7 @@
                     <th>ID</th>
                     <th>Título</th>
                     <th>Domínio</th>
-                    <th class="col-md-1">Ações</th>
+                    <th class="col-md-2">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,6 +33,7 @@
                     </td>
                     <td class="center">
                         <a href="#/sites/editar/{{ sites._id }}" class="btn btn-xs btn-info"><i class="fa fa-edit"></i></a>
+                        <a ng-click="login(sites)" class="btn btn-xs btn-warning"><i class="fa fa-sign-in"></i></a>
                         <a ng-click="delete(sites._id)" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>

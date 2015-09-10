@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="vendor/components-font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/dashboard.css">
+    <link rel="stylesheet" href="app.css">
 
     <script src="vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -79,84 +79,24 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
-                    href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <p class="browsehappy">
+                You are using an <strong>outdated</strong> browser. <br>
+                Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+            </p>
             <![endif]-->
 
             <!-- row-->
             <div ng-view></div>
             <!-- /row-->
-
-            <!-- modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabel">Acessar o painel</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div ng-show="status" class="alert alert-{{ status.type }}">
-                                <button type="button" data-dismiss="alert" class="close">&times;</button>
-                                {{ status.message}}
-                            </div>
-                            <div class="login-box">
-                                <form ng-controller="LoginController" ng-submit="login()" name="loginForm" novalidate="novalidate"
-                                      class="form-horizontal">
-                                    <fieldset>
-                                        <div class="input-wrap">
-                                            <div title="E-mail de acesso" class="input-prepend input-group">
-                                      <span class="input-group-addon">
-                                        <i class="fa fa-user"></i>
-                                      </span>
-                                                <input id="username" name="username" type="email" placeholder="e-mail"
-                                                       ng-model="user.email" required="required" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="input-wrap">
-                                            <div title="Senha de acesso" class="input-prepend input-group">
-                                                      <span class="input-group-addon">
-                                                        <i class="fa fa-lock"></i>
-                                                      </span>
-                                                <input id="password" name="password" type="password" placeholder="senha"
-                                                       ng-model="user.password" required="required"
-                                                       class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="button-login">
-                                            <button type="submit" class="btn btn-primary">Entrar</button>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </fieldset>
-                                </form>
-                                <hr/>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Send message</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="vendor/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
 <script src="vendor/angular/angular.min.js"></script>
 <script src="vendor/angular-route/angular-route.min.js"></script>
-<script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="vendor/angular-input-masks/angular-input-masks-standalone.min.js"></script>
-<script src="vendor/angular-file-upload/angular-file-upload.min.js"></script>
-<script src="vendor/cidades-estados.js/cidades-estados.js"></script>
-<script src="vendor/autosize/dist/autosize.min.js"></script>
-<script src="assets/custom.js"></script>
-<script src="components/api/index.js"></script>
-<script src="components/textarea/index.js"></script>
+<script src="modules/api/index.js"></script>
 <script src="modules/aviso/index.js"></script>
 <script src="modules/clientes/index.js"></script>
 <script src="modules/curriculos/index.js"></script>
@@ -171,6 +111,7 @@
 <script src="modules/sites/index.js"></script>
 <script src="modules/slides/index.js"></script>
 <script src="modules/usuarios/index.js"></script>
+<script src="custom.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
