@@ -11,7 +11,11 @@ angular
             var url = 'http://api.publiciti.com.br';
 
             if (localStorage.getItem('token')) {
-                $http.defaults.headers.common.authorization = localStorage.getItem('token');
+                $http.defaults.headers.common.authorization = JSON.parse(localStorage.getItem('token')).conteudo;
+            }
+
+            if (localStorage.getItem('site')) {
+                $http.defaults.headers.common.site = localStorage.getItem('site');
             }
 
             return {
