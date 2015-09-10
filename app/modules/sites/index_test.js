@@ -1,6 +1,7 @@
 'use strict';
 
 describe('myApp.sites module', function () {
+    beforeEach(module('myApp.api'));
     beforeEach(module('myApp.sites'));
 
     describe('Sites controller', function () {

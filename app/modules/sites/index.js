@@ -7,10 +7,18 @@ angular.module('myApp.sites', ['ngRoute'])
                 templateUrl: 'modules/sites/index.html',
                 controller: 'SitesController'
             })
+            .when('/sites/editar/:id', {
+                templateUrl: 'modules/sites/edit.html',
+                controller: 'SitesController'
+            })
+            .when('/sites/adicionar', {
+                templateUrl: 'modules/sites/add.html',
+                controller: 'SitesController'
+            })
         ;
     }])
 
-    .controller('SitesController', ['$scope', 'api', function ($scope, api) {
+    .controller('SitesController', ['$scope', '$routeParams', 'api', function ($scope, $routeParams, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
 
@@ -28,7 +36,7 @@ angular.module('myApp.sites', ['ngRoute'])
                     .then(function (data, status) {
                         $scope.status = {
                             type: 'success',
-                            message: 'inserida com sucesso!'
+                            message: 'inserido com sucesso!'
                         }
 
                         $scope.site = '';
@@ -59,7 +67,7 @@ angular.module('myApp.sites', ['ngRoute'])
                 }
             };
 
-            $scope.edit = function () {
+            $scope.update = function () {
                 api
                     .put('site/' + $routeParams.id, $scope.site)
                     .success(function (data) {
@@ -80,7 +88,7 @@ angular.module('myApp.sites', ['ngRoute'])
                 api
                     .get('site/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.site = (data.data);
+                        $scope.site = data.data.data;
                     });
             }
         }
