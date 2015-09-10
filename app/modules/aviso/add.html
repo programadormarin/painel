@@ -1,0 +1,116 @@
+<div class="col-lg-12">
+  <div class="box">
+    <div data-original-title="" class="box-header">
+      <h2>
+        <i class="fa fa-bullhorn"></i>
+        <span class="break"></span>Avisos na tela inicial</h2>
+      <div class="box-icon">
+        <a href="#/aviso/adicionar" class="btn-plus"><i class="fa fa-plus"></i></a>
+      </div>
+    </div>
+    <div class="box-content">
+      <div ng-show="status" class="alert alert-{{ status.type }}">
+        <button type="button" data-dismiss="alert" class="close">&times;</button>{{ status.message}}</div>
+      <form name="avisoForm" ng-submit="add()" novalidate="novalidate" class="form-vertical">
+        <div ng-class="{ 'has-error' : avisoForm.titulo.$invalid &amp;&amp; !avisoForm.titulo.$pristine }" class="form-group">
+          <label class="control-label">Título</label>
+          <div class="controls">
+            <input type="text" ng-model="aviso.titulo" name="titulo" required="required" class="form-control" />
+            <p ng-show="avisoForm.titulo.$invalid &amp;&amp; !avisoForm.titulo.$pristine" class="help-block">Título muito curto ou inválido</p>
+          </div>
+        </div>
+        <div ng-class="{ 'has-error' : avisoForm.conteudo.$invalid &amp;&amp; !avisoForm.conteudo.$pristine }" ng-init="editor()"
+        class="form-group hidden-xs">
+          <label class="control-label">Descrição</label>
+          <div data-role="editor-toolbar" data-target=".editor" class="btn-toolbar">
+            <div class="btn-group">
+              <a data-toggle="dropdown" title="Font Size" class="btn dropdown-toggle"><i class="fa fa-text-height"></i><b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a data-edit="fontSize 5"><font size="5">Grande</font></a>
+                </li>
+                <li>
+                  <a data-edit="fontSize 3"><font size="3">Normal</font></a>
+                </li>
+                <li>
+                  <a data-edit="fontSize 1"><font size="1">Pequena</font></a>
+                </li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <a data-edit="bold" title="Bold (Ctrl/Cmd+B)" class="btn"><i class="fa fa-bold"></i></a>
+              <a data-edit="italic" title="Italic (Ctrl/Cmd+I)" class="btn"><i class="fa fa-italic"></i></a>
+              <a data-edit="strikethrough" title="Strikethrough" class="btn"><i class="fa fa-strikethrough"></i></a>
+              <a data-edit="underline" title="Underline (Ctrl/Cmd+U)" class="btn"><i class="fa fa-underline"></i></a>
+            </div>
+            <div class="btn-group">
+              <a data-edit="insertunorderedlist" title="Bullet list" class="btn"><i class="fa fa-list-ul"></i></a>
+              <a data-edit="insertorderedlist" title="Number list" class="btn"><i class="fa fa-list-ol"></i></a>
+              <a data-edit="outdent" title="Reduce indent (Shift+Tab)" class="btn"><i class="fa fa-outdent"></i></a>
+              <a data-edit="indent" title="Indent (Tab)" class="btn"><i class="fa fa-indent"></i></a>
+            </div>
+            <div class="btn-group">
+              <a data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)" class="btn"><i class="fa fa-align-left"></i></a>
+              <a data-edit="justifycenter" title="Center (Ctrl/Cmd+E)" class="btn"><i class="fa fa-align-center"></i></a>
+              <a data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)" class="btn"><i class="fa fa-align-right"></i></a>
+              <a data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)" class="btn"><i class="fa fa-align-justify"></i></a>
+            </div>
+            <div class="btn-group">
+              <div class="btn-group">
+                <a data-edit="undo" title="Undo (Ctrl/Cmd+Z)" class="btn"><i class="fa fa-undo"></i></a>
+                <a data-edit="redo" title="Redo (Ctrl/Cmd+Y)" class="btn"><i class="fa fa-repeat"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-model="aviso.conteudo" name="conteudo" contentEditable="contentEditable" class="editor"></div>
+        <p ng-show="avisoForm.conteudo.$invalid &amp;&amp; !avisoForm.conteudo.$pristine" class="help-block">conteudo muito curto</p>
+        <div ng-class="{ 'has-error' : avisoForm.inicio.$invalid &amp;&amp; !avisoForm.inicio.$pristine }"
+        class="form-group">
+          <label class="control-label">Início</label>
+          <div class="controls">
+            <div class="input-append date">
+              <input type="text" ng-model="aviso.inicio" name="inicio" required="required" readonly="readonly" class="form-control datepicker"
+              />
+              <span class="add-on">
+                <i class="icon-th"></i>
+              </span>
+              <p ng-show="avisoForm.inicio.$invalid &amp;&amp; !avisoForm.inicio.$pristine" class="help-block">Data de início inválida</p>
+            </div>
+          </div>
+        </div>
+        <div ng-class="{ 'has-error' : avisoForm.fim.$invalid &amp;&amp; !avisoForm.fim.$pristine }" class="form-group">
+          <label class="control-label">Validade</label>
+          <div class="controls">
+            <div class="input-append date">
+              <input type="text" ng-model="aviso.fim" name="fim" required="required" readonly="readonly" class="form-control datepicker"
+              />
+              <span class="add-on">
+                <i class="icon-th"></i>
+              </span>
+              <p ng-show="avisoForm.fim.$invalid &amp;&amp; !avisoForm.fim.$pristine" class="help-block">Data de Validade inválida</p>
+            </div>
+          </div>
+        </div>
+        <div ng-class="{ 'has-error' : avisoForm.tipo.$invalid &amp;&amp; !avisoForm.tipo.$pristine }" class="form-group">
+          <label class="control-label">Tipo</label>
+          <div class="controls">
+            <select ng-model="aviso.tipo" name="tipo" required="required" class="form-control">
+              <option value="block">Amarelo</option>
+              <option value="danger">Vermelho</option>
+              <option value="success">Verde</option>
+              <option value="info">Azul</option>
+            </select>
+            <p ng-show="avisoForm.tipo.$invalid &amp;&amp; !avisoForm.tipo.$pristine" class="help-block">Data de Validade inválida</p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" ng-disabled="avisoForm.$invalid" class="btn btn-primary">Salvar</button>
+            <a href="#/aviso" class="btn">voltar</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

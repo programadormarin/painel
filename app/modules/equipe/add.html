@@ -1,0 +1,67 @@
+<div class="col-lg-12">
+  <div class="box">
+    <div data-original-title="" class="box-header">
+      <h2>
+        <i class="fa fa-users"></i>
+        <span class="break"></span>Equipe</h2>
+      <div class="box-icon">
+        <a href="#/equipe/adicionar" class="btn-plus"><i class="fa fa-plus"></i></a>
+      </div>
+    </div>
+    <div class="box-content">
+      <div class="block">
+        <div ng-show="status" class="alert alert-{{ status.type }}">
+          <button type="button" data-dismiss="alert" class="close">&times;</button>{{ status.message}}</div>
+        <form ng-submit="add()" name="equipeForm" novalidate="novalidate" class="form-vertical">
+          <div class="row">
+            <div class="col-sm-6">
+              <div ng-class="{ 'has-error' : equipeForm.nome.$invalid &amp;&amp; !equipeForm.nome.$pristine }" class="form-group">
+                <label class="control-label">Nome</label>
+                <div class="controls">
+                  <input type="text" ng-model="membro.nome" ng-minlength="5" name="nome" required="required" class="form-control" />
+                  <p ng-show="equipeForm.nome.$invalid &amp;&amp; !equipeForm.nome.$pristine" class="help-block">Nome muito curto ou inválido</p>
+                </div>
+              </div>
+              <div ng-class="{ 'has-error' : equipeForm.email.$invalid &amp;&amp; !equipeForm.email.$pristine }" class="form-group">
+                <label class="control-label">E-mail</label>
+                <div class="controls">
+                  <input type="email" ng-model="membro.email" name="email" required="required" class="form-control" />
+                  <p ng-show="equipeForm.email.$invalid &amp;&amp; !equipeForm.email.$pristine" class="help-block">E-mail inválido</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div ng-class="{ 'has-error' : equipeForm.cargo.$invalid &amp;&amp; !equipeForm.cargo.$pristine }" class="form-group">
+                <label class="control-label">Cargo</label>
+                <div class="controls">
+                  <input type="text" ng-model="membro.cargo" name="cargo" required="required" class="form-control" />
+                  <p ng-show="equipeForm.cargo.$invalid &amp;&amp; !equipeForm.cargo.$pristine" class="help-block">Cargo muito curto ou inválido</p>
+                </div>
+              </div>
+              <div ng-class="{ 'has-error' : equipeForm.imagem.$invalid &amp;&amp; !equipeForm.imagem.$pristine }" ng-hide="slide.imagem.url"
+              class="form-group">
+                <label class="control-label">Imagem</label>
+                <div class="controls">
+                  <input type="file" ng-file-select="onFileSelect($files)" required="required" ng-disabled="equipeForm.$invalid" accept="image/*"
+                  class="form-control" />
+                  <input type="hidden" ng-model="membro.imagem" name="imagem" />
+                  <p ng-show="equipeForm.imagem.$invalid &amp;&amp; !equipeForm.imagem.$pristine" class="help-block">Imagem é inválida</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="control-group">
+                <div class="controls">
+                  <button type="submit" ng-disabled="equipeForm.$invalid" class="btn btn-primary">Salvar</button>
+                  <a href="#/equipe" class="btn">voltar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

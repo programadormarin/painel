@@ -1,0 +1,45 @@
+<div ng-init="load()" class="col-lg-12">
+  <div class="box">
+    <div data-original-title="" class="box-header">
+      <h2>
+        <i class="fa fa-key"></i>
+        <span class="break"></span>Login</h2>
+    </div>
+    <div class="box-content">
+      <div class="block">
+        <div ng-show="status" class="alert alert-{{ status.type }}">
+          <button type="button" data-dismiss="alert" class="close">&times;</button>{{ status.message}}</div>
+        <div class="login-box">
+          <h2>Acessar o painel</h2>
+          <form ng-submit="login()" name="loginForm" novalidate="novalidate" class="form-horizontal">
+            <fieldset>
+              <div class="input-wrap">
+                <div title="E-mail de acesso" class="input-prepend input-group">
+                  <span class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </span>
+                  <input id="username" name="username" type="email" placeholder="e-mail" ng-model="user.username" required="required" class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="input-wrap">
+                <div title="Senha de acesso" class="input-prepend input-group">
+                  <span class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                  <input id="password" name="password" type="password" placeholder="senha" ng-model="user.password" required="required" class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="button-login">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+              </div>
+              <div class="clearfix"></div>
+            </fieldset>
+          </form>
+          <hr/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

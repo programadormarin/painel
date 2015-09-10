@@ -1,0 +1,102 @@
+<div class="col-lg-12">
+  <div class="box">
+    <div data-original-title="" class="box-header">
+      <h2>
+        <i class="fa fa-film"></i>
+        <span class="break"></span>Slides da tela inicial</h2>
+      <div class="box-icon">
+        <a href="#/slides/adicionar" class="btn-plus"><i class="fa fa-plus"></i></a>
+      </div>
+    </div>
+    <div class="box-content">
+      <div class="block">
+        <div ng-show="status" class="alert alert-{{ status.type }}">
+          <button type="button" data-dismiss="alert" class="close">&times;</button>{{ status.message}}</div>
+        <form ng-submit="add()" name="slideForm" novalidate="novalidate" class="form-vertical">
+          <div class="row">
+            <div class="col-sm-6">
+              <div ng-class="{ 'has-error' : slideForm.titulo.$invalid &amp;&amp; !slideForm.titulo.$pristine }" class="form-group">
+                <label class="control-label">Título</label>
+                <div class="controls">
+                  <input type="text" ng-model="slide.titulo" ng-minlength="5" name="titulo" required="required" class="form-control" />
+                  <p ng-show="slideForm.titulo.$invalid &amp;&amp; !slideForm.titulo.$pristine" class="help-block">Título muito curto ou inválido</p>
+                </div>
+              </div>
+              <div ng-class="{ 'has-error' : slideForm.descricao.$invalid &amp;&amp; !slideForm.descricao.$pristine }" ng-init="editor()"
+              class="form-group hidden-xs">
+                <label class="control-label">Descrição</label>
+                <div data-role="editor-toolbar" data-target=".editor" class="btn-toolbar">
+                  <div class="btn-group">
+                    <a data-toggle="dropdown" title="Font Size" class="btn dropdown-toggle"><i class="fa fa-text-height"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a data-edit="fontSize 5"><font size="5">Grande</font></a>
+                      </li>
+                      <li>
+                        <a data-edit="fontSize 3"><font size="3">Normal</font></a>
+                      </li>
+                      <li>
+                        <a data-edit="fontSize 1"><font size="1">Pequena</font></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="btn-group">
+                    <a data-edit="bold" title="Bold (Ctrl/Cmd+B)" class="btn"><i class="fa fa-bold"></i></a>
+                    <a data-edit="italic" title="Italic (Ctrl/Cmd+I)" class="btn"><i class="fa fa-italic"></i></a>
+                    <a data-edit="strikethrough" title="Strikethrough" class="btn"><i class="fa fa-strikethrough"></i></a>
+                    <a data-edit="underline" title="Underline (Ctrl/Cmd+U)" class="btn"><i class="fa fa-underline"></i></a>
+                  </div>
+                  <div class="btn-group">
+                    <a data-edit="insertunorderedlist" title="Bullet list" class="btn"><i class="fa fa-list-ul"></i></a>
+                    <a data-edit="insertorderedlist" title="Number list" class="btn"><i class="fa fa-list-ol"></i></a>
+                    <a data-edit="outdent" title="Reduce indent (Shift+Tab)" class="btn"><i class="fa fa-outdent"></i></a>
+                    <a data-edit="indent" title="Indent (Tab)" class="btn"><i class="fa fa-indent"></i></a>
+                  </div>
+                  <div class="btn-group">
+                    <a data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)" class="btn"><i class="fa fa-align-left"></i></a>
+                    <a data-edit="justifycenter" title="Center (Ctrl/Cmd+E)" class="btn"><i class="fa fa-align-center"></i></a>
+                    <a data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)" class="btn"><i class="fa fa-align-right"></i></a>
+                    <a data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)" class="btn"><i class="fa fa-align-justify"></i></a>
+                  </div>
+                  <div class="btn-group">
+                    <div class="btn-group">
+                      <a data-edit="undo" title="Undo (Ctrl/Cmd+Z)" class="btn"><i class="fa fa-undo"></i></a>
+                      <a data-edit="redo" title="Redo (Ctrl/Cmd+Y)" class="btn"><i class="fa fa-repeat"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div ng-model="slide.descricao" name="descricao" contentEditable="contentEditable" class="editor"></div>
+              <p ng-show="slideForm.descricao.$invalid &amp;&amp; !slideForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
+            </div>
+            <div class="col-sm-6">
+              <div ng-class="{ 'has-error' : slideForm.endereco.$invalid &amp;&amp; !slideForm.endereco.$pristine }" class="form-group">
+                <label class="control-label">Link</label>
+                <div class="controls">
+                  <input type="url" ng-model="slide.endereco" name="endereco" required="required" class="form-control" />
+                  <p ng-show="slideForm.endereco.$invalid &amp;&amp; !slideForm.endereco.$pristine" class="help-block">Url do Link de destino é inválida</p>
+                </div>
+              </div>
+              <div ng-class="{ 'has-error' : slideForm.imagem.$invalid &amp;&amp; !slideForm.imagem.$pristine }" ng-hide="slide.imagem.url"
+              class="form-group">
+                <label class="control-label">Imagem</label>
+                <div class="controls">
+                  <input type="file" ng-file-select="onFileSelect($files)" required="required" ng-disabled="slideForm.$invalid" accept="image/*"
+                  class="form-control" />
+                  <input type="hidden" ng-model="slide.imagem" name="imagem" />
+                  <p ng-show="slideForm.imagem.$invalid &amp;&amp; !slideForm.imagem.$pristine" class="help-block">Imagem é inválida</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <button type="submit" ng-disabled="slideForm.$invalid" class="btn btn-primary">Salvar</button>
+              <a href="#/slides" class="btn">voltar</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
