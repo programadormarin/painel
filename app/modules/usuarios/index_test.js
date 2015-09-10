@@ -1,7 +1,7 @@
 'use strict';
 
 describe('myApp.usuarios module', function () {
-    beforeEach(module('myApp.api'));
+    beforeEach(module('ngApi'));
     beforeEach(module('myApp.usuarios'));
 
     describe('Usuarios controller', function () {

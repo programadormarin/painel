@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.inicio', ['ngRoute'])
+angular.module('myApp.inicio', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/inicio', {

@@ -1,7 +1,7 @@
 'use strict';
 
 describe('myApp.parceiros module', function () {
-    beforeEach(module('myApp.api'));
+    beforeEach(module('ngApi'));
     beforeEach(module('myApp.parceiros'));
 
     describe('Parceiros controller', function () {

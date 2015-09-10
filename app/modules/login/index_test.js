@@ -1,7 +1,7 @@
 'use strict';
 
 describe('myApp.login module', function () {
-    beforeEach(module('myApp.api'));
+    beforeEach(module('ngApi'));
     beforeEach(module('myApp.login'));
 
     describe('Login controller', function () {

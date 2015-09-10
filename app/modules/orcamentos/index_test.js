@@ -1,7 +1,7 @@
 'use strict';
 
 describe('myApp.orcamentos module', function () {
-    beforeEach(module('myApp.api'));
+    beforeEach(module('ngApi'));
     beforeEach(module('myApp.orcamentos'));
 
     describe('Orcamentos controller', function () {

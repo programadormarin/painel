@@ -1,7 +1,7 @@
 'use strict';
 
 describe('myApp.curriculos module', function () {
-    beforeEach(module('myApp.api'));
+    beforeEach(module('ngApi'));
     beforeEach(module('myApp.curriculos'));
 
     describe('Curriculos controller', function () {

@@ -1,7 +1,7 @@
 'use strict';
 
 describe('myApp.aviso module', function () {
-    beforeEach(module('myApp.api'));
+    beforeEach(module('ngApi'));
     beforeEach(module('myApp.aviso'));
 
     describe('Aviso controller', function () {

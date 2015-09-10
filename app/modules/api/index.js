@@ -1,11 +1,8 @@
 'use strict';
 
-/* Services */
-angular
-    .module('ngApi', [])
+angular.module('ngApi', [])
     .factory('api', ['$http',
         function ($http) {
-            $http.defaults.headers.common.site = '55743d2101fdb1d6a267a345';
             $http.defaults.cache = true;
 
             var url = 'http://api.publiciti.com.br';

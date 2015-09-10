@@ -1,7 +1,7 @@
 'use strict';
 
 describe('myApp.empresa module', function () {
-    beforeEach(module('myApp.api'));
+    beforeEach(module('ngApi'));
     beforeEach(module('myApp.empresa'));
 
     describe('Empresa controller', function () {

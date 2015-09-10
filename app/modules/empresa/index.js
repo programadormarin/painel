@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.empresa', ['ngRoute'])
+angular.module('myApp.empresa', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/empresa', {

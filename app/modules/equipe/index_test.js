@@ -1,7 +1,7 @@
 'use strict';
 
 describe('myApp.equipe module', function () {
-    beforeEach(module('myApp.api'));
+    beforeEach(module('ngApi'));
     beforeEach(module('myApp.equipe'));
 
     describe('Equipe controller', function () {

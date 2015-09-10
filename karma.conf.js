@@ -10,7 +10,6 @@ module.exports = function (config) {
             'app/vendor/angular-route/angular-route.js',
             'app/vendor/jquery/dist/jquery.js',
             'app/vendor/bootstrap/dist/js/bootstrap.js',
-            'app/components/**/*.js',
             'app/modules/**/*.js',
         ],
 
