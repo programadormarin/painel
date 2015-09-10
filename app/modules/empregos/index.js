@@ -93,7 +93,7 @@ angular.module('myApp.empregos', ['ngRoute'])
                 api
                     .get('emprego/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.emprego = (data.data);
+                        $scope.emprego = (data.data.data);
                     });
             }
         }

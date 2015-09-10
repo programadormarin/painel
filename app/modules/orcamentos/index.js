@@ -80,7 +80,7 @@ angular.module('myApp.orcamentos', ['ngRoute'])
             $scope.get = function () {
                 api
                     .get('orcamento/' + $routeParams.id).then(function (data) {
-                        $scope.orcamento = (data.data);
+                        $scope.orcamento = (data.data.data);
                     });
 
                 new dgCidadesEstados({

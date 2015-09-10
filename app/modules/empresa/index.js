@@ -67,7 +67,7 @@ angular.module('myApp.empresa', ['ngRoute'])
                 api
                     .get('site/' + $scope.site_id)
                     .then(function (data) {
-                        $scope.empresa = (data.data);
+                        $scope.empresa = (data.data.data);
                     });
             };
         }

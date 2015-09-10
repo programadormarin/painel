@@ -81,7 +81,7 @@ angular.module('myApp.curriculos', ['ngRoute'])
                 api
                     .get('curriculo/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.curriculo = (data.data);
+                        $scope.curriculo = (data.data.data);
                     });
             };
         }

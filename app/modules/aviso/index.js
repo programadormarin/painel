@@ -90,7 +90,7 @@ angular.module('myApp.aviso', ['ngRoute'])
                 api
                     .get('aviso/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.aviso = (data.data);
+                        $scope.aviso = (data.data.data);
                     });
             }
         }

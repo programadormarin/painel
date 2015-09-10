@@ -24,7 +24,7 @@ angular.module('myApp.slides', ['ngRoute'])
                 api
                     .get('slide?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (data) {
-                        $scope.linhas = (data.data);
+                        $scope.linhas = (data.data.data);
                     });
             };
 
@@ -86,7 +86,7 @@ angular.module('myApp.slides', ['ngRoute'])
                 api
                     .get('slide/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.slide = (data.data);
+                        $scope.slide = (data.data.data);
                     });
             };
         }

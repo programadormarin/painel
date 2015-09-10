@@ -24,7 +24,7 @@ angular.module('myApp.equipe', ['ngRoute'])
                 api
                     .get('equipe?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (data) {
-                        $scope.linhas = (data.data);
+                        $scope.linhas = (data.data.data);
                     });
             };
 
@@ -86,7 +86,7 @@ angular.module('myApp.equipe', ['ngRoute'])
                 api
                     .get('equipe/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.membro = (data.data);
+                        $scope.membro = (data.data.data);
                     });
             };
         }

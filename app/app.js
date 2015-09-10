@@ -4,10 +4,21 @@
 angular.module('myApp', [
     'ngRoute',
     'myApp.api',
+    'myApp.textarea',
+    'myApp.aviso',
+    'myApp.clientes',
+    'myApp.curriculos',
+    'myApp.empregos',
+    'myApp.empresa',
+    'myApp.equipe',
     'myApp.inicio',
-    'myApp.sites',
-    'myApp.usuarios',
     'myApp.login',
+    'myApp.orcamentos',
+    'myApp.parceiros',
+    'myApp.produtos',
+    'myApp.sites',
+    'myApp.slides',
+    'myApp.usuarios',
 ]).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/inicio'});

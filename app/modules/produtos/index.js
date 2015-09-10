@@ -86,7 +86,7 @@ angular.module('myApp.produtos', ['ngRoute'])
                 api
                     .get('produto/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.produto = (data.data);
+                        $scope.produto = (data.data.data);
                     });
             };
         }

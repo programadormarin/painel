@@ -24,76 +24,153 @@
     <script src="vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-    <!-- start: Header-->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Painel de Controle</a>
-            </div>
-
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/inicio">Início</a></li>
-                    <li><a href="#/perfil">Perfil</a></li>
-                    <li><a href="#/ajuda">Ajuda</a></li>
-                </ul>
-
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Buscar produto...">
-                </form>
-            </div>
-        </div>
-    </nav>
-
+<!-- start: Header-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#/inicio">Início<span class="sr-only">(current)</span></a></li>
-                    <li><a href="#/sites">Sites</a></li>
-                    <li><a href="#/usuarios">Usuários</a></li>
-                </ul>
-                <ul class="nav nav-sidebar hidden">
-                    <li><a href="">Nav item</a></li>
-                    <li><a href="">Nav item again</a></li>
-                    <li><a href="">One more nav</a></li>
-                    <li><a href="">Another nav item</a></li>
-                    <li><a href="">More navigation</a></li>
-                </ul>
-                <ul class="nav nav-sidebar hidden">
-                    <li><a href="">Nav item again</a></li>
-                    <li><a href="">One more nav</a></li>
-                    <li><a href="">Another nav item</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <!--[if lt IE 7]>
-                <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-                <![endif]-->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Navegação</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">Painel de Controle</a>
+        </div>
 
-                <!-- row-->
-                <div ng-view></div>
-                <!-- /row-->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/inicio">Início</a></li>
+                <li><a href="#/perfil">Perfil</a></li>
+                <li><a href="#/ajuda">Ajuda</a></li>
+            </ul>
+
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Buscar produto...">
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#/inicio">Início<span class="sr-only">(current)</span></a></li>
+                <li><a href="#/sites">Sites</a></li>
+                <li><a href="#/usuarios">Usuários</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="#/aviso">Avisos</a></li>
+                <li><a href="#/slides">Slides</a></li>
+                <li><a href="#/produtos">Produtos</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="#/empresa">Empresa</a></li>
+                <li><a href="#/equipe">Equipe</a></li>
+                <li><a href="#/clientes">Clientes</a></li>
+                <li><a href="#/parceiros">Parceiros</a></li>
+            </ul>
+            <ul class="nav nav-sidebar hidden">
+                <li><a href="#/curriculos">Currículos</a></li>
+                <li><a href="#/empregos">Empregos</a></li>
+                <li><a href="#/orcamentos">Orçamentos</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
+                    href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+
+            <!-- row-->
+            <div ng-view></div>
+            <!-- /row-->
+
+            <!-- modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">Acessar o painel</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div ng-show="status" class="alert alert-{{ status.type }}">
+                                <button type="button" data-dismiss="alert" class="close">&times;</button>
+                                {{ status.message}}
+                            </div>
+                            <div class="login-box">
+                                <form ng-controller="LoginController" ng-submit="login()" name="loginForm" novalidate="novalidate"
+                                      class="form-horizontal">
+                                    <fieldset>
+                                        <div class="input-wrap">
+                                            <div title="E-mail de acesso" class="input-prepend input-group">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                      </span>
+                                                <input id="username" name="username" type="email" placeholder="e-mail"
+                                                       ng-model="user.email" required="required" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="input-wrap">
+                                            <div title="Senha de acesso" class="input-prepend input-group">
+                                                      <span class="input-group-addon">
+                                                        <i class="fa fa-lock"></i>
+                                                      </span>
+                                                <input id="password" name="password" type="password" placeholder="senha"
+                                                       ng-model="user.password" required="required"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="button-login">
+                                            <button type="submit" class="btn btn-primary">Entrar</button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </fieldset>
+                                </form>
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send message</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="vendor/angular/angular.min.js"></script>
-    <script src="vendor/angular-route/angular-route.js"></script>
-    <script src="vendor/angular-input-masks/angular-input-masks-standalone.min.js"></script>
-    <script src="vendor/angular-file-upload/angular-file-upload.min.js"></script>
-    <script src="vendor/cidades-estados.js/cidades-estados.js"></script>
-    <script src="components/api/index.js"></script>
-    <script src="modules/inicio/index.js"></script>
-    <script src="modules/sites/index.js"></script>
-    <script src="modules/usuarios/index.js"></script>
-    <script src="modules/login/index.js"></script>
-    <script src="app.js"></script>
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="vendor/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
+<script src="vendor/angular/angular.min.js"></script>
+<script src="vendor/angular-route/angular-route.min.js"></script>
+<script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="vendor/angular-input-masks/angular-input-masks-standalone.min.js"></script>
+<script src="vendor/angular-file-upload/angular-file-upload.min.js"></script>
+<script src="vendor/cidades-estados.js/cidades-estados.js"></script>
+<script src="vendor/autosize/dist/autosize.min.js"></script>
+<script src="assets/custom.js"></script>
+<script src="components/api/index.js"></script>
+<script src="components/textarea/index.js"></script>
+<script src="modules/aviso/index.js"></script>
+<script src="modules/clientes/index.js"></script>
+<script src="modules/curriculos/index.js"></script>
+<script src="modules/empregos/index.js"></script>
+<script src="modules/empresa/index.js"></script>
+<script src="modules/equipe/index.js"></script>
+<script src="modules/inicio/index.js"></script>
+<script src="modules/login/index.js"></script>
+<script src="modules/orcamentos/index.js"></script>
+<script src="modules/parceiros/index.js"></script>
+<script src="modules/produtos/index.js"></script>
+<script src="modules/sites/index.js"></script>
+<script src="modules/slides/index.js"></script>
+<script src="modules/usuarios/index.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

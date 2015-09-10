@@ -24,7 +24,7 @@ angular.module('myApp.parceiros', ['ngRoute'])
                 api
                     .get('parceiro?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (data) {
-                        $scope.linhas = (data.data);
+                        $scope.linhas = (data.data.data);
                     });
             };
 
@@ -86,7 +86,7 @@ angular.module('myApp.parceiros', ['ngRoute'])
                 api
                     .get('parceiro/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.parceiro = (data.data);
+                        $scope.parceiro = (data.data.data);
                     });
             };
         }
