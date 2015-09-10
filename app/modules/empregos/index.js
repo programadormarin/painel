@@ -1,14 +1,20 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.empregos', [])
+angular.module('myApp.empregos', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/empregos', {
+                templateUrl: 'modules/empregos/index.html',
+                controller: 'EmpregosController'
+            })
+        ;
+    }])
 
-    .controller('Empregos', ['$scope', '$routeParams', '$location', 'api',
+    .controller('EmpregosController', ['$scope', '$routeParams', '$location', 'api',
         function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-            
+
             $scope.editor = function () {
                 $('.editor').wysiwyg();
                 $('textarea').autosize();
@@ -54,7 +60,7 @@ angular
                                 }
 
                                 $location.path('/empregos');
-                                
+
                                 $scope.load();
                             } else {
                                 $scope.status = {

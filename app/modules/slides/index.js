@@ -1,14 +1,20 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.equipe', [])
+angular.module('myApp.slides', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/slides', {
+                templateUrl: 'modules/slides/index.html',
+                controller: 'SlidesController'
+            })
+        ;
+    }])
 
-    .controller('Equipe', ['$scope', '$routeParams', '$location', 'api',
-        function ($scope, $routeParams, $location, api) {
+    .controller('SlidesController', ['$scope', '$routeParams', '$location', 'api', '$route',
+        function ($scope, $routeParams, $location, api, FileUploader, $route) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-            
+
             $scope.editor = function () {
                 $('.editor').wysiwyg();
                 $('textarea').autosize();
@@ -16,7 +22,7 @@ angular
 
             $scope.load = function () {
                 api
-                    .get('equipe?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('slide?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (data) {
                         $scope.linhas = (data.data);
                     });
@@ -24,35 +30,35 @@ angular
 
             $scope.add = function () {
                 api
-                    .post('equipe', $scope.membro)
+                    .post('slide', $scope.slide)
                     .then(function (data, status) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Membro da equipe inserido com sucesso!'
+                            message: 'Slide inserido com sucesso!'
                         }
 
-                        $scope.membro = '';
-                        $scope.equipeForm.$setPristine();
+                        $scope.slide = '';
+                        $scope.slideForm.$setPristine();
                     });
             };
 
             $scope.delete = function (id) {
-                if (confirm('Você deseja realmente apagar o membro?\nEste procedimento é irreversível!')) {
+                if (confirm('Você deseja realmente apagar o slide?\nEste procedimento é irreversível!')) {
                     api
-                        .delete('equipe/' + id)
+                        .delete('slide/' + id)
                         .then(function (data) {
                             if (data.status == 200) {
                                 $scope.status = {
                                     type: 'success',
-                                    message: 'Membro removido com sucesso!'
+                                    message: 'Slide removido com sucesso!'
                                 }
 
-                                $location.path('/equipe');
+                                $location.path('/slides');
                                 $scope.load();
                             } else {
                                 $scope.status = {
-                                    type: 'error',
-                                    message: 'Erro removendo membro, tente novamente mais tarde'
+                                    type: 'danger',
+                                    message: 'Erro removendo cliente, tente novamente mais tarde'
                                 }
                             }
                         });
@@ -61,26 +67,26 @@ angular
 
             $scope.edit = function () {
                 api
-                    .put('equipe/' + $routeParams.id, $scope.membro)
+                    .put('slide/' + $routeParams.id, $scope.slide)
                     .success(function (data) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Membro atualizado com sucesso!'
+                            message: 'Slide atualizado com sucesso!'
                         }
                     })
                     .error(function () {
                         $scope.status = {
-                            type: 'error',
-                            message: 'Ocorreu um erro atualizando os dados do membro, tente novamente mais tarde'
+                            type: 'danger',
+                            message: 'Ocorreu um erro atualizando os dados do slide, tente novamente mais tarde'
                         }
                     });
             };
 
             $scope.get = function () {
                 api
-                    .get('equipe/' + $routeParams.id)
+                    .get('slide/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.membro = (data.data);
+                        $scope.slide = (data.data);
                     });
             };
         }

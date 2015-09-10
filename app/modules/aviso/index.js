@@ -1,22 +1,31 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.produtos', [])
+angular.module('myApp.aviso', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/aviso', {
+                templateUrl: 'modules/aviso/index.html',
+                controller: 'AvisoController'
+            })
+        ;
+    }])
 
-    .controller('Produtos', ['$scope', '$routeParams', '$location', 'api',
+    .controller('AvisoController', ['$scope', '$routeParams', '$location', 'api',
         function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-                
+
             $scope.editor = function () {
                 $('.editor').wysiwyg();
                 $('textarea').autosize();
+                $('.datepicker').datepicker({
+                    format: 'dd-mm-yyyy'
+                });
             };
 
             $scope.load = function () {
                 api
-                    .get('produto?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('aviso?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (result) {
                         $scope.linhas = (result.data);
                     });
@@ -24,35 +33,36 @@ angular
 
             $scope.add = function () {
                 api
-                    .post('produto', $scope.produto)
+                    .post('aviso', $scope.aviso)
                     .then(function (data, status) {
                         $scope.status = {
                             type: 'success',
-                            message: 'produto inserido com sucesso!'
+                            message: 'inserida com sucesso!'
                         }
 
-                        $scope.produto = '';
-                        $scope.produtoForm.$setPristine();
+                        $scope.aviso = '';
+                        $scope.avisoForm.$setPristine();
                     });
             };
 
             $scope.delete = function (id) {
-                if (confirm('Você deseja realmente apagar o produto?\nEste procedimento é irreversível!')) {
+                if (confirm('Você deseja realmente apagar o ítem?\nEste procedimento é irreversível!')) {
                     api
-                        .delete('produto/' + id)
+                        .delete('aviso/' + id)
                         .then(function (data) {
-                            if (data.status == 200) {
+                            if (data.status == 204) {
                                 $scope.status = {
                                     type: 'success',
-                                    message: 'produto removido com sucesso!'
+                                    message: 'removida com sucesso!'
                                 }
 
-                                $location.path('/produtos');
+                                $location.path('/aviso');
+
                                 $scope.load();
                             } else {
                                 $scope.status = {
                                     type: 'danger',
-                                    message: 'Erro removendo produto, tente novamente mais tarde'
+                                    message: 'Erro removendo, tente novamente mais tarde'
                                 }
                             }
                         });
@@ -61,27 +71,27 @@ angular
 
             $scope.edit = function () {
                 api
-                    .put('produto/' + $routeParams.id, $scope.produto)
+                    .put('aviso/' + $routeParams.id, $scope.aviso)
                     .success(function (data) {
                         $scope.status = {
                             type: 'success',
-                            message: 'produto atualizado com sucesso!'
+                            message: 'atualizada com sucesso!'
                         }
                     })
                     .error(function () {
                         $scope.status = {
                             type: 'danger',
-                            message: 'Ocorreu um erro atualizando os dados do produto, tente novamente mais tarde'
+                            message: 'Ocorreu um erro atualizando, tente novamente mais tarde'
                         }
                     });
             };
 
             $scope.get = function () {
                 api
-                    .get('produto/' + $routeParams.id)
+                    .get('aviso/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.produto = (data.data);
+                        $scope.aviso = (data.data);
                     });
-            };
+            }
         }
     ]);

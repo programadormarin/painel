@@ -1,14 +1,20 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.clientes', [])
+angular.module('myApp.produtos', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/produtos', {
+                templateUrl: 'modules/produtos/index.html',
+                controller: 'ProdutosController'
+            })
+        ;
+    }])
 
-    .controller('Clientes', ['$scope', '$routeParams', '$location', 'api',
+    .controller('ProdutosController', ['$scope', '$routeParams', '$location', 'api',
         function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-            
+
             $scope.editor = function () {
                 $('.editor').wysiwyg();
                 $('textarea').autosize();
@@ -16,7 +22,7 @@ angular
 
             $scope.load = function () {
                 api
-                    .get('cliente?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('produto?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (result) {
                         $scope.linhas = (result.data);
                     });
@@ -24,35 +30,35 @@ angular
 
             $scope.add = function () {
                 api
-                    .post('cliente', $scope.cliente)
+                    .post('produto', $scope.produto)
                     .then(function (data, status) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Cliente inserido com sucesso!'
+                            message: 'produto inserido com sucesso!'
                         }
 
-                        $scope.cliente = '';
-                        $scope.clienteForm.$setPristine();
+                        $scope.produto = '';
+                        $scope.produtoForm.$setPristine();
                     });
             };
 
             $scope.delete = function (id) {
-                if (confirm('Você deseja realmente apagar o cliente?\nEste procedimento é irreversível!')) {
+                if (confirm('Você deseja realmente apagar o produto?\nEste procedimento é irreversível!')) {
                     api
-                        .delete('cliente/' + id)
+                        .delete('produto/' + id)
                         .then(function (data) {
                             if (data.status == 200) {
                                 $scope.status = {
                                     type: 'success',
-                                    message: 'Cliente removido com sucesso!'
+                                    message: 'produto removido com sucesso!'
                                 }
 
-                                $location.path('/clientes');
+                                $location.path('/produtos');
                                 $scope.load();
                             } else {
                                 $scope.status = {
-                                    type: 'error',
-                                    message: 'Erro removendo cliente, tente novamente mais tarde'
+                                    type: 'danger',
+                                    message: 'Erro removendo produto, tente novamente mais tarde'
                                 }
                             }
                         });
@@ -61,27 +67,27 @@ angular
 
             $scope.edit = function () {
                 api
-                    .put('cliente/' + $routeParams.id, $scope.cliente)
+                    .put('produto/' + $routeParams.id, $scope.produto)
                     .success(function (data) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Cliente atualizado com sucesso!'
+                            message: 'produto atualizado com sucesso!'
                         }
                     })
                     .error(function () {
                         $scope.status = {
-                            type: 'error',
-                            message: 'Ocorreu um erro atualizando os dados do cliente, tente novamente mais tarde'
+                            type: 'danger',
+                            message: 'Ocorreu um erro atualizando os dados do produto, tente novamente mais tarde'
                         }
                     });
             };
 
             $scope.get = function () {
                 api
-                    .get('cliente/' + $routeParams.id)
+                    .get('produto/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.cliente = (data.data);
+                        $scope.produto = (data.data);
                     });
-            }
+            };
         }
     ]);

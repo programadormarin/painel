@@ -12,7 +12,8 @@
                 <button type="button" data-dismiss="alert" class="close">&times;</button>
                 {{ status.message}}
             </div>
-            <div ng-show="linhas.itemCount == 0" class="alert alert-warning">Você não possui nenhum usuarios, cadastre um
+            <div ng-show="linhas.itemCount == 0" class="alert alert-warning">Você não possui nenhum usuarios, cadastre
+                um
                 &nbsp;
                 <a href="#/usuarios/adicionar">aqui</a>
             </div>
@@ -34,8 +35,10 @@
                     <td>{{ usuarios.site.nome }}</td>
                     </td>
                     <td class="center">
-                        <a href="#/usuarios/editar/{{ usuarios._id }}" class="btn btn-xs btn-info"><i class="fa fa-edit"></i></a>
-                        <a ng-click="delete(usuarios._id)" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>
+                        <a href="#/usuarios/editar/{{ usuarios._id }}" class="btn btn-xs btn-info"><i
+                                class="fa fa-edit"></i></a>
+                        <a ng-click="delete(usuarios._id)" class="btn btn-xs btn-danger"><i
+                                class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 </tbody>

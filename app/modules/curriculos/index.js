@@ -1,25 +1,23 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.aviso', [])
+angular.module('myApp.curriculos', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/curriculos', {
+                templateUrl: 'modules/curriculos/index.html',
+                controller: 'CurriculosController'
+            })
+        ;
+    }])
 
-    .controller('Aviso', ['$scope', '$routeParams', '$location', 'api',
+    .controller('CurriculosController', ['$scope', '$routeParams', '$location', 'api',
         function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-                
-            $scope.editor = function () {
-                $('.editor').wysiwyg();
-                $('textarea').autosize();
-                $('.datepicker').datepicker({
-                    format: 'dd-mm-yyyy'
-                });
-            };
 
             $scope.load = function () {
                 api
-                    .get('aviso?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('curriculo?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (result) {
                         $scope.linhas = (result.data);
                     });
@@ -27,35 +25,35 @@ angular
 
             $scope.add = function () {
                 api
-                    .post('aviso', $scope.aviso)
+                    .post('curriculo', $scope.curriculo)
                     .then(function (data, status) {
                         $scope.status = {
                             type: 'success',
-                            message: 'inserida com sucesso!'
+                            message: 'Currículo inserido com sucesso!'
                         }
 
-                        $scope.aviso = '';
-                        $scope.avisoForm.$setPristine();
+                        $scope.curriculo = '';
+                        $scope.curriculoForm.$setPristine();
                     });
             };
 
             $scope.delete = function (id) {
-                if (confirm('Você deseja realmente apagar o ítem?\nEste procedimento é irreversível!')) {
+                if (confirm('Você deseja realmente apagar o cliente?\nEste procedimento é irreversível!')) {
                     api
-                        .delete('aviso/' + id)
+                        .delete('curriculo/' + id)
                         .then(function (data) {
                             if (data.status == 200) {
                                 $scope.status = {
                                     type: 'success',
-                                    message: 'removida com sucesso!'
+                                    message: 'Currículo removido com sucesso!'
                                 }
 
-                                $location.path('/aviso');
+                                $location.path('/curriculos');
                                 $scope.load();
                             } else {
                                 $scope.status = {
                                     type: 'error',
-                                    message: 'Erro removendo, tente novamente mais tarde'
+                                    message: 'Erro removendo cliente, tente novamente mais tarde'
                                 }
                             }
                         });
@@ -64,27 +62,27 @@ angular
 
             $scope.edit = function () {
                 api
-                    .put('aviso/' + $routeParams.id, $scope.aviso)
+                    .put('curriculo/' + $routeParams.id, $scope.curriculo)
                     .success(function (data) {
                         $scope.status = {
                             type: 'success',
-                            message: 'atualizada com sucesso!'
+                            message: 'Currículo atualizado com sucesso!'
                         }
                     })
                     .error(function () {
                         $scope.status = {
                             type: 'error',
-                            message: 'Ocorreu um erro atualizando, tente novamente mais tarde'
+                            message: 'Ocorreu um erro atualizando os dados do currículo, tente novamente mais tarde'
                         }
                     });
             };
 
             $scope.get = function () {
                 api
-                    .get('aviso/' + $routeParams.id)
+                    .get('curriculo/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.aviso = (data.data);
+                        $scope.curriculo = (data.data);
                     });
-            }
+            };
         }
     ]);

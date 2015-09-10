@@ -13,20 +13,27 @@
                 {{ status.message}}
             </div>
             <form name="siteForm" ng-submit="update()" novalidate="novalidate" class="form-vertical">
-                <div ng-class="{ 'has-error' : siteForm.nome.$invalid &amp;&amp; !siteForm.nome.$pristine }" class="form-group">
+                <div ng-class="{ 'has-error' : siteForm.nome.$invalid &amp;&amp; !siteForm.nome.$pristine }"
+                     class="form-group">
                     <label class="control-label">Título</label>
+
                     <div class="controls">
                         <input type="text" ng-model="site.nome" name="nome" required="required" class="form-control"/>
 
-                        <p ng-show="siteForm.nome.$invalid &amp;&amp; !siteForm.nome.$pristine" class="help-block">Título muito curto ou inválido</p>
+                        <p ng-show="siteForm.nome.$invalid &amp;&amp; !siteForm.nome.$pristine" class="help-block">
+                            Título muito curto ou inválido</p>
                     </div>
                 </div>
-                <div ng-class="{ 'has-error' : siteForm.dominio.$invalid &amp;&amp; !siteForm.dominio.$pristine }" class="form-group">
+                <div ng-class="{ 'has-error' : siteForm.dominio.$invalid &amp;&amp; !siteForm.dominio.$pristine }"
+                     class="form-group">
                     <label class="control-label">Dominio</label>
-                    <div class="controls">
-                        <input type="text" ng-model="site.dominio" name="dominio" required="required" class="form-control"/>
 
-                        <p ng-show="siteForm.dominio.$invalid &amp;&amp; !siteForm.dominio.$pristine" class="help-block">Dominio muito curto ou inválido</p>
+                    <div class="controls">
+                        <input type="text" ng-model="site.dominio" name="dominio" required="required"
+                               class="form-control"/>
+
+                        <p ng-show="siteForm.dominio.$invalid &amp;&amp; !siteForm.dominio.$pristine"
+                           class="help-block">Dominio muito curto ou inválido</p>
                     </div>
                 </div>
                 <div class="control-group">

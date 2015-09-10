@@ -1,17 +1,31 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.curriculos', [])
+angular.module('myApp.clientes', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/clientes', {
+                templateUrl: 'modules/clientes/index.html',
+                controller: 'ClientesController'
+            })
+            .when('/clientes/adicionar', {
+                templateUrl: 'modules/clientes/add.html',
+                controller: 'ClientesController'
+            })
+            .when('/clientes/editar/:id', {
+                templateUrl: 'modules/clientes/edit.html',
+                controller: 'ClientesController'
+            })
+        ;
+    }])
 
-    .controller('Curriculos', ['$scope', '$routeParams', '$location', 'api',
+    .controller('ClientesController', ['$scope', '$routeParams', '$location', 'api',
         function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
 
             $scope.load = function () {
                 api
-                    .get('curriculo?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('cliente?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (result) {
                         $scope.linhas = (result.data);
                     });
@@ -19,30 +33,30 @@ angular
 
             $scope.add = function () {
                 api
-                    .post('curriculo', $scope.curriculo)
+                    .post('cliente', $scope.cliente)
                     .then(function (data, status) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Currículo inserido com sucesso!'
+                            message: 'Cliente inserido com sucesso!'
                         }
 
-                        $scope.curriculo = '';
-                        $scope.curriculoForm.$setPristine();
+                        $scope.cliente = '';
+                        $scope.clienteForm.$setPristine();
                     });
             };
 
             $scope.delete = function (id) {
                 if (confirm('Você deseja realmente apagar o cliente?\nEste procedimento é irreversível!')) {
                     api
-                        .delete('curriculo/' + id)
+                        .delete('cliente/' + id)
                         .then(function (data) {
-                            if (data.status == 200) {
+                            if (data.status == 204) {
                                 $scope.status = {
                                     type: 'success',
-                                    message: 'Currículo removido com sucesso!'
+                                    message: 'Cliente removido com sucesso!'
                                 }
 
-                                $location.path('/curriculos');
+                                $location.path('/clientes');
                                 $scope.load();
                             } else {
                                 $scope.status = {
@@ -56,27 +70,27 @@ angular
 
             $scope.edit = function () {
                 api
-                    .put('curriculo/' + $routeParams.id, $scope.curriculo)
+                    .put('cliente/' + $routeParams.id, $scope.cliente)
                     .success(function (data) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Currículo atualizado com sucesso!'
+                            message: 'Cliente atualizado com sucesso!'
                         }
                     })
                     .error(function () {
                         $scope.status = {
                             type: 'error',
-                            message: 'Ocorreu um erro atualizando os dados do currículo, tente novamente mais tarde'
+                            message: 'Ocorreu um erro atualizando os dados do cliente, tente novamente mais tarde'
                         }
                     });
             };
 
             $scope.get = function () {
                 api
-                    .get('curriculo/' + $routeParams.id)
+                    .get('cliente/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.curriculo = (data.data);
+                        $scope.cliente = (data.data.data);
                     });
-            };
+            }
         }
     ]);

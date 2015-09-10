@@ -5,8 +5,8 @@ describe('myApp.inicio module', function () {
 
     describe('Inicio controller', function () {
         it('should ....', inject(function ($controller) {
-            var scope    = {};
-            var homeController = $controller('InicioController', {$scope:scope});
+            var scope = {};
+            var homeController = $controller('InicioController', {$scope: scope});
 
             expect(homeController).toBeDefined();
         }));

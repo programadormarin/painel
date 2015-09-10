@@ -6,8 +6,8 @@ describe('myApp.usuarios module', function () {
 
     describe('Usuarios controller', function () {
         it('should ....', inject(function ($controller) {
-            var scope    = {};
-            var homeController = $controller('UsuariosController', {$scope:scope});
+            var scope = {};
+            var homeController = $controller('UsuariosController', {$scope: scope});
 
             expect(homeController).toBeDefined();
         }));

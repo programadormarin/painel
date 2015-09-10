@@ -1,46 +1,52 @@
 <div ng-init="load()" class="col-lg-12">
-  <div class="box">
-    <div data-original-title="" class="box-header">
-      <h2>
-        <i class="fa fa-money"></i>
-        <span class="break"></span>Orçamentos</h2>
+    <div class="box">
+        <div data-original-title="" class="box-header">
+            <h2>
+                <i class="fa fa-money"></i>
+                <span class="break">&nbsp;</span>Orçamentos</h2>
+        </div>
+        <div class="box-content">
+            <div class="block">
+                <div ng-show="status" class="alert alert-{{ status.type }}">
+                    <button type="button" data-dismiss="alert" class="close">&times;</button>
+                    {{ status.message}}
+                </div>
+                <div ng-show="linhas.itemCount == 0" class="alert alert-warning">Você não possui nenhum orcamento
+                    cadastrado
+                </div>
+                <table ng-show="linhas.itemCount"
+                       class="table table-striped table-bordered bootstrap-datatable datatable">
+                    <thead>
+                    <tr>
+                        <td class="col-md-3">Solicitante</td>
+                        <td class="col-md-3">Email</td>
+                        <td class="col-md-2">Serviço</td>
+                        <td class="col-md-1">Data</td>
+                        <td class="col-md-1"></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="orcamento in linhas.data">
+                        <td>
+                            <a href="#/orcamentos/{{ orcamento._id }}">{{ orcamento.solicitante }}</a>
+                        </td>
+                        <td>
+                            <a href="mailto:{{ orcamento.email }}">{{ orcamento.email }}</a>
+                        </td>
+                        <td>{{ orcamento.servico.titulo }}</td>
+                        <td>{{ orcamento.cadastro | date: 'd/MMM/yyyy' }}</td>
+                        <td>
+                            <a href="#/orcamentos/editar/{{ orcamento._id }}" class="btn btn-mini btn-success"><span
+                                    class="fa fa-edit">&nbsp;</span></a>
+                            <button ng-click="delete(orcamento._id)" class="btn btn-mini btn-danger">
+                                <span class="fa fa-trash-o">&nbsp;</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-include src="'/app/partials/pagination.html'"></ng-include>
+        </div>
     </div>
-    <div class="box-content">
-      <div class="block">
-        <div ng-show="status" class="alert alert-{{ status.type }}">
-          <button type="button" data-dismiss="alert" class="close">&times;</button>{{ status.message}}</div>
-        <div ng-show="linhas.itemCount == 0" class="alert alert-warning">Você não possui nenhum orcamento cadastrado</div>
-        <table ng-show="linhas.itemCount" class="table table-striped table-bordered bootstrap-datatable datatable">
-          <thead>
-            <tr>
-              <td class="col-md-3">Solicitante</td>
-              <td class="col-md-3">Email</td>
-              <td class="col-md-2">Serviço</td>
-              <td class="col-md-1">Data</td>
-              <td class="col-md-1"></td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="orcamento in linhas.data">
-              <td>
-                <a href="#/orcamentos/{{ orcamento._id }}">{{ orcamento.solicitante }}</a>
-              </td>
-              <td>
-                <a href="mailto:{{ orcamento.email }}">{{ orcamento.email }}</a>
-              </td>
-              <td>{{ orcamento.servico.titulo }}</td>
-              <td>{{ orcamento.cadastro | date: 'd/MMM/yyyy' }}</td>
-              <td>
-                <a href="#/orcamentos/editar/{{ orcamento._id }}" class="btn btn-mini btn-success"><span class="fa fa-edit">&nbsp;</span></a>
-                <button ng-click="delete(orcamento._id)" class="btn btn-mini btn-danger">
-                  <span class="fa fa-trash-o">&nbsp;</span>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <ng-include src="'/app/partials/pagination.html'"></ng-include>
-    </div>
-  </div>
 </div>

@@ -1,143 +1,78 @@
-<div class="col-lg-12">
-  <div class="box">
-    <div data-original-title="" class="box-header">
-      <h2>
-        <i class="fa fa-briefcase"></i>
-        <span class="break"></span>Clientes</h2>
-      <div class="box-icon">
-        <a href="#/clientes/adicionar" class="btn-plus"><i class="fa fa-plus"></i></a>
-      </div>
-    </div>
-    <div class="box-content">
-      <div class="block">
-        <div ng-show="status" class="alert alert-{{ status.type }}">
-          <button type="button" data-dismiss="alert" class="close">&times;</button>{{ status.message}}</div>
-        <form ng-submit="edit()" ng-init="get()" name="clienteForm" novalidate="novalidate"
-        class="form-vertical">
-          <div class="row">
-            <div class="col-sm-6">
-              <div ng-class="{ 'has-error' : clienteForm.nome.$invalid &amp;&amp; !clienteForm.nome.$pristine }" class="form-group">
-                <label class="control-label">Nome</label>
-                <div class="controls">
-                  <input type="text" ng-model="cliente.nome" name="nome" required="required" class="form-control" />
-                  <p ng-show="clienteForm.nome.$invalid &amp;&amp; !clienteForm.nome.$pristine" class="help-block">Nome muito curto ou inválido</p>
+<div class="col-lg-12" ng-init="get(); editor()">
+    <div class="box">
+        <div data-original-title="" class="box-header">
+            <h2><i class="fa fa-briefcase"></i><span class="break">&nbsp;</span>Clientes</h2>
+
+            <div class="box-icon">
+                <a href="#/clientes/adicionar" class="btn-plus"><i class="fa fa-plus"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+            <div class="block">
+                <div ng-show="status" class="alert alert-{{ status.type }}">
+                    <button type="button" data-dismiss="alert" class="close">&times;</button>
+                    {{ status.message}}
                 </div>
-              </div>
-              <div ng-class="{ 'has-error' : clienteForm.descricao.$invalid &amp;&amp; !clienteForm.descricao.$pristine }" ng-init="editor()"
-              class="form-group hidden-xs">
-                <label class="control-label">Descrição</label>
-                <div data-role="editor-toolbar" data-target=".editor" class="btn-toolbar">
-                  <div class="btn-group">
-                    <a data-toggle="dropdown" title="Font Size" class="btn dropdown-toggle"><i class="fa fa-text-height"></i><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a data-edit="fontSize 5"><font size="5">Grande</font></a>
-                      </li>
-                      <li>
-                        <a data-edit="fontSize 3"><font size="3">Normal</font></a>
-                      </li>
-                      <li>
-                        <a data-edit="fontSize 1"><font size="1">Pequena</font></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="btn-group">
-                    <a data-edit="bold" title="Bold (Ctrl/Cmd+B)" class="btn"><i class="fa fa-bold"></i></a>
-                    <a data-edit="italic" title="Italic (Ctrl/Cmd+I)" class="btn"><i class="fa fa-italic"></i></a>
-                    <a data-edit="strikethrough" title="Strikethrough" class="btn"><i class="fa fa-strikethrough"></i></a>
-                    <a data-edit="underline" title="Underline (Ctrl/Cmd+U)" class="btn"><i class="fa fa-underline"></i></a>
-                  </div>
-                  <div class="btn-group">
-                    <a data-edit="insertunorderedlist" title="Bullet list" class="btn"><i class="fa fa-list-ul"></i></a>
-                    <a data-edit="insertorderedlist" title="Number list" class="btn"><i class="fa fa-list-ol"></i></a>
-                    <a data-edit="outdent" title="Reduce indent (Shift+Tab)" class="btn"><i class="fa fa-outdent"></i></a>
-                    <a data-edit="indent" title="Indent (Tab)" class="btn"><i class="fa fa-indent"></i></a>
-                  </div>
-                  <div class="btn-group">
-                    <a data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)" class="btn"><i class="fa fa-align-left"></i></a>
-                    <a data-edit="justifycenter" title="Center (Ctrl/Cmd+E)" class="btn"><i class="fa fa-align-center"></i></a>
-                    <a data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)" class="btn"><i class="fa fa-align-right"></i></a>
-                    <a data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)" class="btn"><i class="fa fa-align-justify"></i></a>
-                  </div>
-                  <div class="btn-group">
-                    <div class="btn-group">
-                      <a data-edit="undo" title="Undo (Ctrl/Cmd+Z)" class="btn"><i class="fa fa-undo"></i></a>
-                      <a data-edit="redo" title="Redo (Ctrl/Cmd+Y)" class="btn"><i class="fa fa-repeat"></i></a>
+                <form ng-submit="edit()" name="clienteForm" novalidate="novalidate"
+                      class="form-vertical">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div ng-class="{ 'has-error' : clienteForm.nome.$invalid &amp;&amp; !clienteForm.nome.$pristine }" class="form-group">
+                                <label class="control-label">Nome</label>
+
+                                <div class="controls">
+                                    <input type="text" ng-model="cliente.nome" name="nome" required="required" class="form-control"/>
+
+                                    <p ng-show="clienteForm.nome.$invalid &amp;&amp; !clienteForm.nome.$pristine"
+                                       class="help-block">Nome muito curto ou inválido</p>
+                                </div>
+                            </div>
+                            <div ng-class="{ 'has-error' : clienteForm.descricao.$invalid &amp;&amp; !clienteForm.descricao.$pristine }" class="form-group hidden-xs">
+                                <label class="control-label">Descrição</label>
+
+                                <div class="controls">
+                                    <div ng-model="cliente.descricao" name="descricao" contentEditable="contenteditable" class="editor1"></div>
+                                    <p ng-show="clienteForm.descricao.$invalid &amp;&amp; !clienteForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div ng-class="{ 'has-error' : clienteForm.site.$invalid &amp;&amp; !clienteForm.site.$pristine }"
+                                 class="form-group">
+                                <label class="control-label">Site</label>
+
+                                <div class="controls">
+                                    <input type="url" ng-model="cliente.url" name="url" required="required"
+                                           class="form-control"/>
+
+                                    <p ng-show="clienteForm.site.$invalid &amp;&amp; !clienteForm.site.$pristine"
+                                       class="help-block">Endereço do site inválido</p>
+                                </div>
+                            </div>
+                            <div ng-class="{ 'has-error' : clienteForm.atuacao.$invalid &amp;&amp; !clienteForm.atuacao.$pristine }" class="form-group hidden-xs">
+                                <label class="control-label">Atuação</label>
+
+                                <div class="controls">
+                                    <div ng-model="cliente.atuacao" name="atuacao" contentEditable="contenteditable" class="editor2"></div>
+                                    <p ng-show="clienteForm.atuacao.$invalid &amp;&amp; !clienteForm.atuacao.$pristine" class="help-block">Atuação muito curta</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div ng-model="cliente.descricao" name="descricao" contentEditable="contentEditable" class="editor"></div>
-              <p ng-show="clienteForm.descricao.$invalid &amp;&amp; !clienteForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
-            </div>
-            <div class="col-sm-6">
-              <div ng-class="{ 'has-error' : clienteForm.site.$invalid &amp;&amp; !clienteForm.site.$pristine }" class="form-group">
-                <label class="control-label">Site</label>
-                <div class="controls">
-                  <input type="url" ng-model="cliente.url" name="url" required="required" class="form-control" />
-                  <p ng-show="clienteForm.site.$invalid &amp;&amp; !clienteForm.site.$pristine" class="help-block">Endereço do site inválido</p>
-                </div>
-              </div>
-              <div ng-class="{ 'has-error' : clienteForm.atuacao.$invalid &amp;&amp; !clienteForm.atuacao.$pristine }" ng-init="editor()"
-              class="form-group hidden-xs">
-                <label class="control-label">Atuação</label>
-                <div data-role="editor-toolbar" data-target=".editor" class="btn-toolbar">
-                  <div class="btn-group">
-                    <a data-toggle="dropdown" title="Font Size" class="btn dropdown-toggle"><i class="fa fa-text-height"></i><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a data-edit="fontSize 5"><font size="5">Grande</font></a>
-                      </li>
-                      <li>
-                        <a data-edit="fontSize 3"><font size="3">Normal</font></a>
-                      </li>
-                      <li>
-                        <a data-edit="fontSize 1"><font size="1">Pequena</font></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="btn-group">
-                    <a data-edit="bold" title="Bold (Ctrl/Cmd+B)" class="btn"><i class="fa fa-bold"></i></a>
-                    <a data-edit="italic" title="Italic (Ctrl/Cmd+I)" class="btn"><i class="fa fa-italic"></i></a>
-                    <a data-edit="strikethrough" title="Strikethrough" class="btn"><i class="fa fa-strikethrough"></i></a>
-                    <a data-edit="underline" title="Underline (Ctrl/Cmd+U)" class="btn"><i class="fa fa-underline"></i></a>
-                  </div>
-                  <div class="btn-group">
-                    <a data-edit="insertunorderedlist" title="Bullet list" class="btn"><i class="fa fa-list-ul"></i></a>
-                    <a data-edit="insertorderedlist" title="Number list" class="btn"><i class="fa fa-list-ol"></i></a>
-                    <a data-edit="outdent" title="Reduce indent (Shift+Tab)" class="btn"><i class="fa fa-outdent"></i></a>
-                    <a data-edit="indent" title="Indent (Tab)" class="btn"><i class="fa fa-indent"></i></a>
-                  </div>
-                  <div class="btn-group">
-                    <a data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)" class="btn"><i class="fa fa-align-left"></i></a>
-                    <a data-edit="justifycenter" title="Center (Ctrl/Cmd+E)" class="btn"><i class="fa fa-align-center"></i></a>
-                    <a data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)" class="btn"><i class="fa fa-align-right"></i></a>
-                    <a data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)" class="btn"><i class="fa fa-align-justify"></i></a>
-                  </div>
-                  <div class="btn-group">
-                    <div class="btn-group">
-                      <a data-edit="undo" title="Undo (Ctrl/Cmd+Z)" class="btn"><i class="fa fa-undo"></i></a>
-                      <a data-edit="redo" title="Redo (Ctrl/Cmd+Y)" class="btn"><i class="fa fa-repeat"></i></a>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button type="submit" ng-disabled="clienteForm.$invalid" class="btn btn-primary">
+                                        Salvar
+                                    </button>
+                                    <a href="#/clientes" class="btn">voltar</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div ng-model="cliente.atuacao" name="atuacao" contentEditable="contentEditable" class="editor"></div>
-              <p ng-show="clienteForm.atuacao.$invalid &amp;&amp; !clienteForm.atuacao.$pristine" class="help-block">Atuação muito curta</p>
+                </form>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="control-group">
-                <div class="controls">
-                  <button type="submit" ng-disabled="clienteForm.$invalid" class="btn btn-primary">Salvar</button>
-                  <a href="#/clientes" class="btn">voltar</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>

@@ -1,14 +1,20 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.slides', ['angularFileUpload'])
+angular.module('myApp.parceiros', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/parceiros', {
+                templateUrl: 'modules/parceiros/index.html',
+                controller: 'ParceirosController'
+            })
+        ;
+    }])
 
-    .controller('Slides', ['$scope', '$routeParams', '$location', 'api', 'FileUploader', '$route',
-        function ($scope, $routeParams, $location, api, FileUploader, $route) {
+    .controller('ParceirosController', ['$scope', '$routeParams', '$location', 'api',
+        function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-            
+
             $scope.editor = function () {
                 $('.editor').wysiwyg();
                 $('textarea').autosize();
@@ -16,7 +22,7 @@ angular
 
             $scope.load = function () {
                 api
-                    .get('slide?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('parceiro?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (data) {
                         $scope.linhas = (data.data);
                     });
@@ -24,35 +30,35 @@ angular
 
             $scope.add = function () {
                 api
-                    .post('slide', $scope.slide)
+                    .post('parceiro', $scope.parceiro)
                     .then(function (data, status) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Slide inserido com sucesso!'
+                            message: 'Parceiro inserido com sucesso!'
                         }
 
-                        $scope.slide = '';
-                        $scope.slideForm.$setPristine();
+                        $scope.parceiro = '';
+                        $scope.parceiroForm.$setPristine();
                     });
             };
 
             $scope.delete = function (id) {
-                if (confirm('Você deseja realmente apagar o slide?\nEste procedimento é irreversível!')) {
+                if (confirm('Você deseja realmente apagar o parceiro?\nEste procedimento é irreversível!')) {
                     api
-                        .delete('slide/' + id)
+                        .delete('parceiro/' + id)
                         .then(function (data) {
                             if (data.status == 200) {
                                 $scope.status = {
                                     type: 'success',
-                                    message: 'Slide removido com sucesso!'
+                                    message: 'Parceiro removido com sucesso!'
                                 }
 
-                                $location.path('/slides');
+                                $location.path('/parceiros');
                                 $scope.load();
                             } else {
                                 $scope.status = {
-                                    type: 'danger',
-                                    message: 'Erro removendo cliente, tente novamente mais tarde'
+                                    type: 'error',
+                                    message: 'Erro removendo parceiro, tente novamente mais tarde'
                                 }
                             }
                         });
@@ -61,26 +67,26 @@ angular
 
             $scope.edit = function () {
                 api
-                    .put('slide/' + $routeParams.id, $scope.slide)
+                    .put('parceiro/' + $routeParams.id, $scope.parceiro)
                     .success(function (data) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Slide atualizado com sucesso!'
+                            message: 'Parceiro atualizado com sucesso!'
                         }
                     })
                     .error(function () {
                         $scope.status = {
-                            type: 'danger',
-                            message: 'Ocorreu um erro atualizando os dados do slide, tente novamente mais tarde'
+                            type: 'error',
+                            message: 'Ocorreu um erro atualizando os dados do parceiro, tente novamente mais tarde'
                         }
                     });
             };
 
             $scope.get = function () {
                 api
-                    .get('slide/' + $routeParams.id)
+                    .get('parceiro/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.slide = (data.data);
+                        $scope.parceiro = (data.data);
                     });
             };
         }

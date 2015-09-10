@@ -1,14 +1,20 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.parceiros', [])
+angular.module('myApp.equipe', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/equipe', {
+                templateUrl: 'modules/equipe/index.html',
+                controller: 'EquipeController'
+            })
+        ;
+    }])
 
-    .controller('Parceiros', ['$scope', '$routeParams', '$location', 'api',
+    .controller('EquipeController', ['$scope', '$routeParams', '$location', 'api',
         function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-            
+
             $scope.editor = function () {
                 $('.editor').wysiwyg();
                 $('textarea').autosize();
@@ -16,7 +22,7 @@ angular
 
             $scope.load = function () {
                 api
-                    .get('parceiro?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('equipe?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
                     .then(function (data) {
                         $scope.linhas = (data.data);
                     });
@@ -24,35 +30,35 @@ angular
 
             $scope.add = function () {
                 api
-                    .post('parceiro', $scope.parceiro)
+                    .post('equipe', $scope.membro)
                     .then(function (data, status) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Parceiro inserido com sucesso!'
+                            message: 'Membro da equipe inserido com sucesso!'
                         }
 
-                        $scope.parceiro = '';
-                        $scope.parceiroForm.$setPristine();
+                        $scope.membro = '';
+                        $scope.equipeForm.$setPristine();
                     });
             };
 
             $scope.delete = function (id) {
-                if (confirm('Você deseja realmente apagar o parceiro?\nEste procedimento é irreversível!')) {
+                if (confirm('Você deseja realmente apagar o membro?\nEste procedimento é irreversível!')) {
                     api
-                        .delete('parceiro/' + id)
+                        .delete('equipe/' + id)
                         .then(function (data) {
                             if (data.status == 200) {
                                 $scope.status = {
                                     type: 'success',
-                                    message: 'Parceiro removido com sucesso!'
+                                    message: 'Membro removido com sucesso!'
                                 }
 
-                                $location.path('/parceiros');
+                                $location.path('/equipe');
                                 $scope.load();
                             } else {
                                 $scope.status = {
                                     type: 'error',
-                                    message: 'Erro removendo parceiro, tente novamente mais tarde'
+                                    message: 'Erro removendo membro, tente novamente mais tarde'
                                 }
                             }
                         });
@@ -61,26 +67,26 @@ angular
 
             $scope.edit = function () {
                 api
-                    .put('parceiro/' + $routeParams.id, $scope.parceiro)
+                    .put('equipe/' + $routeParams.id, $scope.membro)
                     .success(function (data) {
                         $scope.status = {
                             type: 'success',
-                            message: 'Parceiro atualizado com sucesso!'
+                            message: 'Membro atualizado com sucesso!'
                         }
                     })
                     .error(function () {
                         $scope.status = {
                             type: 'error',
-                            message: 'Ocorreu um erro atualizando os dados do parceiro, tente novamente mais tarde'
+                            message: 'Ocorreu um erro atualizando os dados do membro, tente novamente mais tarde'
                         }
                     });
             };
 
             $scope.get = function () {
                 api
-                    .get('parceiro/' + $routeParams.id)
+                    .get('equipe/' + $routeParams.id)
                     .then(function (data) {
-                        $scope.parceiro = (data.data);
+                        $scope.membro = (data.data);
                     });
             };
         }

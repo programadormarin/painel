@@ -1,10 +1,16 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.empresa', [])
+angular.module('myApp.empresa', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/empresa', {
+                templateUrl: 'modules/empresa/index.html',
+                controller: 'EmpresaController'
+            })
+        ;
+    }])
 
-    .controller('Empresa', ['$scope', '$routeParams', '$location', 'api',
+    .controller('EmpresaController', ['$scope', '$routeParams', '$location', 'api',
         function ($scope, $routeParams, $location, api) {
             $scope.site_id = $("meta[name='site_id']").attr("content");
 

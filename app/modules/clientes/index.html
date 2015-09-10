@@ -1,45 +1,47 @@
 <div ng-init="load()" class="col-lg-12">
-  <div class="box">
-    <div data-original-title="" class="box-header">
-      <h2>
-        <i class="fa fa-briefcase"></i>
-        <span class="break"></span>Clientes</h2>
-      <div class="box-icon">
-        <a href="#/clientes/adicionar" class="btn-plus"><i class="fa fa-plus"></i></a>
-      </div>
+    <div class="box">
+        <div data-original-title="" class="box-header">
+            <h2><i class="fa fa-briefcase"></i><span class="break">&nbsp;</span>Clientes</h2>
+
+            <div class="box-icon">
+                <a href="#/clientes/adicionar" class="btn-plus"><i class="fa fa-plus"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+            <div ng-show="status" class="alert alert-{{ status.type }}">
+                <button type="button" data-dismiss="alert" class="close">&times;</button>
+                {{ status.message}}
+            </div>
+            <div ng-show="linhas.itemCount == 0" class="alert alert-warning">Você não possui nenhum cliente cadastrado,
+                cadastre um &nbsp;
+                <a href="#/clientes/adicionar">aqui</a>
+            </div>
+            <table ng-show="linhas.itemCount" class="table table-striped table-bordered bootstrap-datatable datatable">
+                <thead>
+                <tr>
+                    <td class="col-md-3">Nome</td>
+                    <td class="col-md-3">Descrição</td>
+                    <td class="col-md-4">Atuação</td>
+                    <td class="col-md-1"></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="cliente in linhas.data">
+                    <td>
+                        <a href="{{ cliente.url}}" target="_blank">{{ cliente.nome }}</a>
+                    </td>
+                    <td>{{ cliente.descricao }}</td>
+                    <td>{{ cliente.atuacao }}</td>
+                    <td>
+                        <a href="#/clientes/editar/{{ cliente._id }}" class="btn btn-xs btn-success"><span
+                                class="fa fa-edit">&nbsp;</span></a>
+                        <button ng-click="delete(cliente._id)" class="btn btn-xs btn-danger"><span
+                                class="fa fa-trash-o">&nbsp;</span></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <ng-include src="'modules/pagination.html'"></ng-include>
+        </div>
     </div>
-    <div class="box-content">
-      <div ng-show="status" class="alert alert-{{ status.type }}">
-        <button type="button" data-dismiss="alert" class="close">&times;</button>{{ status.message}}</div>
-      <div ng-show="linhas.itemCount == 0" class="alert alert-warning">Você não possui nenhum cliente cadastrado, cadastre um &nbsp;
-        <a href="#/clientes/adicionar">aqui</a>
-      </div>
-      <table ng-show="linhas.itemCount" class="table table-striped table-bordered bootstrap-datatable datatable">
-        <thead>
-          <tr>
-            <td class="col-md-3">Nome</td>
-            <td class="col-md-3">Descrição</td>
-            <td class="col-md-4">Atuação</td>
-            <td class="col-md-1"></td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="cliente in linhas.data">
-            <td>
-              <a href="{{ cliente.url}}" target="_blank">{{ cliente.nome }}</a>
-            </td>
-            <td>{{ cliente.descricao }}</td>
-            <td>{{ cliente.atuacao }}</td>
-            <td>
-              <a href="#/clientes/editar/{{ cliente._id }}" class="btn btn-mini btn-success"><span class="fa fa-edit">&nbsp;</span></a>
-              <button ng-click="delete(cliente._id)" class="btn btn-mini btn-danger">
-                <span class="fa fa-trash-o">&nbsp;</span>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <ng-include src="'/app/partials/pagination.html'"></ng-include>
-    </div>
-  </div>
 </div>

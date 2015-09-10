@@ -1,10 +1,16 @@
 'use strict';
 
-/* Controllers */
-angular
-    .module('panel.controllers.orcamentos', [])
+angular.module('myApp.orcamentos', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/orcamentos', {
+                templateUrl: 'modules/orcamentos/index.html',
+                controller: 'OrcamentosController'
+            })
+        ;
+    }])
 
-    .controller('Orcamentos', ['$scope', '$routeParams', '$location', 'api',
+    .controller('OrcamentosController', ['$scope', '$routeParams', '$location', 'api',
         function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;

@@ -6,8 +6,8 @@ describe('myApp.sites module', function () {
 
     describe('Sites controller', function () {
         it('should ....', inject(function ($controller) {
-            var scope    = {};
-            var homeController = $controller('SitesController', {$scope:scope});
+            var scope = {};
+            var homeController = $controller('SitesController', {$scope: scope});
 
             expect(homeController).toBeDefined();
         }));

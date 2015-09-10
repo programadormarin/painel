@@ -1,52 +1,58 @@
 <div ng-init="load()" class="col-lg-12">
-  <div class="box">
-    <div data-original-title="" class="box-header">
-      <h2>
-        <i class="fa fa-suitcase"></i>
-        <span class="break"></span>Vagas de Empregos</h2>
-      <div class="box-icon">
-        <a href="#/empregos/adicionar" class="btn-plus"><i class="fa fa-plus"></i></a>
-      </div>
-    </div>
-    <div class="box-content">
-      <div class="block">
-        <div ng-show="status" class="alert alert-{{ status.type }}">
-          <button type="button" data-dismiss="alert" class="close">&times;</button>{{ status.message}}</div>
-        <div ng-show="linhas.itemCount == 0" class="alert alert-warning">Você não possui nenhum emprego cadastrado, cadastre um &nbsp;
-          <a href="#/empregos/adicionar">aqui</a>
+    <div class="box">
+        <div data-original-title="" class="box-header">
+            <h2>
+                <i class="fa fa-suitcase"></i>
+                <span class="break">&nbsp;</span>Vagas de Empregos</h2>
+
+            <div class="box-icon">
+                <a href="#/empregos/adicionar" class="btn-plus"><i class="fa fa-plus"></i></a>
+            </div>
         </div>
-        <table ng-show="linhas.itemCount" class="table table-striped table-bordered bootstrap-datatable datatable">
-          <thead>
-            <tr>
-              <td class="col-md-8">Nome</td>
-              <td class="col-md-1">Salário</td>
-              <td class="col-md-1">Cadastro</td>
-              <td class="col-md-1">Opções</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="emprego in linhas.data">
-              <td>{{ emprego.titulo }}</td>
-              <td>{{ emprego.salario }}</td>
-              <td>{{ emprego.cadastro | date: 'd/MMM/yyyy' }}</td>
-              <td>
-                <a href="#/empregos/editar/{{ emprego._id }}" class="btn btn-small btn-success"><span class="fa fa-edit">&nbsp;</span></a>
-                <button ng-click="delete(emprego._id)" class="btn btn-small btn-danger">
-                  <span class="fa fa-trash-o">&nbsp;</span>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="5" class="text-right">
-                <a href="#/empregos/adicionar" class="btn btn-primary btn-small"><span class="fa fa-plus">&nbsp;</span></a>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      <ng-include src="'/app/partials/pagination.html'"></ng-include>
+        <div class="box-content">
+            <div class="block">
+                <div ng-show="status" class="alert alert-{{ status.type }}">
+                    <button type="button" data-dismiss="alert" class="close">&times;</button>
+                    {{ status.message}}
+                </div>
+                <div ng-show="linhas.itemCount == 0" class="alert alert-warning">Você não possui nenhum emprego
+                    cadastrado, cadastre um &nbsp;
+                    <a href="#/empregos/adicionar">aqui</a>
+                </div>
+                <table ng-show="linhas.itemCount"
+                       class="table table-striped table-bordered bootstrap-datatable datatable">
+                    <thead>
+                    <tr>
+                        <td class="col-md-8">Nome</td>
+                        <td class="col-md-1">Salário</td>
+                        <td class="col-md-1">Cadastro</td>
+                        <td class="col-md-1">Opções</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="emprego in linhas.data">
+                        <td>{{ emprego.titulo }}</td>
+                        <td>{{ emprego.salario }}</td>
+                        <td>{{ emprego.cadastro | date: 'd/MMM/yyyy' }}</td>
+                        <td>
+                            <a href="#/empregos/editar/{{ emprego._id }}" class="btn btn-small btn-success"><span
+                                    class="fa fa-edit">&nbsp;</span></a>
+                            <button ng-click="delete(emprego._id)" class="btn btn-small btn-danger">
+                                <span class="fa fa-trash-o">&nbsp;</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="5" class="text-right">
+                            <a href="#/empregos/adicionar" class="btn btn-primary btn-small"><span class="fa fa-plus">&nbsp;</span></a>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <ng-include src="'/app/partials/pagination.html'"></ng-include>
+        </div>
     </div>
-  </div>
 </div>
