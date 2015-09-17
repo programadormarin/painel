@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.curriculos', [])
+angular.module('myApp.curriculos', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/curriculos', {

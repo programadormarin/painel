@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.orcamentos', [])
+angular.module('myApp.orcamentos', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/orcamentos', {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.slides', [])
+angular.module('myApp.slides', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/slides', {

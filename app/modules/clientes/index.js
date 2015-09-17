@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.clientes', [])
+angular.module('myApp.clientes', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/clientes', {
