@@ -42,7 +42,7 @@ angular.module('myApp.login', ['ngRoute'])
 
                     localStorage.setItem('site', data.data.usuario.site._id);
                     localStorage.setItem('usuario', JSON.stringify(data.data.usuario));
-                    localStorage.setItem('token', JSON.stringify(data.data.token));
+                    localStorage.setItem('token', data.data.token.conteudo);
 
                     $location.url('/inicio');
 
