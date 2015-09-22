@@ -25,11 +25,10 @@
 </head>
 <body>
 <!-- start: Header-->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="LoginController" ng-init="check()">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Navegação</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -43,9 +42,10 @@
                 <li><a href="#/inicio">Início</a></li>
                 <li><a href="#/perfil">Perfil</a></li>
                 <li><a href="#/ajuda">Ajuda</a></li>
+                <li><a href="#/logout" ng-click="logout()">Sair</a></li>
             </ul>
 
-            <form class="navbar-form navbar-right">
+            <form class="navbar-form navbar-right" ng-show="logado">
                 <input type="text" class="form-control" placeholder="Buscar produto...">
             </form>
         </div>
@@ -88,6 +88,53 @@
             <!-- row-->
             <div ng-view></div>
             <!-- /row-->
+
+            <!-- Auth Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="LoginController">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form ng-submit="login()" name="loginForm" novalidate="novalidate" class="form-horizontal">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-key"></i><span class="break">&nbsp;</span>Login</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div ng-show="status" class="alert alert-{{ status.type }}">
+                                    <button type="button" data-dismiss="alert" class="close">&times;</button>
+                                    {{ status.message}}
+                                </div>
+                                <div class="login-box">
+                                    <h2>Acessar o painel</h2>
+
+                                    <fieldset>
+                                        <div class="input-wrap">
+                                            <div title="E-mail de acesso" class="input-prepend input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                                <input id="username" name="username" type="email" placeholder="e-mail" ng-model="user.email" required="required" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="input-wrap">
+                                            <div title="Senha de acesso" class="input-prepend input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-lock"></i>
+                                                </span>
+                                                <input id="password" name="password" type="password" placeholder="senha" ng-model="user.password" required="required" class="form-control">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <hr/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary">Entrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

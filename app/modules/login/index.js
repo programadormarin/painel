@@ -7,10 +7,27 @@ angular.module('myApp.login', ['ngRoute'])
                 templateUrl: 'modules/login/index.html',
                 controller: 'LoginController'
             })
+            .when('/logout', {
+                templateUrl: 'modules/login/index.html',
+                controller: 'LoginController'
+            })
         ;
     }])
 
-    .controller('LoginController', ['$scope', '$routeParams', '$location', 'api', function ($scope, $routeParams, $location, api) {
+    .controller('LoginController', ['$scope', '$routeParams', '$location', 'api', '$window', '$interval', function ($scope, $routeParams, $location, api, $window, $interval) {
+        $scope.check = function () {
+            $interval(function () {
+                if (localStorage.getItem('usuario')) {
+                    $scope.logado = true;
+                } else {
+                    $scope.logado = false;
+
+
+                    $('#myModal').modal('show');
+                }
+            }, 100);
+        };
+
         $scope.login = function () {
             api
                 .post('login', $scope.user)
@@ -28,6 +45,10 @@ angular.module('myApp.login', ['ngRoute'])
                     localStorage.setItem('token', JSON.stringify(data.data.token));
 
                     $location.url('/inicio');
+
+                    $('#myModal').modal('hide');
+
+                    $window.location.reload();
                 })
                 .error(function (data, status) {
                     $scope.status = {
@@ -38,8 +59,12 @@ angular.module('myApp.login', ['ngRoute'])
         };
 
         $scope.logout = function () {
-            localStorage.clear();
+            localStorage.removeItem('site');
+            localStorage.removeItem('token');
+            localStorage.removeItem('usuario');
 
-            $location.url('/login');
+            $location.url('/inicio');
+
+            $window.location.reload();
         };
     }]);
