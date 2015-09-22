@@ -8,7 +8,7 @@ angular.module('ngApi', [])
             var url = 'http://api.publiciti.com.br';
 
             if (localStorage.getItem('token')) {
-                $http.defaults.headers.common.authorization = JSON.parse(localStorage.getItem('token')).conteudo;
+                $http.defaults.headers.common.authorization = localStorage.getItem('token');
             }
 
             if (localStorage.getItem('site')) {
