@@ -7,6 +7,14 @@ angular.module('myApp.produtos', ['ngRoute'])
                 templateUrl: 'modules/produtos/index.html',
                 controller: 'ProdutosController'
             })
+            .when('/produtos/adicionar', {
+                templateUrl: 'modules/produtos/add.html',
+                controller: 'ProdutosController'
+            })
+            .when('/produtos/editar', {
+                templateUrl: 'modules/produtos/edit.html',
+                controller: 'ProdutosController'
+            })
         ;
     }])
 

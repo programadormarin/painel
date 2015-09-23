@@ -35,11 +35,8 @@
                     <td>{{ produto.tipo }}</td>
                     <td>{{ produto.categoria }}</td>
                     <td>
-                        <a href="#/produtos/editar/{{ produto._id }}" class="btn btn-mini btn-success"><span
-                                class="fa fa-edit"></span></a>
-                        <button ng-click="delete(produto._id)" class="btn btn-mini btn-danger">
-                            <span class="fa fa-trash-o"></span>
-                        </button>
+                        <a href="#/produtos/editar/{{ produto._id }}" class="btn btn-xs btn-success"><span class="fa fa-edit"></span></a>
+                        <button ng-click="delete(produto._id)" class="btn btn-xs btn-danger"><span class="fa fa-trash-o"></span></button>
                     </td>
                 </tr>
                 </tbody>
@@ -49,8 +46,7 @@
                         <b>{{ linhas.itemCount }}</b>&nbsp; produtos cadastrados
                     </td>
                     <td colspan="2" class="text-right">
-                        <a href="#/produtos/adicionar" class="btn btn-primary btn-mini"><span
-                                class="fa fa-plus">&nbsp;</span></a>
+                        <a href="#/produtos/adicionar" class="btn btn-primary btn-mini"><span class="fa fa-plus">&nbsp;</span></a>
                     </td>
                 </tr>
                 </tfoot>

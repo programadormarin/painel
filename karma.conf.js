@@ -1,8 +1,6 @@
 module.exports = function (config) {
     config.set({
-
         basePath: './',
-
         files: [
             'app/vendor/angular/angular.js',
             'app/vendor/angular-loader/angular-loader.js',
@@ -12,23 +10,17 @@ module.exports = function (config) {
             'app/vendor/bootstrap/dist/js/bootstrap.js',
             'app/modules/**/*.js',
         ],
-
         autoWatch: true,
-
         frameworks: ['jasmine'],
-
         browsers: ['PhantomJS'],
-
         plugins: [
             'karma-phantomjs-launcher',
             'karma-jasmine',
             'karma-junit-reporter'
         ],
-
         junitReporter: {
-            outputFile: 'test_out/unit.xml',
+            outputFile: 'unit.xml',
             suite: 'unit'
         }
-
     });
 };
