@@ -5,3 +5,4 @@ app/vendor
 tmp
 .DS_Store
 .idea
+.divshot-cache/
