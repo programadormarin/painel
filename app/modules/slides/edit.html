@@ -19,7 +19,7 @@
                       class="form-vertical">
                     <div class="row">
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : slideForm.titulo.$invalid &amp;&amp; !slideForm.titulo.$pristine }"
+                            <div ng-class="{ 'has-error' : slideForm.titulo.$invalid && !slideForm.titulo.$pristine }"
                                  class="form-group">
                                 <label class="control-label">Título</label>
 
@@ -27,11 +27,11 @@
                                     <input type="text" ng-model="slide.titulo" ng-minlength="5" name="titulo"
                                            required="required" class="form-control"/>
 
-                                    <p ng-show="slideForm.titulo.$invalid &amp;&amp; !slideForm.titulo.$pristine"
+                                    <p ng-show="slideForm.titulo.$invalid && !slideForm.titulo.$pristine"
                                        class="help-block">Título muito curto ou inválido</p>
                                 </div>
                             </div>
-                            <div ng-class="{ 'has-error' : slideForm.descricao.$invalid &amp;&amp; !slideForm.descricao.$pristine }"
+                            <div ng-class="{ 'has-error' : slideForm.descricao.$invalid && !slideForm.descricao.$pristine }"
                                  ng-init="editor()"
                                  class="form-group hidden-xs">
                                 <label class="control-label">Descrição</label>
@@ -94,11 +94,11 @@
                             </div>
                             <div ng-model="slide.descricao" name="descricao" contentEditable="contentEditable"
                                  class="editor"></div>
-                            <p ng-show="slideForm.descricao.$invalid &amp;&amp; !slideForm.descricao.$pristine"
+                            <p ng-show="slideForm.descricao.$invalid && !slideForm.descricao.$pristine"
                                class="help-block">Descricao muito curta</p>
                         </div>
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : slideForm.endereco.$invalid &amp;&amp; !slideForm.endereco.$pristine }"
+                            <div ng-class="{ 'has-error' : slideForm.endereco.$invalid && !slideForm.endereco.$pristine }"
                                  class="form-group">
                                 <label class="control-label">Link</label>
 
@@ -106,11 +106,11 @@
                                     <input type="url" ng-model="slide.endereco" name="endereco" required="required"
                                            class="form-control"/>
 
-                                    <p ng-show="slideForm.endereco.$invalid &amp;&amp; !slideForm.endereco.$pristine"
+                                    <p ng-show="slideForm.endereco.$invalid && !slideForm.endereco.$pristine"
                                        class="help-block">Url do Link de destino é inválida</p>
                                 </div>
                             </div>
-                            <div ng-class="{ 'has-error' : slideForm.imagem.$invalid &amp;&amp; !slideForm.imagem.$pristine }"
+                            <div ng-class="{ 'has-error' : slideForm.imagem.$invalid && !slideForm.imagem.$pristine }"
                                  ng-hide="slide.imagem.url"
                                  class="form-group">
                                 <label class="control-label">Imagem</label>
@@ -121,7 +121,7 @@
                                            class="form-control"/>
                                     <input type="hidden" ng-model="slide.imagem" name="imagem"/>
 
-                                    <p ng-show="slideForm.imagem.$invalid &amp;&amp; !slideForm.imagem.$pristine"
+                                    <p ng-show="slideForm.imagem.$invalid && !slideForm.imagem.$pristine"
                                        class="help-block">Imagem é inválida</p>
                                 </div>
                             </div>

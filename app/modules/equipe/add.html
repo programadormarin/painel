@@ -18,7 +18,7 @@
                 <form ng-submit="add()" name="equipeForm" novalidate="novalidate" class="form-vertical">
                     <div class="row">
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : equipeForm.nome.$invalid &amp;&amp; !equipeForm.nome.$pristine }"
+                            <div ng-class="{ 'has-error' : equipeForm.nome.$invalid && !equipeForm.nome.$pristine }"
                                  class="form-group">
                                 <label class="control-label">Nome</label>
 
@@ -26,11 +26,11 @@
                                     <input type="text" ng-model="membro.nome" ng-minlength="5" name="nome"
                                            required="required" class="form-control"/>
 
-                                    <p ng-show="equipeForm.nome.$invalid &amp;&amp; !equipeForm.nome.$pristine"
+                                    <p ng-show="equipeForm.nome.$invalid && !equipeForm.nome.$pristine"
                                        class="help-block">Nome muito curto ou inválido</p>
                                 </div>
                             </div>
-                            <div ng-class="{ 'has-error' : equipeForm.email.$invalid &amp;&amp; !equipeForm.email.$pristine }"
+                            <div ng-class="{ 'has-error' : equipeForm.email.$invalid && !equipeForm.email.$pristine }"
                                  class="form-group">
                                 <label class="control-label">E-mail</label>
 
@@ -38,13 +38,13 @@
                                     <input type="email" ng-model="membro.email" name="email" required="required"
                                            class="form-control"/>
 
-                                    <p ng-show="equipeForm.email.$invalid &amp;&amp; !equipeForm.email.$pristine"
+                                    <p ng-show="equipeForm.email.$invalid && !equipeForm.email.$pristine"
                                        class="help-block">E-mail inválido</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : equipeForm.cargo.$invalid &amp;&amp; !equipeForm.cargo.$pristine }"
+                            <div ng-class="{ 'has-error' : equipeForm.cargo.$invalid && !equipeForm.cargo.$pristine }"
                                  class="form-group">
                                 <label class="control-label">Cargo</label>
 
@@ -52,11 +52,11 @@
                                     <input type="text" ng-model="membro.cargo" name="cargo" required="required"
                                            class="form-control"/>
 
-                                    <p ng-show="equipeForm.cargo.$invalid &amp;&amp; !equipeForm.cargo.$pristine"
+                                    <p ng-show="equipeForm.cargo.$invalid && !equipeForm.cargo.$pristine"
                                        class="help-block">Cargo muito curto ou inválido</p>
                                 </div>
                             </div>
-                            <div ng-class="{ 'has-error' : equipeForm.imagem.$invalid &amp;&amp; !equipeForm.imagem.$pristine }"
+                            <div ng-class="{ 'has-error' : equipeForm.imagem.$invalid && !equipeForm.imagem.$pristine }"
                                  ng-hide="slide.imagem.url"
                                  class="form-group">
                                 <label class="control-label">Imagem</label>
@@ -67,7 +67,7 @@
                                            class="form-control"/>
                                     <input type="hidden" ng-model="membro.imagem" name="imagem"/>
 
-                                    <p ng-show="equipeForm.imagem.$invalid &amp;&amp; !equipeForm.imagem.$pristine"
+                                    <p ng-show="equipeForm.imagem.$invalid && !equipeForm.imagem.$pristine"
                                        class="help-block">Imagem é inválida</p>
                                 </div>
                             </div>

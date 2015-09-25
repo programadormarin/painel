@@ -13,7 +13,7 @@
                 {{ status.message}}
             </div>
             <form name="usuarioForm" ng-submit="update()" novalidate="novalidate" class="form-vertical">
-                <div ng-class="{ 'has-error' : usuarioForm.nome.$invalid &amp;&amp; !usuarioForm.nome.$pristine }"
+                <div ng-class="{ 'has-error' : usuarioForm.nome.$invalid && !usuarioForm.nome.$pristine }"
                      class="form-group">
                     <label class="control-label">Nome</label>
 
@@ -21,12 +21,12 @@
                         <input type="text" ng-model="usuario.nome" name="nome" required="required"
                                class="form-control"/>
 
-                        <p ng-show="usuarioForm.nome.$invalid &amp;&amp; !usuarioForm.nome.$pristine"
+                        <p ng-show="usuarioForm.nome.$invalid && !usuarioForm.nome.$pristine"
                            class="help-block">
                             Nome muito curto ou inválido</p>
                     </div>
                 </div>
-                <div ng-class="{ 'has-error' : usuarioForm.email.$invalid &amp;&amp; !usuarioForm.email.$pristine }"
+                <div ng-class="{ 'has-error' : usuarioForm.email.$invalid && !usuarioForm.email.$pristine }"
                      class="form-group">
                     <label class="control-label">Email</label>
 
@@ -34,11 +34,11 @@
                         <input type="text" ng-model="usuario.email" name="email" required="required"
                                class="form-control"/>
 
-                        <p ng-show="usuarioForm.email.$invalid &amp;&amp; !usuarioForm.email.$pristine"
+                        <p ng-show="usuarioForm.email.$invalid && !usuarioForm.email.$pristine"
                            class="help-block">Email muito curto ou inválido</p>
                     </div>
                 </div>
-                <div ng-class="{ 'has-error' : usuarioForm.password.$invalid &amp;&amp; !usuarioForm.password.$pristine }"
+                <div ng-class="{ 'has-error' : usuarioForm.password.$invalid && !usuarioForm.password.$pristine }"
                      class="form-group">
                     <label class="control-label">Password</label>
 
@@ -46,7 +46,7 @@
                         <input type="text" ng-model="usuario.password" name="password" required="required"
                                class="form-control"/>
 
-                        <p ng-show="usuarioForm.password.$invalid &amp;&amp; !usuarioForm.password.$pristine"
+                        <p ng-show="usuarioForm.password.$invalid && !usuarioForm.password.$pristine"
                            class="help-block">Password muito curto ou inválido</p>
                     </div>
                 </div>

@@ -19,7 +19,7 @@
                       class="form-vertical">
                     <div class="row-fluid">
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : parceiroForm.nome.$invalid &amp;&amp; !parceiroForm.nome.$pristine }"
+                            <div ng-class="{ 'has-error' : parceiroForm.nome.$invalid && !parceiroForm.nome.$pristine }"
                                  class="form-group">
                                 <label class="control-label">Nome</label>
 
@@ -27,11 +27,11 @@
                                     <input type="text" ng-model="parceiro.nome" ng-minlength="5" name="nome"
                                            required="required" class="form-control"/>
 
-                                    <p ng-show="parceiroForm.nome.$invalid &amp;&amp; !parceiroForm.nome.$pristine"
+                                    <p ng-show="parceiroForm.nome.$invalid && !parceiroForm.nome.$pristine"
                                        class="help-block">Nome muito curto ou inválido</p>
                                 </div>
                             </div>
-                            <div ng-class="{ 'has-error' : parceiroForm.url.$invalid &amp;&amp; !parceiroForm.url.$pristine }"
+                            <div ng-class="{ 'has-error' : parceiroForm.url.$invalid && !parceiroForm.url.$pristine }"
                                  class="form-group">
                                 <label class="control-label">URL</label>
 
@@ -39,11 +39,11 @@
                                     <input type="url" ng-model="parceiro.url" name="url" required="required"
                                            class="form-control"/>
 
-                                    <p ng-show="parceiroForm.url.$invalid &amp;&amp; !parceiroForm.url.$pristine"
+                                    <p ng-show="parceiroForm.url.$invalid && !parceiroForm.url.$pristine"
                                        class="help-block">Url inválida</p>
                                 </div>
                             </div>
-                            <div ng-class="{ 'has-error' : parceiroForm.imagem.$invalid &amp;&amp; !parceiroForm.imagem.$pristine }"
+                            <div ng-class="{ 'has-error' : parceiroForm.imagem.$invalid && !parceiroForm.imagem.$pristine }"
                                  ng-hide="slide.imagem.url"
                                  class="form-group">
                                 <label class="control-label">Imagem</label>
@@ -54,13 +54,13 @@
                                            class="form-control"/>
                                     <input type="hidden" ng-model="slide.imagem" name="imagem"/>
 
-                                    <p ng-show="parceiroForm.imagem.$invalid &amp;&amp; !parceiroForm.imagem.$pristine"
+                                    <p ng-show="parceiroForm.imagem.$invalid && !parceiroForm.imagem.$pristine"
                                        class="help-block">Imagem é inválida</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : parceiroForm.atuacao.$invalid &amp;&amp; !parceiroForm.atuacao.$pristine }"
+                            <div ng-class="{ 'has-error' : parceiroForm.atuacao.$invalid && !parceiroForm.atuacao.$pristine }"
                                  ng-init="editor()"
                                  class="form-group hidden-xs">
                                 <label class="control-label">Descrição</label>
@@ -123,7 +123,7 @@
                             </div>
                             <div ng-model="parceiro.atuacao" name="atuacao" contentEditable="contentEditable"
                                  class="editor"></div>
-                            <p ng-show="parceiroForm.atuacao.$invalid &amp;&amp; !parceiroForm.atuacao.$pristine"
+                            <p ng-show="parceiroForm.atuacao.$invalid && !parceiroForm.atuacao.$pristine"
                                class="help-block">Atuação muito curta</p>
                         </div>
                     </div>

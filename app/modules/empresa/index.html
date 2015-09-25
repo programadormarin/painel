@@ -15,18 +15,18 @@
                       class="form-vertical">
                     <div class="row">
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : empresaForm.descricao.$invalid &amp;&amp; !empresaForm.descricao.$pristine }"
+                            <div ng-class="{ 'has-error' : empresaForm.descricao.$invalid && !empresaForm.descricao.$pristine }"
                                  class="form-group hidden-xs">
                                 <label class="control-label">Descrição</label>
                             </div>
                             <textarea ng-model="empresa.descricao" name="descricao" contentEditable="contentEditable"
                                       class="editor1"></textarea>
 
-                            <p ng-show="empresaForm.descricao.$invalid &amp;&amp; !empresaForm.descricao.$pristine"
+                            <p ng-show="empresaForm.descricao.$invalid && !empresaForm.descricao.$pristine"
                                class="help-block">Descricao muito curta</p>
                         </div>
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : empresaForm.endereco.$invalid &amp;&amp; !empresaForm.endereco.$pristine }"
+                            <div ng-class="{ 'has-error' : empresaForm.endereco.$invalid && !empresaForm.endereco.$pristine }"
                                  class="form-group">
                                 <label class="control-label">Endereco</label>
 
@@ -37,7 +37,7 @@
                                         +
                                     </button>
                                 </div>
-                                <p ng-show="empresaForm.endereco.$invalid &amp;&amp; !empresaForm.endereco.$pristine"
+                                <p ng-show="empresaForm.endereco.$invalid && !empresaForm.endereco.$pristine"
                                    class="help-block">Endereço muito curto ou inválido</p>
 
                                 <p ng-repeat="endereco in empresa.enderecos">
@@ -47,7 +47,7 @@
                                     &nbsp; {{ endereco }}
                                 </p>
                             </div>
-                            <div ng-class="{ 'has-error' : empresaForm.email.$invalid &amp;&amp; !empresaForm.email.$pristine }"
+                            <div ng-class="{ 'has-error' : empresaForm.email.$invalid && !empresaForm.email.$pristine }"
                                  class="form-group">
                                 <label class="control-label">E-mail de contato</label>
 
@@ -57,7 +57,7 @@
                                     <button type="button" ng-click="adicionaEmail(email)" class="btn btn-default">+
                                     </button>
                                 </div>
-                                <p ng-show="empresaForm.email.$invalid &amp;&amp; !empresaForm.email.$pristine"
+                                <p ng-show="empresaForm.email.$invalid && !empresaForm.email.$pristine"
                                    class="help-block">E-mail muito curto ou inválido</p>
 
                                 <p ng-repeat="email in empresa.emails">
@@ -67,7 +67,7 @@
                                     &nbsp; {{ email }}
                                 </p>
                             </div>
-                            <div ng-class="{ 'has-error' : empresaForm.telefone.$invalid &amp;&amp; !empresaForm.telefone.$pristine }"
+                            <div ng-class="{ 'has-error' : empresaForm.telefone.$invalid && !empresaForm.telefone.$pristine }"
                                  class="form-group">
                                 <label class="control-label">Telefone</label>
 
@@ -78,7 +78,7 @@
                                         +
                                     </button>
                                 </div>
-                                <p ng-show="empresaForm.telefone.$invalid &amp;&amp; !empresaForm.telefone.$pristine"
+                                <p ng-show="empresaForm.telefone.$invalid && !empresaForm.telefone.$pristine"
                                    class="help-block">telefone muito curto ou inválido</p>
 
                                 <p ng-repeat="telefone in empresa.telefones">

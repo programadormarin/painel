@@ -11,7 +11,7 @@ angular.module('myApp.produtos', ['ngRoute'])
                 templateUrl: 'modules/produtos/add.html',
                 controller: 'ProdutosController'
             })
-            .when('/produtos/editar', {
+            .when('/produtos/editar/:id', {
                 templateUrl: 'modules/produtos/edit.html',
                 controller: 'ProdutosController'
             })
@@ -22,11 +22,6 @@ angular.module('myApp.produtos', ['ngRoute'])
         function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-
-            $scope.editor = function () {
-                $('.editor').wysiwyg();
-                $('textarea').autosize();
-            };
 
             $scope.load = function () {
                 api

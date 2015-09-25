@@ -16,7 +16,7 @@
                     {{ status.message}}
                 </div>
                 <form ng-submit="add()" name="empregoForm" novalidate="novalidate" class="form-vertical">
-                    <div ng-class="{ 'has-error' : empregoForm.titulo.$invalid &amp;&amp; !empregoForm.titulo.$pristine }"
+                    <div ng-class="{ 'has-error' : empregoForm.titulo.$invalid && !empregoForm.titulo.$pristine }"
                          class="form-group">
                         <label class="control-label">Título</label>
 
@@ -24,11 +24,11 @@
                             <input type="text" ng-model="emprego.titulo" ng-minlength="5" name="titulo"
                                    required="required" class="form-control"/>
 
-                            <p ng-show="empregoForm.titulo.$invalid &amp;&amp; !empregoForm.titulo.$pristine"
+                            <p ng-show="empregoForm.titulo.$invalid && !empregoForm.titulo.$pristine"
                                class="help-block">Título muito curto ou inválido</p>
                         </div>
                     </div>
-                    <div ng-class="{ 'has-error' : empregoForm.descricao.$invalid &amp;&amp; !empregoForm.descricao.$pristine }"
+                    <div ng-class="{ 'has-error' : empregoForm.descricao.$invalid && !empregoForm.descricao.$pristine }"
                          ng-init="editor()"
                          class="form-group hidden-xs">
                         <label class="control-label">Descrição</label>
@@ -88,12 +88,12 @@
                     </div>
                     <div ng-model="emprego.descricao" name="descricao" contentEditable="contentEditable"
                          class="editor"></div>
-                    <p ng-show="empregoForm.descricao.$invalid &amp;&amp; !empregoForm.descricao.$pristine"
+                    <p ng-show="empregoForm.descricao.$invalid && !empregoForm.descricao.$pristine"
                        class="help-block">Descricao muito curta</p>
 
                     <div class="row">
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : empregoForm.salario.$invalid &amp;&amp; !empregoForm.salario.$pristine }"
+                            <div ng-class="{ 'has-error' : empregoForm.salario.$invalid && !empregoForm.salario.$pristine }"
                                  class="form-group">
                                 <label class="control-label">Salário</label>
 
@@ -102,13 +102,13 @@
                                            ui-money-mask="ui-money-mask" class="form-control"
                                             />
 
-                                    <p ng-show="empregoForm.salario.$invalid &amp;&amp; !empregoForm.salario.$pristine"
+                                    <p ng-show="empregoForm.salario.$invalid && !empregoForm.salario.$pristine"
                                        class="help-block">Salário inválido</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : empregoForm.tags.$invalid &amp;&amp; !empregoForm.tags.$pristine }"
+                            <div ng-class="{ 'has-error' : empregoForm.tags.$invalid && !empregoForm.tags.$pristine }"
                                  class="form-group">
                                 <label class="control-label">Palavras-chaves</label>
 
@@ -116,7 +116,7 @@
                                     <input type="text" ng-model="emprego.tags" ng-minlength="5" name="tags"
                                            required="required" class="form-control"/>
 
-                                    <p ng-show="empregoForm.tags.$invalid &amp;&amp; !empregoForm.tags.$pristine"
+                                    <p ng-show="empregoForm.tags.$invalid && !empregoForm.tags.$pristine"
                                        class="help-block">Informe palavras-chaves separadas por vírgulas</p>
                                 </div>
                             </div>

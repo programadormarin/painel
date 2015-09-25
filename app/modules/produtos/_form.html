@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div ng-class="{ 'has-error' : produtoForm.titulo.$invalid && !produtoForm.titulo.$pristine }"
+             class="form-group">
+            <label class="control-label">Título</label>
+
+            <div class="controls">
+                <input type="text" ng-model="produto.titulo" name="titulo" required="required"
+                       class="form-control"/>
+
+                <p ng-show="produtoForm.titulo.$invalid && !produtoForm.titulo.$pristine"
+                   class="help-block">Título muito curto ou inválido</p>
+            </div>
+        </div>
+        <div ng-class="{ 'has-error' : produtoForm.descricao.$invalid && !produtoForm.descricao.$pristine }"
+             ng-init="editor()"
+             class="form-group hidden-xs">
+            <label class="control-label">Descrição</label>
+        </div>
+        <textarea ng-model="produto.descricao" name="descricao" contentEditable="contentEditable"
+             class="form-control" rows="8"></textarea>
+        <p ng-show="produtoForm.descricao.$invalid && !produtoForm.descricao.$pristine"
+           class="help-block">Descricao muito curta</p>
+    </div>
+    <div class="col-sm-6">
+        <div ng-class="{ 'has-error' : produtoForm.tipo.$invalid && !produtoForm.tipo.$pristine }"
+             class="form-group">
+            <label class="control-label">tipo</label>
+
+            <div class="controls">
+                <select ng-model="produto.tipo" name="tipo" required="required"
+                        class="form-control">
+                    <option>Brinquedos</option>
+                    <option>Livros</option>
+                    <option>Materiais Esportivos</option>
+                    <option>Parques</option>
+                    <option>Outros</option>
+                </select>
+
+                <p ng-show="produtoForm.tipo.$invalid && !produtoForm.tipo.$pristine"
+                   class="help-block">Selecione a tipo do produto</p>
+            </div>
+        </div>
+        <div ng-class="{ 'has-error' : produtoForm.categoria.$invalid && !produtoForm.categoria.$pristine }"
+             class="form-group">
+            <label class="control-label">categoria</label>
+
+            <div class="controls">
+                <select ng-model="produto.categoria" name="categoria" required="required"
+                        class="form-control">
+                    <option>Artes</option>
+                    <option>Didático</option>
+                    <option>DVDs</option>
+                    <option>Filosofia</option>
+                    <option>Infantil</option>
+                    <option>Literatura Geral</option>
+                    <option>produtos e Coleções</option>
+                    <option>Pedagógicos</option>
+                    <option>Psicologia</option>
+                    <option>Religioso</option>
+                    <option>Trabalhos Manuais</option>
+                </select>
+
+                <p ng-show="produtoForm.categoria.$invalid && !produtoForm.categoria.$pristine"
+                   class="help-block">Selecione a categoria do produto</p>
+            </div>
+        </div>
+        <div ng-class="{ 'has-error' : produtoForm.codigo.$invalid && !produtoForm.codigo.$pristine }"
+             class="form-group">
+            <label class="control-label">Código</label>
+
+            <div class="controls">
+                <input type="text" ng-model="produto.codigo" name="codigo" required="required"
+                       class="form-control"/>
+
+                <p ng-show="produtoForm.codigo.$invalid && !produtoForm.codigo.$pristine"
+                   class="help-block">Código inválido</p>
+            </div>
+        </div>
+        <div ng-class="{ 'has-error' : produtoForm.imagem.$invalid && !produtoForm.imagem.$pristine }"
+             ng-hide="produto.imagem.url"
+             class="form-group">
+            <label class="control-label">Imagem</label>
+
+            <div class="controls">
+                <input type="file" ng-file-select="onFileSelect($files)" required="required"
+                       ng-disabled="produtoForm.$invalid" accept="image/*"
+                       class="form-control"/>
+                <input type="hidden" ng-model="produto.imagem" name="imagem"/>
+
+                <p ng-show="produtoForm.imagem.$invalid && !produtoForm.imagem.$pristine"
+                   class="help-block">Imagem é inválida</p>
+            </div>
+        </div>
+        <img ng-src="{{produto.imagem.url}}" ng-show="produto.imagem"/>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" ng-disabled="produtoForm.$invalid" class="btn btn-primary">
+                    Salvar
+                </button>
+                <a href="#/produtos" class="btn">voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
