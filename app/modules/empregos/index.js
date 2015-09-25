@@ -64,7 +64,7 @@ angular.module('myApp.empregos', ['ngRoute'])
                                 $scope.load();
                             } else {
                                 $scope.status = {
-                                    type: 'error',
+                                    type: 'danger',
                                     message: 'Erro removendo vaga, tente novamente mais tarde'
                                 }
                             }
@@ -83,7 +83,7 @@ angular.module('myApp.empregos', ['ngRoute'])
                     })
                     .error(function () {
                         $scope.status = {
-                            type: 'error',
+                            type: 'danger',
                             message: 'Ocorreu um erro atualizando os dados da vaga, tente novamente mais tarde'
                         }
                     });

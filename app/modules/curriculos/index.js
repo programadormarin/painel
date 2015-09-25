@@ -52,7 +52,7 @@ angular.module('myApp.curriculos', ['ngRoute'])
                                 $scope.load();
                             } else {
                                 $scope.status = {
-                                    type: 'error',
+                                    type: 'danger',
                                     message: 'Erro removendo cliente, tente novamente mais tarde'
                                 }
                             }
@@ -71,7 +71,7 @@ angular.module('myApp.curriculos', ['ngRoute'])
                     })
                     .error(function () {
                         $scope.status = {
-                            type: 'error',
+                            type: 'danger',
                             message: 'Ocorreu um erro atualizando os dados do currículo, tente novamente mais tarde'
                         }
                     });

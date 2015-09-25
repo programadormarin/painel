@@ -60,7 +60,7 @@ angular.module('myApp.clientes', ['ngRoute'])
                                 $scope.load();
                             } else {
                                 $scope.status = {
-                                    type: 'error',
+                                    type: 'danger',
                                     message: 'Erro removendo cliente, tente novamente mais tarde'
                                 }
                             }
@@ -79,7 +79,7 @@ angular.module('myApp.clientes', ['ngRoute'])
                     })
                     .error(function () {
                         $scope.status = {
-                            type: 'error',
+                            type: 'danger',
                             message: 'Ocorreu um erro atualizando os dados do cliente, tente novamente mais tarde'
                         }
                     });

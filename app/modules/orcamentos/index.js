@@ -52,7 +52,7 @@ angular.module('myApp.orcamentos', ['ngRoute'])
                                 $scope.load();
                             } else {
                                 $scope.status = {
-                                    type: 'error',
+                                    type: 'danger',
                                     message: 'Erro removendo orçamento, tente novamente mais tarde'
                                 }
                             }
@@ -71,7 +71,7 @@ angular.module('myApp.orcamentos', ['ngRoute'])
                     })
                     .error(function () {
                         $scope.status = {
-                            type: 'error',
+                            type: 'danger',
                             message: 'Ocorreu um erro atualizando os dados do orçamento, tente novamente mais tarde'
                         }
                     });

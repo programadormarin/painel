@@ -18,7 +18,7 @@ angular.module('myApp.sites', ['ngRoute'])
         ;
     }])
 
-    .controller('SitesController', ['$scope', '$routeParams', 'api', '$window', function ($scope, $routeParams, api, $window) {
+    .controller('SitesController', ['$scope', '$routeParams', 'api', '$window', '$location', function ($scope, $routeParams, api, $window, $location) {
         $scope.curPage = 1;
         $scope.pageSize = 12;
 
@@ -37,7 +37,7 @@ angular.module('myApp.sites', ['ngRoute'])
                     $scope.status = {
                         type: 'success',
                         message: 'inserido com sucesso!'
-                    }
+                    };
 
                     $scope.site = '';
                     $scope.siteForm.$setPristine();
@@ -49,19 +49,19 @@ angular.module('myApp.sites', ['ngRoute'])
                 api
                     .delete('site/' + id)
                     .then(function (data) {
-                        if (data.status == 200) {
+                        if (data.status == 204) {
                             $scope.status = {
                                 type: 'success',
                                 message: 'removida com sucesso!'
-                            }
+                            };
 
-                            $location.path('/site');
+                            $location.path('/sites');
                             $scope.load();
                         } else {
                             $scope.status = {
-                                type: 'error',
+                                type: 'danger',
                                 message: 'Erro removendo, tente novamente mais tarde'
-                            }
+                            };
                         }
                     });
             }
@@ -74,13 +74,13 @@ angular.module('myApp.sites', ['ngRoute'])
                     $scope.status = {
                         type: 'success',
                         message: 'atualizada com sucesso!'
-                    }
+                    };
                 })
                 .error(function () {
                     $scope.status = {
-                        type: 'error',
+                        type: 'danger',
                         message: 'Ocorreu um erro atualizando, tente novamente mais tarde'
-                    }
+                    };
                 });
         };
 

@@ -57,7 +57,7 @@ angular.module('myApp.parceiros', ['ngRoute'])
                                 $scope.load();
                             } else {
                                 $scope.status = {
-                                    type: 'error',
+                                    type: 'danger',
                                     message: 'Erro removendo parceiro, tente novamente mais tarde'
                                 }
                             }
@@ -76,7 +76,7 @@ angular.module('myApp.parceiros', ['ngRoute'])
                     })
                     .error(function () {
                         $scope.status = {
-                            type: 'error',
+                            type: 'danger',
                             message: 'Ocorreu um erro atualizando os dados do parceiro, tente novamente mais tarde'
                         }
                     });

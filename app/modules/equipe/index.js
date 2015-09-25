@@ -57,7 +57,7 @@ angular.module('myApp.equipe', ['ngRoute'])
                                 $scope.load();
                             } else {
                                 $scope.status = {
-                                    type: 'error',
+                                    type: 'danger',
                                     message: 'Erro removendo membro, tente novamente mais tarde'
                                 }
                             }
@@ -76,7 +76,7 @@ angular.module('myApp.equipe', ['ngRoute'])
                     })
                     .error(function () {
                         $scope.status = {
-                            type: 'error',
+                            type: 'danger',
                             message: 'Ocorreu um erro atualizando os dados do membro, tente novamente mais tarde'
                         }
                     });
