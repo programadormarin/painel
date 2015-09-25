@@ -92,7 +92,7 @@ angular.module('myApp.sites', ['ngRoute'])
                 });
         };
 
-        $scope.login = function($site) {
+        $scope.login = function ($site) {
             localStorage.setItem('site', $site._id);
 
             $window.location.reload();

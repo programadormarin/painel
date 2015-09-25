@@ -7,6 +7,14 @@ angular.module('myApp.aviso', ['ngRoute'])
                 templateUrl: 'modules/aviso/index.html',
                 controller: 'AvisoController'
             })
+            .when('/aviso/adicionar', {
+                templateUrl: 'modules/aviso/add.html',
+                controller: 'AvisoController'
+            })
+            .when('/aviso/editar/:id', {
+                templateUrl: 'modules/aviso/edit.html',
+                controller: 'AvisoController'
+            })
         ;
     }])
 
@@ -14,14 +22,6 @@ angular.module('myApp.aviso', ['ngRoute'])
         function ($scope, $routeParams, $location, api) {
             $scope.curPage = 1;
             $scope.pageSize = 12;
-
-            $scope.editor = function () {
-                $('.editor').wysiwyg();
-                $('textarea').autosize();
-                $('.datepicker').datepicker({
-                    format: 'dd-mm-yyyy'
-                });
-            };
 
             $scope.load = function () {
                 api
@@ -38,7 +38,7 @@ angular.module('myApp.aviso', ['ngRoute'])
                         $scope.status = {
                             type: 'success',
                             message: 'inserida com sucesso!'
-                        }
+                        };
 
                         $scope.aviso = '';
                         $scope.avisoForm.$setPristine();
@@ -90,6 +90,9 @@ angular.module('myApp.aviso', ['ngRoute'])
                 api
                     .get('aviso/' + $routeParams.id)
                     .then(function (data) {
+                        data.data.data.inicio = new Date(data.data.data.inicio);
+                        data.data.data.fim = new Date(data.data.data.fim);
+
                         $scope.aviso = (data.data.data);
                     });
             }

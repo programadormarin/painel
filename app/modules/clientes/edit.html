@@ -17,22 +17,27 @@
                       class="form-vertical">
                     <div class="row">
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : clienteForm.nome.$invalid &amp;&amp; !clienteForm.nome.$pristine }" class="form-group">
+                            <div ng-class="{ 'has-error' : clienteForm.nome.$invalid &amp;&amp; !clienteForm.nome.$pristine }"
+                                 class="form-group">
                                 <label class="control-label">Nome</label>
 
                                 <div class="controls">
-                                    <input type="text" ng-model="cliente.nome" name="nome" required="required" class="form-control"/>
+                                    <input type="text" ng-model="cliente.nome" name="nome" required="required"
+                                           class="form-control"/>
 
                                     <p ng-show="clienteForm.nome.$invalid &amp;&amp; !clienteForm.nome.$pristine"
                                        class="help-block">Nome muito curto ou inválido</p>
                                 </div>
                             </div>
-                            <div ng-class="{ 'has-error' : clienteForm.descricao.$invalid &amp;&amp; !clienteForm.descricao.$pristine }" class="form-group hidden-xs">
+                            <div ng-class="{ 'has-error' : clienteForm.descricao.$invalid &amp;&amp; !clienteForm.descricao.$pristine }"
+                                 class="form-group hidden-xs">
                                 <label class="control-label">Descrição</label>
 
                                 <div class="controls">
-                                    <div ng-model="cliente.descricao" name="descricao" contentEditable="contenteditable" class="editor1"></div>
-                                    <p ng-show="clienteForm.descricao.$invalid &amp;&amp; !clienteForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
+                                    <div ng-model="cliente.descricao" name="descricao" contentEditable="contenteditable"
+                                         class="editor1"></div>
+                                    <p ng-show="clienteForm.descricao.$invalid &amp;&amp; !clienteForm.descricao.$pristine"
+                                       class="help-block">Descricao muito curta</p>
                                 </div>
                             </div>
                         </div>
@@ -49,12 +54,15 @@
                                        class="help-block">Endereço do site inválido</p>
                                 </div>
                             </div>
-                            <div ng-class="{ 'has-error' : clienteForm.atuacao.$invalid &amp;&amp; !clienteForm.atuacao.$pristine }" class="form-group hidden-xs">
+                            <div ng-class="{ 'has-error' : clienteForm.atuacao.$invalid &amp;&amp; !clienteForm.atuacao.$pristine }"
+                                 class="form-group hidden-xs">
                                 <label class="control-label">Atuação</label>
 
                                 <div class="controls">
-                                    <div ng-model="cliente.atuacao" name="atuacao" contentEditable="contenteditable" class="editor2"></div>
-                                    <p ng-show="clienteForm.atuacao.$invalid &amp;&amp; !clienteForm.atuacao.$pristine" class="help-block">Atuação muito curta</p>
+                                    <div ng-model="cliente.atuacao" name="atuacao" contentEditable="contenteditable"
+                                         class="editor2"></div>
+                                    <p ng-show="clienteForm.atuacao.$invalid &amp;&amp; !clienteForm.atuacao.$pristine"
+                                       class="help-block">Atuação muito curta</p>
                                 </div>
                             </div>
                         </div>

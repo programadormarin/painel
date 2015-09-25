@@ -15,11 +15,15 @@
                       class="form-vertical">
                     <div class="row">
                         <div class="col-sm-6">
-                            <div ng-class="{ 'has-error' : empresaForm.descricao.$invalid &amp;&amp; !empresaForm.descricao.$pristine }" class="form-group hidden-xs">
+                            <div ng-class="{ 'has-error' : empresaForm.descricao.$invalid &amp;&amp; !empresaForm.descricao.$pristine }"
+                                 class="form-group hidden-xs">
                                 <label class="control-label">Descrição</label>
                             </div>
-                            <textarea ng-model="empresa.descricao" name="descricao" contentEditable="contentEditable" class="editor1"></textarea>
-                            <p ng-show="empresaForm.descricao.$invalid &amp;&amp; !empresaForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
+                            <textarea ng-model="empresa.descricao" name="descricao" contentEditable="contentEditable"
+                                      class="editor1"></textarea>
+
+                            <p ng-show="empresaForm.descricao.$invalid &amp;&amp; !empresaForm.descricao.$pristine"
+                               class="help-block">Descricao muito curta</p>
                         </div>
                         <div class="col-sm-6">
                             <div ng-class="{ 'has-error' : empresaForm.endereco.$invalid &amp;&amp; !empresaForm.endereco.$pristine }"
