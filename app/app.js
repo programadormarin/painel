@@ -16,9 +16,7 @@ angular
         'myApp.orcamentos',
         'myApp.parceiros',
         'myApp.produtos',
-        'myApp.sites',
-        'myApp.slides',
-        'myApp.usuarios',
+        'myApp.slides'
     ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/inicio'});
