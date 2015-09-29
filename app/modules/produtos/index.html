@@ -10,40 +10,39 @@
                 <button type="button" data-dismiss="alert" class="close">&times;</button>
                 {{ status.message}}
             </div>
-            <div ng-show="linhas.itemCount == 0" class="alert alert-warning">Você não possui nenhum produto cadastrado,
-                cadastre um &nbsp;
-                <a href="#/produtos/adicionar">aqui</a>
+            <div ng-show="linhas.itemCount == 0" class="alert alert-warning">
+                Você não possui nenhum produto cadastrado, cadastre um &nbsp; <a href="#/produtos/adicionar">aqui</a>
             </div>
             <table ng-show="linhas.itemCount" class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                 <tr>
+                    <td class="col-md-1"></td>
                     <td>Título</td>
                     <td>Código</td>
                     <td>Tipo</td>
                     <td>Categoria</td>
-                    <td class="col-md-1"></td>
+                    <td class="col-xs-1"></td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="produto in linhas.data">
+                    <td><img ng-src="{{ produto.imagem.url }}" alt="foto" class="thumbnail img-thumbnail img-responsive"></td>
                     <td>{{ produto.titulo }}</td>
                     <td>{{ produto.codigo }}</td>
                     <td>{{ produto.tipo }}</td>
                     <td>{{ produto.categoria }}</td>
                     <td>
-                        <a href="#/produtos/editar/{{ produto._id }}" class="btn btn-xs btn-success"><span
-                                class="fa fa-edit"></span></a>
-                        <button ng-click="delete(produto._id)" class="btn btn-xs btn-danger"><span
-                                class="fa fa-trash-o"></span></button>
+                        <a href="#/produtos/editar/{{ produto._id }}" class="btn btn-xs btn-success"><span class="fa fa-edit"></span></a>
+                        <button ng-click="delete(produto._id)" class="btn btn-xs btn-danger"><span class="fa fa-trash-o"></span></button>
                     </td>
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="3" class="text-left">
+                    <td colspan="5" class="text-left">
                         <b>{{ linhas.itemCount }}</b>&nbsp; produtos cadastrados
                     </td>
-                    <td colspan="2" class="text-right">
+                    <td class="text-right">
                         <a href="#/produtos/adicionar" class="btn btn-primary btn-xs"><span class="fa fa-plus">&nbsp;</span></a>
                     </td>
                 </tr>

@@ -25,7 +25,7 @@
 </head>
 <body ng-controller="LoginController" ng-init="check()">
     <!-- start: Header-->
-    <nav class="navbar navbar-inverse navbar-fixed-top" ng-show="logado">
+    <nav class="navbar navbar-inverse navbar-fixed-top hidden" ng-show="logado">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -39,6 +39,8 @@
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/usuarios/editar/{{usuario._id}}">Logado como {{usuario.nome}}</a></li>
+                    <li><a href="#/sites/editar/{{usuario.site._id}}">{{usuario.site.nome}}</a></li>
                     <li><a href="#/logout" ng-click="logout()">Sair</a></li>
                 </ul>
 
@@ -50,36 +52,19 @@
     </nav>
 
     <!-- start: Container -->
-    <div class="container-fluid" ng-show="logado">
+    <div class="container-fluid hidden" ng-show="logado">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#/inicio">Início<span class="sr-only">(current)</span></a></li>
-                    <li><a href="#/sites">Sites</a></li>
-                    <li><a href="#/usuarios">Usuários</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href="#/aviso">Avisos</a></li>
-                    <li><a href="#/slides">Slides</a></li>
-                    <li><a href="#/produtos">Produtos</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href="#/empresa">Empresa</a></li>
-                    <li><a href="#/equipe">Equipe</a></li>
-                    <li><a href="#/clientes">Clientes</a></li>
-                    <li><a href="#/parceiros">Parceiros</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href="#/curriculos">Currículos</a></li>
-                    <li><a href="#/empregos">Empregos</a></li>
-                    <li><a href="#/orcamentos">Orçamentos</a></li>
+                    <li><a href="#/inicio">Início</a></li>
+                    <li ng-repeat="modulo in modulos"><a href="#/{{modulo}}">{{modulo}}</a></li>
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <!--[if lt IE 7]>
                 <p class="browsehappy">
-                    You are using an <strong>outdated</strong> browser. <br>
-                    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+                    Você está usando um navegador <strong>desatualizado</strong>. <br>
+                    Por favor <a href="http://browsehappy.com/">atualize seu navegador</a> para ter uma experiência melhor.
                 </p>
                 <![endif]-->
 

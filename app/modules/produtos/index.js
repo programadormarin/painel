@@ -28,7 +28,7 @@ angular
 
     .controller('ProdutosController', ['$scope', '$routeParams', '$location', 'api', 'cloudinary', function ($scope, $routeParams, $location, $api, $cloudinary) {
             $scope.curPage  = 1;
-            $scope.pageSize = 24;
+            $scope.pageSize = 12;
 
             $scope.load = function () {
                 $api
@@ -44,7 +44,7 @@ angular
                 $cloudinary
                     .upload($produto.imagem[0], {})
                     .then(function (resp) {
-                        $produto.imagem = JSON.stringify(resp.data);
+                        $produto.imagem = resp.data;
 
                         $scope.add($produto);
                     });
@@ -100,8 +100,6 @@ angular
             };
 
             $scope.edit = function () {
-                $scope.produto.imagem = JSON.stringify($scope.produto.imagem);
-
                 $api
                     .put('produto/' + $routeParams.id, $scope.produto)
                     .success(function (data) {

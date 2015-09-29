@@ -14,11 +14,16 @@ angular.module('myApp.login', ['ngRoute'])
         ;
     }])
 
-    .controller('LoginController', ['$scope', '$routeParams', '$location', 'api', '$window', '$interval', function ($scope, $routeParams, $location, api, $window, $interval) {
+    .controller('LoginController', ['$scope', '$routeParams', '$location', 'api', '$window', '$interval', function ($scope, $routeParams, $location, $api, $window, $interval) {
         $scope.check = function () {
             $interval(function () {
                 if (localStorage.getItem('usuario')) {
                     $scope.logado = true;
+
+                    var usuario = JSON.parse(localStorage.getItem('usuario'));
+
+                    $scope.modulos = usuario.modulos;
+                    $scope.usuario = usuario;
                 } else {
                     $scope.logado = false;
 
@@ -28,9 +33,9 @@ angular.module('myApp.login', ['ngRoute'])
         };
 
         $scope.login = function () {
-            api
+            $api
                 .post('login', $scope.user)
-                .success(function (data, status) {
+                .success(function (data) {
                     $scope.status = {
                         type: 'success',
                         message: 'Logado com sucesso!'
@@ -45,22 +50,18 @@ angular.module('myApp.login', ['ngRoute'])
 
                     $location.url('/inicio');
 
-                    $('#myModal').modal('hide');
-
                     $window.location.reload();
                 })
-                .error(function (data, status) {
+                .error(function () {
                     $scope.status = {
                         type: 'danger',
                         message: 'Usuário/Senha inválidos'
-                    }
+                    };
                 });
         };
 
         $scope.logout = function () {
-            localStorage.removeItem('site');
-            localStorage.removeItem('token');
-            localStorage.removeItem('usuario');
+            localStorage.clear();
 
             $location.url('/inicio');
 

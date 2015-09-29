@@ -95,6 +95,9 @@ angular.module('myApp.sites', ['ngRoute'])
         $scope.login = function ($site) {
             localStorage.setItem('site', $site._id);
 
-            $window.location.reload();
+            $scope.status = {
+                type: 'success',
+                message: 'Site alterado para ' + $site.nome
+            };
         };
     }]);
