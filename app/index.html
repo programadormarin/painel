@@ -23,146 +23,150 @@
 
     <script src="vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body>
-<!-- start: Header-->
-<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="LoginController" ng-init="check()">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Navegação</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/">Painel de Controle</a>
+<body ng-controller="LoginController" ng-init="check()">
+    <!-- start: Header-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" ng-show="logado">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Navegação</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/">Painel de Controle</a>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/logout" ng-click="logout()">Sair</a></li>
+                </ul>
+
+                <form class="navbar-form navbar-right hidden">
+                    <input type="text" class="form-control" placeholder="Buscar produto...">
+                </form>
+            </div>
         </div>
+    </nav>
 
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/logout" ng-click="logout()">Sair</a></li>
-            </ul>
+    <!-- start: Container -->
+    <div class="container-fluid" ng-show="logado">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="#/inicio">Início<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#/sites">Sites</a></li>
+                    <li><a href="#/usuarios">Usuários</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="#/aviso">Avisos</a></li>
+                    <li><a href="#/slides">Slides</a></li>
+                    <li><a href="#/produtos">Produtos</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="#/empresa">Empresa</a></li>
+                    <li><a href="#/equipe">Equipe</a></li>
+                    <li><a href="#/clientes">Clientes</a></li>
+                    <li><a href="#/parceiros">Parceiros</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="#/curriculos">Currículos</a></li>
+                    <li><a href="#/empregos">Empregos</a></li>
+                    <li><a href="#/orcamentos">Orçamentos</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <!--[if lt IE 7]>
+                <p class="browsehappy">
+                    You are using an <strong>outdated</strong> browser. <br>
+                    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+                </p>
+                <![endif]-->
 
-            <form class="navbar-form navbar-right hidden">
-                <input type="text" class="form-control" placeholder="Buscar produto...">
-            </form>
-        </div>
-    </div>
-</nav>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="#/inicio">Início<span class="sr-only">(current)</span></a></li>
-                <li><a href="#/sites">Sites</a></li>
-                <li><a href="#/usuarios">Usuários</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="#/aviso">Avisos</a></li>
-                <li><a href="#/slides">Slides</a></li>
-                <li><a href="#/produtos">Produtos</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="#/empresa">Empresa</a></li>
-                <li><a href="#/equipe">Equipe</a></li>
-                <li><a href="#/clientes">Clientes</a></li>
-                <li><a href="#/parceiros">Parceiros</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="#/curriculos">Currículos</a></li>
-                <li><a href="#/empregos">Empregos</a></li>
-                <li><a href="#/orcamentos">Orçamentos</a></li>
-            </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <!--[if lt IE 7]>
-            <p class="browsehappy">
-                You are using an <strong>outdated</strong> browser. <br>
-                Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
-            </p>
-            <![endif]-->
-
-            <!-- row-->
-            <div ng-view></div>
-            <!-- /row-->
-
-            <!-- Auth Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 ng-controller="LoginController">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <form ng-submit="login()" name="loginForm" novalidate="novalidate" class="form-horizontal">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-key"></i><span class="break">&nbsp;</span>Login
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                <div ng-show="status" class="alert alert-{{ status.type }}">
-                                    <button type="button" data-dismiss="alert" class="close">&times;</button>
-                                    {{ status.message}}
-                                </div>
-                                <div class="login-box">
-                                    <h2>Acessar o painel</h2>
-
-                                    <fieldset>
-                                        <div class="input-wrap">
-                                            <div title="E-mail de acesso" class="input-prepend input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-user"></i>
-                                                </span>
-                                                <input id="username" name="username" type="email" placeholder="e-mail"
-                                                       ng-model="user.email" required="required" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="input-wrap">
-                                            <div title="Senha de acesso" class="input-prepend input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-lock"></i>
-                                                </span>
-                                                <input id="password" name="password" type="password" placeholder="senha"
-                                                       ng-model="user.password" required="required"
-                                                       class="form-control">
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                    <hr/>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                <button type="submit" class="btn btn-primary">Entrar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <!-- row-->
+                <div ng-view></div>
+                <!-- /row-->
             </div>
         </div>
     </div>
-</div>
 
-<script src="vendor/jquery/dist/jquery.min.js"></script>
-<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="vendor/angular/angular.min.js"></script>
-<script src="vendor/angular-route/angular-route.min.js"></script>
-<script src="modules/api/index.js"></script>
-<script src="modules/aviso/index.js"></script>
-<script src="modules/clientes/index.js"></script>
-<script src="modules/curriculos/index.js"></script>
-<script src="modules/empregos/index.js"></script>
-<script src="modules/empresa/index.js"></script>
-<script src="modules/equipe/index.js"></script>
-<script src="modules/inicio/index.js"></script>
-<script src="modules/login/index.js"></script>
-<script src="modules/orcamentos/index.js"></script>
-<script src="modules/parceiros/index.js"></script>
-<script src="modules/produtos/index.js"></script>
-<script src="modules/sites/index.js"></script>
-<script src="modules/slides/index.js"></script>
-<script src="modules/usuarios/index.js"></script>
-<script src="custom.js"></script>
-<script src="app.js"></script>
+    <!-- Auth Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form ng-submit="login()" name="loginForm" novalidate="novalidate" class="form-horizontal">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-key"></i><span class="break">&nbsp;</span>Login
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div ng-show="status" class="alert alert-{{ status.type }}">
+                            <button type="button" data-dismiss="alert" class="close">&times;</button>
+                            {{ status.message}}
+                        </div>
+                        <div class="login-box">
+                            <h2>Acessar o painel</h2>
+
+                            <fieldset>
+                                <div class="input-wrap">
+                                    <div title="E-mail de acesso" class="input-prepend input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-user"></i>
+                                                    </span>
+                                        <input id="username" name="username" type="email" placeholder="e-mail"
+                                               ng-model="user.email" required="required" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="input-wrap">
+                                    <div title="Senha de acesso" class="input-prepend input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-lock"></i>
+                                                    </span>
+                                        <input id="password" name="password" type="password" placeholder="senha"
+                                               ng-model="user.password" required="required"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-route/angular-route.min.js"></script>
+    <script src="vendor/angular-resource/angular-resource.min.js"></script>
+    <script src="vendor/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="vendor/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="vendor/angular-cloudinary/angular-cloudinary.js"></script>
+    <script src="modules/api/index.js"></script>
+    <script src="modules/api/input-type-file.js"></script>
+    <script src="modules/aviso/index.js"></script>
+    <script src="modules/clientes/index.js"></script>
+    <script src="modules/curriculos/index.js"></script>
+    <script src="modules/empregos/index.js"></script>
+    <script src="modules/empresa/index.js"></script>
+    <script src="modules/equipe/index.js"></script>
+    <script src="modules/inicio/index.js"></script>
+    <script src="modules/login/index.js"></script>
+    <script src="modules/orcamentos/index.js"></script>
+    <script src="modules/parceiros/index.js"></script>
+    <script src="modules/produtos/index.js"></script>
+    <script src="modules/sites/index.js"></script>
+    <script src="modules/slides/index.js"></script>
+    <script src="modules/usuarios/index.js"></script>
+    <script src="custom.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

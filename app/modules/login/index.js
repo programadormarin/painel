@@ -22,7 +22,6 @@ angular.module('myApp.login', ['ngRoute'])
                 } else {
                     $scope.logado = false;
 
-
                     $('#myModal').modal('show');
                 }
             }, 100);

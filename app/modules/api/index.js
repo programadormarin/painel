@@ -1,32 +1,36 @@
 'use strict';
 
-angular.module('ngApi', [])
+angular
+    .module('ngApi', [])
     .factory('api', ['$http',
         function ($http) {
             $http.defaults.cache = true;
 
             var url = 'http://api.publiciti.com.br';
+            var config = {
+                headers: $http.defaults.headers
+            };
 
             if (localStorage.getItem('token')) {
-                $http.defaults.headers.common.authorization = localStorage.getItem('token');
+                config.headers.authorization = localStorage.getItem('token');
             }
 
             if (localStorage.getItem('site')) {
-                $http.defaults.headers.common.site = localStorage.getItem('site');
+                config.headers.site = localStorage.getItem('site');
             }
 
             return {
                 get: function (endpoint) {
-                    return $http.get(url + '/' + endpoint);
+                    return $http.get(url + '/' + endpoint, config);
                 },
                 post: function (endpoint, data) {
-                    return $http.post(url + '/' + endpoint, data);
+                    return $http.post(url + '/' + endpoint, data, config);
                 },
                 put: function (endpoint, data) {
-                    return $http.put(url + '/' + endpoint, data);
+                    return $http.put(url + '/' + endpoint, data, config);
                 },
                 delete: function (endpoint) {
-                    return $http.delete(url + '/' + endpoint);
+                    return $http.delete(url + '/' + endpoint, config);
                 }
             };
         }
