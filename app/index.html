@@ -39,12 +39,12 @@
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/usuarios/editar/{{usuario._id}}">Logado como {{usuario.nome}}</a></li>
-                    <li><a href="#/empresa">{{usuario.site.nome}}</a></li>
+                    <li><a>Logado como <span ng-bind="usuario.nome"></span></a></li>
+                    <li><a href="#/empresa" ng-bind="usuario.site.nome"></a></li>
                     <li><a href="#/logout" ng-click="logout()">Sair</a></li>
                 </ul>
 
-                <form class="navbar-form navbar-right hidden">
+                <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Buscar produto...">
                 </form>
             </div>
@@ -56,8 +56,7 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li><a href="#/inicio">Início</a></li>
-                    <li ng-repeat="modulo in modulos"><a href="#/{{modulo}}">{{modulo}}</a></li>
+                    <li ng-repeat="modulo in modulos"><a href="#/{{modulo}}" ng-bind="modulo"></a></li>
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -81,10 +80,8 @@
             <div class="modal-content">
                 <form ng-submit="login()" name="loginForm" novalidate="novalidate" class="form-horizontal">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-key"></i><span class="break">&nbsp;</span>Login
-                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-key"></i><span class="break">&nbsp;</span>Login</h4>
                     </div>
                     <div class="modal-body">
                         <div ng-show="status" class="alert alert-{{ status.type }}">
@@ -97,21 +94,14 @@
                             <fieldset>
                                 <div class="input-wrap">
                                     <div title="E-mail de acesso" class="input-prepend input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-user"></i>
-                                                    </span>
-                                        <input id="username" name="username" type="email" placeholder="e-mail"
-                                               ng-model="user.email" required="required" class="form-control">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input id="username" name="username" type="email" placeholder="e-mail" ng-model="user.email" required="required" class="form-control">
                                     </div>
                                 </div>
                                 <div class="input-wrap">
                                     <div title="Senha de acesso" class="input-prepend input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-lock"></i>
-                                                    </span>
-                                        <input id="password" name="password" type="password" placeholder="senha"
-                                               ng-model="user.password" required="required"
-                                               class="form-control">
+                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        <input id="password" name="password" type="password" placeholder="senha" ng-model="user.password" required="required" class="form-control">
                                     </div>
                                 </div>
                             </fieldset>
