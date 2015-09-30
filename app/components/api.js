@@ -6,8 +6,8 @@ angular
         function ($http) {
             $http.defaults.cache = true;
 
-            var url = 'http://api.publiciti.com.br';
-            var config = {
+            var url     = 'https://grupo-publiciti.rhcloud.com/';
+            var config  = {
                 headers: $http.defaults.headers
             };
 
