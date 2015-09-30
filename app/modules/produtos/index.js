@@ -3,13 +3,7 @@
 angular
     .module('myApp.produtos', ['ngRoute', 'ngInputTypeFile', 'angular-cloudinary'])
 
-    .config(['$routeProvider', 'cloudinaryProvider', function ($routeProvider, cloudinaryProvider) {
-        cloudinaryProvider.config({
-            upload_endpoint: 'https://api.cloudinary.com/v1_1/',
-            cloud_name: 'publiciti-papelaria',
-            upload_preset: 'kviu7ooz'
-        });
-
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/produtos', {
                 templateUrl: 'modules/produtos/index.html',
@@ -32,7 +26,7 @@ angular
 
             $scope.load = function () {
                 $api
-                    .get('produto?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('produto?page=' + $scope.curPage + '&limit=' + $scope.pageSize + '&t=' + new Date())
                     .then(function (result) {
                         $scope.linhas = (result.data);
                     });
@@ -57,28 +51,23 @@ angular
                     .post('produto', $produto)
                     .then(function (data) {
                         if (data.status === 201) {
-                            $scope.status = {
-                                type: 'success',
-                                message: 'Produto inserido com sucesso'
-                            };
-
-                            $scope.produto = '';
-                            $scope.produtoForm.$setPristine();
+                            $location.url('/produtos');
+                            $scope.load();
                         } else {
                             $scope.status = {
                                 type: 'danger',
                                 message: 'Erro cadastrando produto, tente novamente mais tarde'
                             };
-
-                            console.error(data);
                         }
                     });
             };
 
             $scope.delete = function (id) {
                 if (confirm('Você deseja realmente apagar o produto?\nEste procedimento é irreversível!')) {
+                    var toDelete = $scope.linhas.data[id];
+
                     $api
-                        .delete('produto/' + id)
+                        .delete('produto/' + toDelete._id)
                         .then(function (data) {
                             if (data.status == 204) {
                                 $scope.status = {
@@ -86,9 +75,7 @@ angular
                                     message: 'produto removido com sucesso!'
                                 };
 
-                                $location.path('/produtos');
-
-                                $scope.load();
+                                $scope.linhas.data.splice(id, 1);
                             } else {
                                 $scope.status = {
                                     type: 'danger',

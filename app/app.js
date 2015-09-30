@@ -5,6 +5,8 @@ angular
     .module('myApp', [
         'ngRoute',
         'ngApi',
+        'ngInputTypeFile',
+        'angular-cloudinary',
         'myApp.aviso',
         'myApp.clientes',
         'myApp.curriculos',
@@ -18,6 +20,14 @@ angular
         'myApp.produtos',
         'myApp.slides'
     ])
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', 'cloudinaryProvider', function ($routeProvider, cloudinaryProvider) {
+        var $usuario = localStorage.getItem('usuario');
+
+        if ($usuario) {
+            var $config = (JSON.parse($usuario)).site.config.cloudinary;
+
+            cloudinaryProvider.config($config);
+        }
+
         $routeProvider.otherwise({redirectTo: '/inicio'});
     }]);

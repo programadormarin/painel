@@ -33,7 +33,7 @@
                     <td>{{ produto.categoria }}</td>
                     <td>
                         <a href="#/produtos/editar/{{ produto._id }}" class="btn btn-xs btn-success"><span class="fa fa-edit"></span></a>
-                        <button ng-click="delete(produto._id)" class="btn btn-xs btn-danger"><span class="fa fa-trash-o"></span></button>
+                        <button ng-click="delete($index)" class="btn btn-xs btn-danger"><span class="fa fa-trash-o"></span></button>
                     </td>
                 </tr>
                 </tbody>
