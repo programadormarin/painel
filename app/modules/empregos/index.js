@@ -7,22 +7,24 @@ angular.module('myApp.empregos', ['ngRoute'])
                 templateUrl: 'modules/empregos/index.html',
                 controller: 'EmpregosController'
             })
+            .when('/empregos/adicionar', {
+                templateUrl: 'modules/empregos/add.html',
+                controller: 'EmpregosController'
+            })
+            .when('/empregos/editar/:id', {
+                templateUrl: 'modules/empregos/edit.html',
+                controller: 'EmpregosController'
+            })
         ;
     }])
 
-    .controller('EmpregosController', ['$scope', '$routeParams', '$location', 'api',
-        function ($scope, $routeParams, $location, api) {
-            $scope.curPage = 1;
+    .controller('EmpregosController', ['$scope', '$routeParams', '$location', 'api', function ($scope, $routeParams, $location, api) {
+            $scope.curPage  = 1;
             $scope.pageSize = 12;
-
-            $scope.editor = function () {
-                $('.editor').wysiwyg();
-                $('textarea').autosize();
-            };
 
             $scope.load = function () {
                 api
-                    .get('emprego?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+                    .get('emprego?page=' + $scope.curPage + '&limit=' + $scope.pageSize + '&t=' + new Date())
                     .then(function (result) {
                         $scope.linhas = (result.data);
                     });
@@ -31,16 +33,11 @@ angular.module('myApp.empregos', ['ngRoute'])
             $scope.add = function () {
                 api
                     .post('emprego', $scope.emprego)
-                    .success(function (data, status) {
-                        $scope.status = {
-                            type: 'success',
-                            message: 'Vaga de emprego inserida com sucesso!'
-                        }
-
-                        $scope.emprego = '';
-                        $scope.empregoForm.$setPristine();
+                    .success(function () {
+                        $location.url('/empregos');
+                        $scope.load();
                     })
-                    .error(function (data, status) {
+                    .error(function () {
                         $scope.status = {
                             type: 'danger',
                             message: 'Ocorreu um erro ao salvar a vaga'
@@ -50,24 +47,23 @@ angular.module('myApp.empregos', ['ngRoute'])
 
             $scope.delete = function (id) {
                 if (confirm('Você deseja realmente apagar a vaga?\nEste procedimento é irreversível!')) {
+                    var toDelete = $scope.linhas.data[id];
+
                     api
-                        .delete('emprego/' + id)
-                        .then(function (data) {
-                            if (data.status == 200) {
-                                $scope.status = {
-                                    type: 'success',
-                                    message: 'Vaga removida com sucesso!'
-                                }
+                        .delete('emprego/' + toDelete._id)
+                        .success(function (data) {
+                            $scope.status = {
+                                type: 'success',
+                                message: 'Vaga removida com sucesso!'
+                            };
 
-                                $location.path('/empregos');
-
-                                $scope.load();
-                            } else {
-                                $scope.status = {
-                                    type: 'danger',
-                                    message: 'Erro removendo vaga, tente novamente mais tarde'
-                                }
-                            }
+                            $scope.linhas.data.splice(id, 1);
+                        })
+                        .error(function() {
+                            $scope.status = {
+                                type: 'danger',
+                                message: 'Erro removendo vaga, tente novamente mais tarde'
+                            };
                         });
                 }
             };
@@ -75,17 +71,17 @@ angular.module('myApp.empregos', ['ngRoute'])
             $scope.edit = function () {
                 api
                     .put('emprego/' + $routeParams.id, $scope.emprego)
-                    .success(function (data) {
+                    .success(function () {
                         $scope.status = {
                             type: 'success',
                             message: 'Vaga atualizada com sucesso!'
-                        }
+                        };
                     })
                     .error(function () {
                         $scope.status = {
                             type: 'danger',
                             message: 'Ocorreu um erro atualizando os dados da vaga, tente novamente mais tarde'
-                        }
+                        };
                     });
             };
 

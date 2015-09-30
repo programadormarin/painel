@@ -5,17 +5,13 @@ angular
     .module('myApp', [
         'ngRoute',
         'ngApi',
-        'ngInputTypeFile',
         'angular-cloudinary',
         'myApp.aviso',
-        'myApp.clientes',
-        'myApp.curriculos',
         'myApp.empregos',
         'myApp.empresa',
         'myApp.equipe',
         'myApp.inicio',
         'myApp.login',
-        'myApp.orcamentos',
         'myApp.parceiros',
         'myApp.produtos',
         'myApp.slides'
