@@ -1,93 +1,112 @@
 'use strict';
 
-angular.module('myApp.equipe', ['ngRoute'])
+angular
+    .module('myApp.equipe', ['ngRoute', 'ngInputTypeFile', 'angular-cloudinary'])
+
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/equipe', {
                 templateUrl: 'modules/equipe/index.html',
                 controller: 'EquipeController'
             })
+            .when('/equipe/adicionar', {
+                templateUrl: 'modules/equipe/add.html',
+                controller: 'EquipeController'
+            })
+            .when('/equipe/editar/:id', {
+                templateUrl: 'modules/equipe/edit.html',
+                controller: 'EquipeController'
+            })
         ;
     }])
 
-    .controller('EquipeController', ['$scope', '$routeParams', '$location', 'api',
-        function ($scope, $routeParams, $location, api) {
-            $scope.curPage = 1;
-            $scope.pageSize = 12;
+    .controller('EquipeController', ['$scope', '$routeParams', '$location', 'api', 'cloudinary', function ($scope, $routeParams, $location, $api, $cloudinary) {
+        $scope.curPage = 1;
+        $scope.pageSize = 12;
 
-            $scope.editor = function () {
-                $('.editor').wysiwyg();
-                $('textarea').autosize();
-            };
+        $scope.load = function () {
+            $api
+                .get('equipe?page=' + $scope.curPage + '&limit=' + $scope.pageSize + '&t=' + new Date())
+                .then(function (data) {
+                    $scope.linhas = (data.data);
+                });
+        };
 
-            $scope.load = function () {
-                api
-                    .get('equipe?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
-                    .then(function (data) {
-                        $scope.linhas = (data.data.data);
-                    });
-            };
+        $scope.upload = function() {
+            var $membro = $scope.membro;
 
-            $scope.add = function () {
-                api
-                    .post('equipe', $scope.membro)
-                    .then(function (data, status) {
-                        $scope.status = {
-                            type: 'success',
-                            message: 'Membro da equipe inserido com sucesso!'
-                        }
+            $cloudinary
+                .upload($membro.imagem[0], {})
+                .then(function (resp) {
+                    $membro.imagem = resp.data;
 
-                        $scope.membro = '';
-                        $scope.equipeForm.$setPristine();
-                    });
-            };
+                    $scope.add($membro);
+                });
+        };
 
-            $scope.delete = function (id) {
-                if (confirm('Você deseja realmente apagar o membro?\nEste procedimento é irreversível!')) {
-                    api
-                        .delete('equipe/' + id)
-                        .then(function (data) {
-                            if (data.status == 200) {
-                                $scope.status = {
-                                    type: 'success',
-                                    message: 'Membro removido com sucesso!'
-                                }
+        $scope.add = function () {
+            var $membro = $scope.membro;
 
-                                $location.path('/equipe');
-                                $scope.load();
-                            } else {
-                                $scope.status = {
-                                    type: 'danger',
-                                    message: 'Erro removendo membro, tente novamente mais tarde'
-                                }
-                            }
-                        });
-                }
-            };
-
-            $scope.edit = function () {
-                api
-                    .put('equipe/' + $routeParams.id, $scope.membro)
-                    .success(function (data) {
-                        $scope.status = {
-                            type: 'success',
-                            message: 'Membro atualizado com sucesso!'
-                        }
-                    })
-                    .error(function () {
+            $api
+                .post('equipe', $membro)
+                .then(function (data) {
+                    if (data.status === 201) {
+                        $location.url('/equipe');
+                        $scope.load();
+                    } else {
                         $scope.status = {
                             type: 'danger',
-                            message: 'Ocorreu um erro atualizando os dados do membro, tente novamente mais tarde'
+                            message: 'Erro cadastrando membro, tente novamente mais tarde'
+                        };
+                    }
+                });
+        };
+
+        $scope.delete = function (id) {
+            if (confirm('Você deseja realmente apagar o membro?\nEste procedimento é irreversível!')) {
+                $api
+                    .delete('equipe/' + id)
+                    .then(function (data) {
+                        if (data.status == 200) {
+                            $scope.status = {
+                                type: 'success',
+                                message: 'Membro removido com sucesso!'
+                            }
+
+                            $location.path('/equipe');
+                            $scope.load();
+                        } else {
+                            $scope.status = {
+                                type: 'danger',
+                                message: 'Erro removendo membro, tente novamente mais tarde'
+                            }
                         }
                     });
-            };
+            }
+        };
 
-            $scope.get = function () {
-                api
-                    .get('equipe/' + $routeParams.id)
-                    .then(function (data) {
-                        $scope.membro = (data.data.data);
-                    });
-            };
-        }
-    ]);
+        $scope.edit = function () {
+            $api
+                .put('equipe/' + $routeParams.id, $scope.membro)
+                .success(function (data) {
+                    $scope.status = {
+                        type: 'success',
+                        message: 'Membro atualizado com sucesso!'
+                    }
+                })
+                .error(function () {
+                    $scope.status = {
+                        type: 'danger',
+                        message: 'Ocorreu um erro atualizando os dados do membro, tente novamente mais tarde'
+                    }
+                });
+        };
+
+        $scope.get = function () {
+            $api
+                .get('equipe/' + $routeParams.id)
+                .then(function (data) {
+                    $scope.membro = (data.data.data);
+                });
+        };
+    }]);
