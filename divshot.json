@@ -1,6 +1,0 @@
-{
-  "name": "painel2",
-  "root": "./app/",
-  "clean_urls": false,
-  "error_page": "error.html"
-}

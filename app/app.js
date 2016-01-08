@@ -31,7 +31,7 @@ angular
     .factory('api', ['$http', function ($http) {
             $http.defaults.cache = true;
 
-            var url     = 'https://api.publiciti.com.br';
+            var url     = 'http://api.publiciti.com.br';
             var config  = {
                 headers: $http.defaults.headers
             };
