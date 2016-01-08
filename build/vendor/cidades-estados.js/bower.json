@@ -1,0 +1,22 @@
+{
+  "name": "cidades-estados.js",
+  "version": "1.2.0",
+  "homepage": "https://github.com/wgenial/cidades-estados-js",
+  "authors": [
+    "wgenial.com.br"
+  ],
+  "description": "Biblioteca em javascript com as cidades e estados do Brasil.",
+  "main": "cidades-estados.js",
+  "keywords": [
+    "cidades",
+    "estados",
+    "brasil"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ]
+}
