@@ -71,6 +71,7 @@ gulp.task('copy', function() {
 
     gulp.src(['app/index.html'])
         .pipe(replace('127.0.0.1:8081', 'api.publiciti.com.br'))
+        .pipe(minifyHTML({conditionals: true, spare:true}))
         .pipe(gulp.dest('build'));
 });
 
