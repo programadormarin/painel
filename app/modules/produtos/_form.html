@@ -20,7 +20,7 @@
             <label class="control-label">tipo</label>
 
             <div class="controls">
-                <select ng-model="$parent.produto.tipo" name="tipo" required="required" class="form-control">
+                <select ng-model="$parent.produto.categoria.titulo" name="tipo" required="required" class="form-control">
                     <option>Brinquedos</option>
                     <option>Livros</option>
                     <option>Materiais Esportivos</option>
@@ -36,7 +36,7 @@
             <label class="control-label">categoria</label>
 
             <div class="controls">
-                <select ng-model="$parent.produto.categoria" name="categoria" required="required" class="form-control">
+                <select ng-model="$parent.produto.categoria.categoria.titulo" name="categoria" required="required" class="form-control">
                     <option>Artes</option>
                     <option>Didático</option>
                     <option>DVDs</option>
@@ -71,7 +71,7 @@
                 <p ng-show="$parent.produtoForm.imagem.$invalid && !$parent.produtoForm.imagem.$pristine" class="help-block">Imagem é inválida</p>
             </div>
         </div>
-        <img ng-src="{{$parent.produto.imagem.url}}" ng-show="$parent.produto.imagem">
+        <img ng-src="{{ $parent.produto.imagem.url }}" ng-show="$parent.produto.imagem" style="max-width: 260px">
     </div>
 </div>
 <div class="row">
