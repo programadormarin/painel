@@ -28,7 +28,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
                 var paginas = new Array();
 
                 for (var i=0; i <= result.data.pageCount; i++) {
-                    paginas.push(i);
+                    paginas.push(i + 1);
                 }
 
                 $scope.paginas = paginas;
