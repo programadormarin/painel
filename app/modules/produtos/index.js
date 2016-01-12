@@ -3,6 +3,7 @@
 function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary) {
     $scope.curPage  = 1;
     $scope.pageSize = 12;
+    $scope.site = JSON.parse(localStorage.getItem('usuario')).site;
 
     /**
      * General config
@@ -46,7 +47,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
             .then(function (resp) {
                 $produto.imagem = resp.data;
 
-                $scope.add($produto);
+                $scope.add();
             });
     };
 
@@ -55,6 +56,12 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
      */
     $scope.add = function () {
         var $produto = $scope.produto;
+            $produto.categoria = {
+                titulo: $scope.produtoForm.categoria.titulo,
+                categoria: {
+                    titulo: $scope.produtoForm.subCategoria.titulo
+                }
+            };
 
         $http
             .post($('meta[name="api"]').attr('content') + 'produto', $produto, config)

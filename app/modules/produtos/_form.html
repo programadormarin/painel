@@ -20,14 +20,7 @@
             <label class="control-label">tipo</label>
 
             <div class="controls">
-                <select ng-model="$parent.produto.categoria.titulo" name="tipo" required="required" class="form-control">
-                    <option>Brinquedos</option>
-                    <option>Livros</option>
-                    <option>Materiais Esportivos</option>
-                    <option>Parques</option>
-                    <option>Outros</option>
-                    <option>Uniformes</option>
-                </select>
+                <select ng-model="$parent.produtoForm.categoria" ng-options="categoria.titulo for categoria in $parent.site.categorias" required="required" class="form-control"></select>
 
                 <p ng-show="$parent.produtoForm.tipo.$invalid && !$parent.produtoForm.tipo.$pristine" class="help-block">Selecione a tipo do produto</p>
             </div>
@@ -36,19 +29,7 @@
             <label class="control-label">categoria</label>
 
             <div class="controls">
-                <select ng-model="$parent.produto.categoria.categoria.titulo" name="categoria" required="required" class="form-control">
-                    <option>Artes</option>
-                    <option>Didático</option>
-                    <option>DVDs</option>
-                    <option>Filosofia</option>
-                    <option>Infantil</option>
-                    <option>Literatura Geral</option>
-                    <option>produtos e Coleções</option>
-                    <option>Pedagógicos</option>
-                    <option>Psicologia</option>
-                    <option>Religioso</option>
-                    <option>Trabalhos Manuais</option>
-                </select>
+                <select ng-model="$parent.produtoForm.subCategoria" ng-options="categoria.titulo for categoria in $parent.produtoForm.categoria.categorias" required="required" class="form-control"></select>
 
                 <p ng-show="$parent.produtoForm.categoria.$invalid && !$parent.produtoForm.categoria.$pristine" class="help-block">Selecione a categoria do produto</p>
             </div>
