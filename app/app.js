@@ -27,6 +27,6 @@ angular
 
         $route.otherwise({redirectTo: '/inicio'});
 
-        $http.defaults.cache = true;
+        $http.defaults.cache = false;
     }])
 ;

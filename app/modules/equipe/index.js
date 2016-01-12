@@ -12,19 +12,37 @@
  * @constructor
  */
 function EquipeController ($scope, $routeParams, $location, $http, $cloudinary) {
-    $scope.curPage = 1;
+    $scope.curPage  = 1;
     $scope.pageSize = 12;
-    $http.defaults.headers.common.Authorization = localStorage.getItem('token');
-    $http.defaults.headers.common.Site          = localStorage.getItem('site');
 
+    /**
+     * General config
+     *
+     * @type {{headers: {Authorization, Site}}}
+     */
+    var config = {
+        headers: {
+            Authorization: localStorage.getItem('token'),
+            Site: localStorage.getItem('site')
+        }
+    };
+
+    /**
+     * Carrega Equipe
+     */
     $scope.load = function () {
+        var url = $('meta[name="api"]').attr('content') + 'equipe?page=' + $scope.curPage + '&limit=' + $scope.pageSize;
+
         $http
-            .get($('meta[name="api"]').attr('content') + 'equipe?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+            .get(url, config)
             .then(function (data) {
                 $scope.linhas = (data.data);
             });
     };
 
+    /**
+     * Faz o upload da foto do membro da equipe
+     */
     $scope.upload = function() {
         var $membro = $scope.membro;
 
@@ -37,11 +55,14 @@ function EquipeController ($scope, $routeParams, $location, $http, $cloudinary) 
             });
     };
 
+    /**
+     * Adiciona membro
+     */
     $scope.add = function () {
         var $membro = $scope.membro;
 
         $http
-            .post($('meta[name="api"]').attr('content') + 'equipe', $membro)
+            .post($('meta[name="api"]').attr('content') + 'equipe', $membro, config)
             .then(function (data) {
                 if (data.status === 201) {
                     $location.url('/equipe');
@@ -55,10 +76,15 @@ function EquipeController ($scope, $routeParams, $location, $http, $cloudinary) 
             });
     };
 
+    /**
+     * Remove membro da Equipe
+     *
+     * @param id
+     */
     $scope.delete = function (id) {
         if (confirm('Você deseja realmente apagar o membro?\nEste procedimento é irreversível!')) {
             $http
-                .delete($('meta[name="api"]').attr('content') + 'equipe/' + id)
+                .delete($('meta[name="api"]').attr('content') + 'equipe/' + id, config)
                 .then(function (data) {
                     if (data.status == 200) {
                         $scope.status = {
@@ -78,9 +104,12 @@ function EquipeController ($scope, $routeParams, $location, $http, $cloudinary) 
         }
     };
 
+    /**
+     * Edita membro
+     */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'equipe/' + $routeParams.id, $scope.membro)
+            .put($('meta[name="api"]').attr('content') + 'equipe/' + $routeParams.id, $scope.membro, config)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -95,9 +124,12 @@ function EquipeController ($scope, $routeParams, $location, $http, $cloudinary) 
             });
     };
 
+    /**
+     * Visualiza membro
+     */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'equipe/' + $routeParams.id)
+            .get($('meta[name="api"]').attr('content') + 'equipe/' + $routeParams.id, config)
             .then(function (data) {
                 $scope.membro = (data.data.data);
             });

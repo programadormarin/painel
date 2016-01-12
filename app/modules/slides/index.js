@@ -13,17 +13,33 @@
 function SlidesController ($scope, $routeParams, $location, $http, $cloudinary) {
     $scope.curPage  = 1;
     $scope.pageSize = 12;
-    $http.defaults.headers.common.Authorization = localStorage.getItem('token');
-    $http.defaults.headers.common.Site          = localStorage.getItem('site');
 
+    /**
+     * General config
+     *
+     * @type {{headers: {Authorization, Site}}}
+     */
+    var config = {
+        headers: {
+            Authorization: localStorage.getItem('token'),
+            Site: localStorage.getItem('site')
+        }
+    };
+
+    /**
+     * Carregar Slides
+     */
     $scope.load = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'slide?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+            .get($('meta[name="api"]').attr('content') + 'slide?page=' + $scope.curPage + '&limit=' + $scope.pageSize, config)
             .then(function (result) {
                 $scope.linhas = (result.data);
             });
     };
 
+    /**
+     * Upload da imagem do Slide
+     */
     $scope.upload = function() {
         var $produto = $scope.produto;
 
@@ -36,11 +52,14 @@ function SlidesController ($scope, $routeParams, $location, $http, $cloudinary) 
             });
     };
 
+    /**
+     * Inserir Slide
+     */
     $scope.add = function () {
         var $produto = $scope.produto;
 
         $http
-            .post($('meta[name="api"]').attr('content') + 'slide', $produto)
+            .post($('meta[name="api"]').attr('content') + 'slide', $produto, config)
             .then(function (data) {
                 if (data.status === 201) {
                     $scope.status = {
@@ -61,10 +80,15 @@ function SlidesController ($scope, $routeParams, $location, $http, $cloudinary) 
             });
     };
 
+    /**
+     * Apagar Slide
+     *
+     * @param id
+     */
     $scope.delete = function (id) {
         if (confirm('Você deseja realmente apagar o slide?\nEste procedimento é irreversível!')) {
             $http
-                .delete($('meta[name="api"]').attr('content') + 'slide/' + id)
+                .delete($('meta[name="api"]').attr('content') + 'slide/' + id, config)
                 .then(function (data) {
                     if (data.status == 204) {
                         $scope.status = {
@@ -85,9 +109,12 @@ function SlidesController ($scope, $routeParams, $location, $http, $cloudinary) 
         }
     };
 
+    /**
+     * Editar Slide
+     */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'slide/' + $routeParams.id, $scope.produto)
+            .put($('meta[name="api"]').attr('content') + 'slide/' + $routeParams.id, $scope.produto, config)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -102,9 +129,12 @@ function SlidesController ($scope, $routeParams, $location, $http, $cloudinary) 
             });
     };
 
+    /**
+     * Visualizar Slide
+     */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'slide/' + $routeParams.id)
+            .get($('meta[name="api"]').attr('content') + 'slide/' + $routeParams.id, config)
             .then(function (data) {
                 $scope.produto = (data.data.data);
             });

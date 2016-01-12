@@ -13,15 +13,25 @@
 function AvisoController ($scope, $routeParams, $location, $http) {
     $scope.curPage  = 1;
     $scope.pageSize = 12;
-    $http.defaults.headers.common.Authorization = localStorage.getItem('token');
-    $http.defaults.headers.common.Site          = localStorage.getItem('site');
+
+    /**
+     * General config
+     *
+     * @type {{headers: {Authorization, Site}}}
+     */
+    var config = {
+        headers: {
+            Authorization: localStorage.getItem('token'),
+            Site: localStorage.getItem('site')
+        }
+    };
 
     /**
      * Carrega os Avisos cadastrados
      */
     $scope.load = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'aviso?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+            .get($('meta[name="api"]').attr('content') + 'aviso?page=' + $scope.curPage + '&limit=' + $scope.pageSize, config)
             .then(function (result) {
                 $scope.linhas = (result.data);
             });
@@ -32,7 +42,7 @@ function AvisoController ($scope, $routeParams, $location, $http) {
      */
     $scope.add = function () {
         $http
-            .post($('meta[name="api"]').attr('content') + 'aviso', $scope.aviso)
+            .post($('meta[name="api"]').attr('content') + 'aviso', $scope.aviso, config)
             .then(function (data, status) {
                 $scope.status = {
                     type: 'success',
@@ -52,7 +62,7 @@ function AvisoController ($scope, $routeParams, $location, $http) {
     $scope.delete = function (id) {
         if (confirm('Você deseja realmente apagar o ítem?\nEste procedimento é irreversível!')) {
             $http
-                .delete($('meta[name="api"]').attr('content') + 'aviso/' + id)
+                .delete($('meta[name="api"]').attr('content') + 'aviso/' + id, config)
                 .then(function (data) {
                     if (data.status == 204) {
                         $scope.status = {
@@ -78,7 +88,7 @@ function AvisoController ($scope, $routeParams, $location, $http) {
      */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'aviso/' + $routeParams.id, $scope.aviso)
+            .put($('meta[name="api"]').attr('content') + 'aviso/' + $routeParams.id, $scope.aviso, config)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -98,7 +108,7 @@ function AvisoController ($scope, $routeParams, $location, $http) {
      */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'aviso/' + $routeParams.id)
+            .get($('meta[name="api"]').attr('content') + 'aviso/' + $routeParams.id, config)
             .then(function (data) {
                 data.data.data.inicio = new Date(data.data.data.inicio);
                 data.data.data.fim = new Date(data.data.data.fim);

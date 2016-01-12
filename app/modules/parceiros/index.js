@@ -13,17 +13,33 @@
 function ParceirosController ($scope, $routeParams, $location, $http, $cloudinary) {
     $scope.curPage  = 1;
     $scope.pageSize = 12;
-    $http.defaults.headers.common.Authorization = localStorage.getItem('token');
-    $http.defaults.headers.common.Site          = localStorage.getItem('site');
 
+    /**
+     * General config
+     *
+     * @type {{headers: {Authorization, Site}}}
+     */
+    var config = {
+        headers: {
+            Authorization: localStorage.getItem('token'),
+            Site: localStorage.getItem('site')
+        }
+    };
+
+    /**
+     * Carrega Parceiros
+     */
     $scope.load = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'parceiro?page=' + $scope.curPage + '&limit=' + $scope.pageSize + '&t=' + new Date())
+            .get($('meta[name="api"]').attr('content') + 'parceiro?page=' + $scope.curPage + '&limit=' + $scope.pageSize, config)
             .then(function (data) {
                 $scope.linhas = (data.data);
             });
     };
 
+    /**
+     * Faz o upload da imagem do Parceiro
+     */
     $scope.upload = function() {
         var $parceiro = $scope.parceiro;
 
@@ -36,9 +52,12 @@ function ParceirosController ($scope, $routeParams, $location, $http, $cloudinar
             });
     };
 
+    /**
+     * Adiciona Parceiro
+     */
     $scope.add = function () {
         $http
-            .post($('meta[name="api"]').attr('content') + 'parceiro', $scope.parceiro)
+            .post($('meta[name="api"]').attr('content') + 'parceiro', $scope.parceiro, config)
             .success(function () {
                 $location.url('/parceiros');
                 $scope.load();
@@ -51,12 +70,17 @@ function ParceirosController ($scope, $routeParams, $location, $http, $cloudinar
             });
     };
 
+    /**
+     * Apaga Parceiro
+     *
+     * @param id
+     */
     $scope.delete = function (id) {
         if (confirm('Você deseja realmente apagar o parceiro?\nEste procedimento é irreversível!')) {
             var toDelete = $scope.linhas.data[id];
 
             $http
-                .delete($('meta[name="api"]').attr('content') + 'parceiro/' + toDelete._id)
+                .delete($('meta[name="api"]').attr('content') + 'parceiro/' + toDelete._id, config)
                 .then(function (data) {
                     if (data.status == 204) {
                         $scope.status = {
@@ -76,9 +100,12 @@ function ParceirosController ($scope, $routeParams, $location, $http, $cloudinar
         }
     };
 
+    /**
+     * Editar Parceiro
+     */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'parceiro/' + $routeParams.id, $scope.parceiro)
+            .put($('meta[name="api"]').attr('content') + 'parceiro/' + $routeParams.id, $scope.parceiro, config)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -93,9 +120,12 @@ function ParceirosController ($scope, $routeParams, $location, $http, $cloudinar
             });
     };
 
+    /**
+     * Visualizar Parceiro
+     */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'parceiro/' + $routeParams.id)
+            .get($('meta[name="api"]').attr('content') + 'parceiro/' + $routeParams.id, config)
             .then(function (data) {
                 $scope.parceiro = (data.data.data);
             });

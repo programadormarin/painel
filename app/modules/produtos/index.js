@@ -4,17 +4,40 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
     $scope.curPage  = 1;
     $scope.pageSize = 12;
 
-    $scope.load = function () {
-        $http.defaults.headers.common.Authorization = localStorage.getItem('token');
-        $http.defaults.headers.common.Site          = localStorage.getItem('site');
+    /**
+     * General config
+     *
+     * @type {{headers: {Authorization, Site}}}
+     */
+    var config = {
+        headers: {
+            Authorization: localStorage.getItem('token'),
+            Site: localStorage.getItem('site')
+        }
+    };
 
+    /**
+     * Carregar Produtos
+     */
+    $scope.load = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'produto?page=' + $scope.curPage + '&limit=' + $scope.pageSize + '&t=' + new Date())
+            .get($('meta[name="api"]').attr('content') + 'produto?page=' + $scope.curPage + '&limit=' + $scope.pageSize, config)
             .then(function (result) {
                 $scope.linhas = (result.data);
+
+                var paginas = new Array();
+
+                for (var i=0; i <= result.data.pageCount; i++) {
+                    paginas.push(i);
+                }
+
+                $scope.paginas = paginas;
             });
     };
 
+    /**
+     * Upload de imagem do Produto
+     */
     $scope.upload = function() {
         var $produto = $scope.produto;
 
@@ -27,11 +50,14 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
             });
     };
 
+    /**
+     * Cadastrar Produto
+     */
     $scope.add = function () {
         var $produto = $scope.produto;
 
         $http
-            .post($('meta[name="api"]').attr('content') + 'produto', $produto)
+            .post($('meta[name="api"]').attr('content') + 'produto', $produto, config)
             .then(function (data) {
                 if (data.status === 201) {
                     $location.url('/produtos');
@@ -45,12 +71,17 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
             });
     };
 
+    /**
+     * Apagar Produto
+     *
+     * @param id
+     */
     $scope.delete = function (id) {
         if (confirm('Você deseja realmente apagar o produto?\nEste procedimento é irreversível!')) {
             var toDelete = $scope.linhas.data[id];
 
             $http
-                .delete($('meta[name="api"]').attr('content') + 'produto/' + toDelete._id)
+                .delete($('meta[name="api"]').attr('content') + 'produto/' + toDelete._id, config)
                 .then(function (data) {
                     if (data.status == 204) {
                         $scope.status = {
@@ -69,9 +100,12 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
         }
     };
 
+    /**
+     * Editar Produto
+     */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, $scope.produto)
+            .put($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, $scope.produto, config)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -86,9 +120,12 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
             });
     };
 
+    /**
+     * Visualizar Produto
+     */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id)
+            .get($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, config)
             .then(function (data) {
                 $scope.produto = (data.data.data);
             });

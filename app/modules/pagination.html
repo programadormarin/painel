@@ -1,15 +1,23 @@
 <div ng-show="$parent.linhas.itemCount" class="block text-center">
     <ul class="pagination pagination-centered inline unstyled">
         <li>
-            <a ng-disabled="$parent.curPage == 1" ng-click="$parent.curPage = $parent.curPage - 1; $parent.load()"
+            <a ng-disabled="$parent.curPage == 1"
+               ng-click="$parent.curPage = $parent.curPage - 1; $parent.load()"
                class="btn btn-link">Voltar</a>
         </li>
         <li>
-            <span>Página {{ $parent.curPage }} de {{ $parent.linhas.pageCount }}</span>
+            <span>
+                Página
+                <select ng-model="$parent.curPage" ng-change="$parent.load()">
+                    <option ng-repeat="pageNumber in $parent.paginas" ng-hide="pageNumber == 0">{{ pageNumber }}</option>
+                </select>
+                de {{ $parent.linhas.pageCount }}
+            </span>
         </li>
         <li>
             <a ng-disabled="$parent.linhas.has_more == false"
-               ng-click="$parent.curPage = $parent.curPage + 1; $parent.load()" class="btn btn-link">Avançar</a>
+               ng-click="$parent.curPage = $parent.curPage + 1; $parent.load()"
+               class="btn btn-link">Avançar</a>
         </li>
     </ul>
 </div>
