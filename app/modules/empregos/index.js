@@ -1,5 +1,110 @@
 'use strict';
 
+/**
+ * Empregos
+ *
+ * @param $scope
+ * @param $routeParams
+ * @param $location
+ * @param $http
+ *
+ * @constructor
+ */
+function EmpregosController ($scope, $routeParams, $location, $http) {
+    $scope.curPage  = 1;
+    $scope.pageSize = 12;
+    $http.defaults.headers.common.Authorization = localStorage.getItem('token');
+    $http.defaults.headers.common.Site          = localStorage.getItem('site');
+
+    /**
+     * Carrega os Empregos
+     */
+    $scope.load = function () {
+        $http
+            .get($('meta[name="api"]').attr('content') + 'emprego?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
+            .then(function (result) {
+                $scope.linhas = (result.data);
+            });
+    };
+
+    /**
+     * Cadastra um Emprego
+     */
+    $scope.add = function () {
+        $http
+            .post($('meta[name="api"]').attr('content') + 'emprego', $scope.emprego)
+            .success(function () {
+                $location.url('/empregos');
+                $scope.load();
+            })
+            .error(function () {
+                $scope.status = {
+                    type: 'danger',
+                    message: 'Ocorreu um erro ao salvar a vaga'
+                }
+            });
+    };
+
+    /**
+     * Remove um Emprego
+     *
+     * @param id
+     */
+    $scope.delete = function (id) {
+        if (confirm('Você deseja realmente apagar a vaga?\nEste procedimento é irreversível!')) {
+            var toDelete = $scope.linhas.data[id];
+
+            $http
+                .delete($('meta[name="api"]').attr('content') + 'emprego/' + toDelete._id)
+                .success(function (data) {
+                    $scope.status = {
+                        type: 'success',
+                        message: 'Vaga removida com sucesso!'
+                    };
+
+                    $scope.linhas.data.splice(id, 1);
+                })
+                .error(function() {
+                    $scope.status = {
+                        type: 'danger',
+                        message: 'Erro removendo vaga, tente novamente mais tarde'
+                    };
+                });
+        }
+    };
+
+    /**
+     * Editar Emprego
+     */
+    $scope.edit = function () {
+        $http
+            .put($('meta[name="api"]').attr('content') + 'emprego/' + $routeParams.id, $scope.emprego)
+            .success(function () {
+                $scope.status = {
+                    type: 'success',
+                    message: 'Vaga atualizada com sucesso!'
+                };
+            })
+            .error(function () {
+                $scope.status = {
+                    type: 'danger',
+                    message: 'Ocorreu um erro atualizando os dados da vaga, tente novamente mais tarde'
+                };
+            });
+    };
+
+    /**
+     * Visualizar Emprego
+     */
+    $scope.get = function () {
+        $http
+            .get($('meta[name="api"]').attr('content') + 'emprego/' + $routeParams.id)
+            .then(function (data) {
+                $scope.emprego = (data.data.data);
+            });
+    }
+}
+
 angular.module('myApp.empregos', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -18,79 +123,4 @@ angular.module('myApp.empregos', ['ngRoute'])
         ;
     }])
 
-    .controller('EmpregosController', ['$scope', '$routeParams', '$location', 'api', function ($scope, $routeParams, $location, api) {
-            $scope.curPage  = 1;
-            $scope.pageSize = 12;
-
-            $scope.load = function () {
-                api
-                    .get('emprego?page=' + $scope.curPage + '&limit=' + $scope.pageSize + '&t=' + new Date())
-                    .then(function (result) {
-                        $scope.linhas = (result.data);
-                    });
-            };
-
-            $scope.add = function () {
-                api
-                    .post('emprego', $scope.emprego)
-                    .success(function () {
-                        $location.url('/empregos');
-                        $scope.load();
-                    })
-                    .error(function () {
-                        $scope.status = {
-                            type: 'danger',
-                            message: 'Ocorreu um erro ao salvar a vaga'
-                        }
-                    });
-            };
-
-            $scope.delete = function (id) {
-                if (confirm('Você deseja realmente apagar a vaga?\nEste procedimento é irreversível!')) {
-                    var toDelete = $scope.linhas.data[id];
-
-                    api
-                        .delete('emprego/' + toDelete._id)
-                        .success(function (data) {
-                            $scope.status = {
-                                type: 'success',
-                                message: 'Vaga removida com sucesso!'
-                            };
-
-                            $scope.linhas.data.splice(id, 1);
-                        })
-                        .error(function() {
-                            $scope.status = {
-                                type: 'danger',
-                                message: 'Erro removendo vaga, tente novamente mais tarde'
-                            };
-                        });
-                }
-            };
-
-            $scope.edit = function () {
-                api
-                    .put('emprego/' + $routeParams.id, $scope.emprego)
-                    .success(function () {
-                        $scope.status = {
-                            type: 'success',
-                            message: 'Vaga atualizada com sucesso!'
-                        };
-                    })
-                    .error(function () {
-                        $scope.status = {
-                            type: 'danger',
-                            message: 'Ocorreu um erro atualizando os dados da vaga, tente novamente mais tarde'
-                        };
-                    });
-            };
-
-            $scope.get = function () {
-                api
-                    .get('emprego/' + $routeParams.id)
-                    .then(function (data) {
-                        $scope.emprego = (data.data.data);
-                    });
-            }
-        }
-    ]);
+    .controller('EmpregosController', ['$scope', '$routeParams', '$location', '$http', EmpregosController]);

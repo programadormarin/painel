@@ -27,8 +27,8 @@
                     <td><img ng-src="{{ produto.imagem.url }}" alt="foto" class="thumbnail img-thumbnail img-responsive"></td>
                     <td>{{ produto.titulo }}</td>
                     <td>{{ produto.codigo }}</td>
-                    <td>{{ produto.tipo }}</td>
-                    <td>{{ produto.categoria }}</td>
+                    <td>{{ produto.categoria.titulo }}</td>
+                    <td>{{ produto.categoria.categoria.titulo }}</td>
                     <td>
                         <a href="#/produtos/editar/{{ produto._id }}" class="btn btn-xs btn-success"><span class="fa fa-edit"></span></a>
                         <button ng-click="delete($index)" class="btn btn-xs btn-danger"><span class="fa fa-trash-o"></span></button>

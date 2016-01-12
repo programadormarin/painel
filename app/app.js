@@ -16,48 +16,17 @@ angular
         'myApp.slides'
     ])
 
-    .config(['$routeProvider', 'cloudinaryProvider', function ($routeProvider, cloudinaryProvider) {
+    .config(['$routeProvider', 'cloudinaryProvider', '$httpProvider', function ($route, $cloud, $http) {
         var $usuario = localStorage.getItem('usuario');
 
         if ($usuario) {
             var $config = (JSON.parse($usuario)).site.config.cloudinary;
 
-            cloudinaryProvider.config($config);
+            $cloud.config($config);
         }
 
-        $routeProvider.otherwise({redirectTo: '/inicio'});
+        $route.otherwise({redirectTo: '/inicio'});
+
+        $http.defaults.cache = true;
     }])
-
-    .factory('api', ['$http', function ($http) {
-            $http.defaults.cache = true;
-
-            var url     = 'http://api.publiciti.com.br';
-            var config  = {
-                headers: $http.defaults.headers
-            };
-
-            if (localStorage.getItem('token')) {
-                config.headers.authorization = localStorage.getItem('token');
-            }
-
-            if (localStorage.getItem('site')) {
-                config.headers.site = localStorage.getItem('site');
-            }
-
-            return {
-                get: function (endpoint) {
-                    return $http.get(url + '/' + endpoint, config);
-                },
-                post: function (endpoint, data) {
-                    return $http.post(url + '/' + endpoint, data, config);
-                },
-                put: function (endpoint, data) {
-                    return $http.put(url + '/' + endpoint, data, config);
-                },
-                delete: function (endpoint) {
-                    return $http.delete(url + '/' + endpoint, config);
-                }
-            };
-        }
-    ])
 ;

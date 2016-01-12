@@ -2,8 +2,8 @@
   "name": "painel-publiciti",
   "description": "Um painel de controle em AngularJS",
   "version": "0.0.1",
-  "homepage": "https://github.com/angular/angular-seed",
-  "license": "MIT",
+  "homepage": "http://painel.publiciti.com.br",
+  "license": "proprietary",
   "private": true,
   "dependencies": {
     "angular": "~1.4.0",
