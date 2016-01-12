@@ -24,7 +24,7 @@
                     <tbody>
                         <tr ng-repeat="emprego in linhas.data">
                             <td>{{ emprego.titulo }}</td>
-                            <td>{{ emprego.salario | currency }}</td>
+                            <td>{{ emprego.salario | currency : "R$ " : 2 }}</td>
                             <td>{{ emprego.cadastro | date: 'd/MMM/yyyy' }}</td>
                             <td>
                                 <a href="#/empregos/editar/{{ emprego._id }}" class="btn btn-xs btn-success"><span class="fa fa-edit">&nbsp;</span></a>

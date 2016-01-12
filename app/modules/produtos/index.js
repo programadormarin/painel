@@ -27,8 +27,8 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
 
                 var paginas = new Array();
 
-                for (var i=0; i <= result.data.pageCount; i++) {
-                    paginas.push(i + 1);
+                for (var i=1; i <= result.data.pageCount; i++) {
+                    paginas.push(i);
                 }
 
                 $scope.paginas = paginas;
@@ -128,6 +128,32 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
             .get($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, config)
             .then(function (data) {
                 $scope.produto = (data.data.data);
+            });
+    };
+
+    /**
+     * Search Products
+     */
+    $scope.search = function() {
+        var url = $('meta[name="api"]').attr('content')
+                + 'busca/'
+                + '?page=' + $scope.curPage
+                + '&limit=' + $scope.pageSize
+                + '&busca=' + $scope.busca
+            ;
+
+        $http
+            .get(url, config)
+            .then(function (result) {
+                $scope.linhas = (result.data);
+
+                var paginas = new Array();
+
+                for (var i=1; i <= result.data.pageCount; i++) {
+                    paginas.push(i);
+                }
+
+                $scope.paginas = paginas;
             });
     };
 }
