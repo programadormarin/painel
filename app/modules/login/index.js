@@ -42,13 +42,15 @@ function LoginController ($scope, $routeParams, $location, $http, $window, $inte
                 $scope.user = '';
                 $scope.loginForm.$setPristine();
 
+                $('#myModal').modal('hide');
+
+                delete $scope.status;
+
                 localStorage.setItem('site', data.data.usuario.site._id);
                 localStorage.setItem('usuario', JSON.stringify(data.data.usuario));
                 localStorage.setItem('token', data.data.token.conteudo);
 
                 $location.url('/inicio');
-
-                $window.location.reload();
             })
             .error(function () {
                 $scope.status = {
@@ -62,8 +64,6 @@ function LoginController ($scope, $routeParams, $location, $http, $window, $inte
         localStorage.clear();
 
         $location.url('/inicio');
-
-        $window.location.reload();
     };
 }
 

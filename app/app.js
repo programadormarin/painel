@@ -4,6 +4,8 @@
 angular
     .module('myApp', [
         'ngRoute',
+        'ngLoadingSpinner',
+        'angular-loading-bar',
         'angular-cloudinary',
         'myApp.aviso',
         'myApp.empregos',

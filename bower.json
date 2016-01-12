@@ -1,21 +1,28 @@
 {
   "name": "painel-publiciti",
   "description": "Um painel de controle em AngularJS",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "http://painel.publiciti.com.br",
   "license": "proprietary",
   "private": true,
   "dependencies": {
     "angular": "~1.4.0",
     "angular-cloudinary": "~1.1.0",
-    "angular-loader": "~1.4.0",
-    "angular-mocks": "~1.4.0",
     "angular-route": "~1.4.0",
+    "angular-resource": "~1.4.6",
+    "angular-loading-bar": "~0.8.0",
+    "angular-loading-spinner": "~0.0.3",
+    "angular-spinners": "~3.0.2",
+    "angular-flash-alert": "~1.1.1",
+    "angular-loader": "~1.4.0",
     "bootstrap": "~3.3.5",
     "bootstrap-markdown": "~2.9.0",
     "cidades-estados.js": "~1.2.0",
     "components-font-awesome": "~4.4.0",
-    "html5-boilerplate": "~5.2.0",
-    "angular-resource": "~1.4.6"
+    "ng-notify": "~0.7.1"
+  },
+  "devDependencies": {
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0"
   }
 }
