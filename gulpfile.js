@@ -68,6 +68,10 @@ gulp.task('copy', function() {
 
     gulp.src('bower_components/**/*')
         .pipe(gulp.dest('build/vendor'));
+
+    gulp.src(['app/index.html'])
+        .pipe(replace('127.0.0.1:8081', 'api.publiciti.com.br'))
+        .pipe(gulp.dest('build'));
 });
 
 // Deploy to Github Pages
