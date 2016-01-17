@@ -51,6 +51,34 @@
                 <h4 class="modal-title"><i class="fa fa-shopping-cart"></i><span class="break">&nbsp;</span>Carrinho de Compras</h4>
             </div>
             <div class="modal-body">
+                <h3>Dados do Comprador</h3>
+
+                <table class="table table-bordered bootstrap-datatable datatable">
+                    <tr>
+                        <td class="col-lg-2">Nome</td>
+                        <td ng-bind="carrinho.comprador.nome"></td>
+                    </tr>
+                    <tr>
+                        <td>E-mail</td>
+                        <td ng-bind="carrinho.comprador.email"></td>
+                    </tr>
+                    <tr>
+                        <td>Telefone</td>
+                        <td ng-bind="carrinho.comprador.telefone"></td>
+                    </tr>
+                    <tr>
+                        <td>Endereço</td>
+                        <td>
+                            <span ng-bind="carrinho.comprador.endereco.logradouro"></span> - <span ng-bind="carrinho.comprador.endereco.numero"></span>,
+                            <span ng-bind="carrinho.comprador.endereco.complemento"></span>, <span ng-bind="carrinho.comprador.endereco.bairro"></span>
+                            <br>
+                            <span ng-bind="carrinho.comprador.localidade.cidade"></span>, <span ng-bind="carrinho.comprador.localidade.uf"></span>,
+                        </td>
+                    </tr>
+                </table>
+
+                <hr>
+
                 <table class="table table-striped table-bordered bootstrap-datatable datatable">
                     <thead>
                         <tr>
