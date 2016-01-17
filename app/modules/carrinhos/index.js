@@ -33,6 +33,8 @@ function CarrinhosController ($scope, $routeParams, $location, $http) {
                 }
 
                 $scope.paginas = paginas;
+
+                $('[data-toggle="tooltip"]').tooltip();
             });
     };
 
@@ -43,6 +45,42 @@ function CarrinhosController ($scope, $routeParams, $location, $http) {
         $scope.carrinho = carrinho;
 
         $('#cartModal').modal('show');
+    };
+
+    /**
+     * Atualizar Carrinho
+     */
+    $scope.check = function (carrinho) {
+        $scope.carrinho = carrinho;
+
+        alert('carrinho atualizado');
+    };
+
+    /**
+     * Apagar Carrinho
+     *
+     * @param id
+     */
+    $scope.delete = function (id) {
+        if (confirm('Você deseja realmente apagar o carrinho?\nEste procedimento é irreversível!')) {
+            $http
+                .delete($('meta[name="api"]').attr('content') + 'carrinho/' + id, config)
+                .then(function (data) {
+                    if (data.status == 204) {
+                        $scope.status = {
+                            type: 'success',
+                            message: 'carrinho removido com sucesso!'
+                        };
+
+                        $scope.load();
+                    } else {
+                        $scope.status = {
+                            type: 'danger',
+                            message: 'Erro removendo carrinho, tente novamente mais tarde'
+                        };
+                    }
+                });
+        }
     };
 }
 
