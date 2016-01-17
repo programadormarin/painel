@@ -16,7 +16,8 @@ angular
         'myApp.login',
         'myApp.parceiros',
         'myApp.produtos',
-        'myApp.slides'
+        'myApp.slides',
+        'myApp.carrinhos'
     ])
 
     .config(['$routeProvider', 'cloudinaryProvider', '$httpProvider', function ($route, $cloud, $http) {

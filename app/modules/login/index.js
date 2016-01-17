@@ -17,6 +17,8 @@ function LoginController ($scope, $location, $http, $interval) {
     $scope.check = function () {
         $interval(function () {
             if (localStorage.getItem('token')) {
+                $('#myModal').modal('hide');
+
                 return;
             }
 
@@ -31,16 +33,6 @@ function LoginController ($scope, $location, $http, $interval) {
         $http
             .post($('meta[name="api"]').attr('content') + 'login', $scope.user, {headers: { site: '55743d2101fdb1d6a267a345' }})
             .success(function (data) {
-                $scope.status = {
-                    type: 'success',
-                    message: 'Logado com sucesso!'
-                };
-
-                $scope.user = '';
-                $scope.loginForm.$setPristine();
-
-                $('#myModal').modal('hide');
-
                 localStorage.setItem('site',  data.data.usuario.site._id);
                 localStorage.setItem('token', data.data.token.conteudo);
 
