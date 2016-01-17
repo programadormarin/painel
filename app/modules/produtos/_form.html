@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-lg-6 col-sm-12">
         <div ng-class="{ 'has-error' : $parent.produtoForm.titulo.$invalid && !$parent.produtoForm.titulo.$pristine }" class="form-group">
             <label class="control-label">Título</label>
 
@@ -12,17 +12,18 @@
         <div ng-class="{ 'has-error' : $parent.produtoForm.descricao.$invalid && !$parent.produtoForm.descricao.$pristine }" class="form-group hidden-xs">
             <label class="control-label">Descrição</label>
         </div>
-        <textarea ng-model="$parent.produto.descricao" name="descricao" contentEditable="contentEditable" class="form-control" rows="8"></textarea>
+        <textarea ng-model="$parent.produto.descricao" name="descricao" class="form-control" rows="8"></textarea>
         <p ng-show="$parent.produtoForm.descricao.$invalid && !$parent.produtoForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
     </div>
-    <div class="col-sm-6">
+
+    <div class="col-lg-6 col-sm-12">
         <div ng-class="{ 'has-error' : $parent.produtoForm.tipo.$invalid && !$parent.produtoForm.tipo.$pristine }" class="form-group">
             <label class="control-label">tipo</label>
 
             <div class="controls">
                 <select ng-model="$parent.produtoForm.categoria" ng-options="categoria.titulo for categoria in $parent.site.categorias" required="required" class="form-control"></select>
 
-                <p ng-show="$parent.produtoForm.tipo.$invalid && !$parent.produtoForm.tipo.$pristine" class="help-block">Selecione a tipo do produto</p>
+                <p ng-show="$parent.produtoForm.tipo.$invalid && !$parent.produtoForm.tipo.$pristine" class="help-block">Selecione o tipo do produto</p>
             </div>
         </div>
         <div ng-class="{ 'has-error' : $parent.produtoForm.categoria.$invalid && !$parent.produtoForm.categoria.$pristine }" class="form-group">

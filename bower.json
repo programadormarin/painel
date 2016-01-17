@@ -15,6 +15,7 @@
     "angular-spinners": "~3.0.2",
     "angular-flash-alert": "~1.1.1",
     "angular-loader": "~1.4.0",
+    "angular-input-masks": "~2.1.1",
     "bootstrap": "~3.3.5",
     "bootstrap-markdown": "~2.9.0",
     "cidades-estados.js": "~1.2.0",
@@ -24,5 +25,8 @@
   "devDependencies": {
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0"
+  },
+  "resolutions": {
+    "angular": "1.4.8"
   }
 }

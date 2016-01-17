@@ -3,7 +3,6 @@
 function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary) {
     $scope.curPage  = 1;
     $scope.pageSize = 12;
-    $scope.site = JSON.parse(localStorage.getItem('usuario')).site;
 
     /**
      * General config

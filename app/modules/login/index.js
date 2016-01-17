@@ -4,35 +4,32 @@
  * Autenticação
  *
  * @param $scope
- * @param $routeParams
  * @param $location
  * @param $http
- * @param $window
  * @param $interval
  *
  * @constructor
  */
-function LoginController ($scope, $routeParams, $location, $http, $window, $interval) {
+function LoginController ($scope, $location, $http, $interval) {
+    /**
+     * Efetua checagem de estado de autenticação
+     */
     $scope.check = function () {
         $interval(function () {
-            if (localStorage.getItem('usuario')) {
-                $scope.logado = true;
-
-                var usuario = JSON.parse(localStorage.getItem('usuario'));
-
-                $scope.modulos = usuario.modulos;
-                $scope.usuario = usuario;
-            } else {
-                $scope.logado = false;
-
-                $('#myModal').modal('show');
+            if (localStorage.getItem('token')) {
+                return;
             }
+
+            $('#myModal').modal('show');
         }, 100);
     };
 
+    /**
+     * Autentica na API e recupera um token de acesso
+     */
     $scope.login = function () {
         $http
-            .post($('meta[name="api"]').attr('content') + 'login', $scope.user)
+            .post($('meta[name="api"]').attr('content') + 'login', $scope.user, {headers: { site: '55743d2101fdb1d6a267a345' }})
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -44,10 +41,7 @@ function LoginController ($scope, $routeParams, $location, $http, $window, $inte
 
                 $('#myModal').modal('hide');
 
-                delete $scope.status;
-
-                localStorage.setItem('site', data.data.usuario.site._id);
-                localStorage.setItem('usuario', JSON.stringify(data.data.usuario));
+                localStorage.setItem('site',  data.data.usuario.site._id);
                 localStorage.setItem('token', data.data.token.conteudo);
 
                 $location.url('/inicio');
@@ -74,4 +68,4 @@ angular
         // :)
     }])
 
-    .controller('LoginController', ['$scope', '$routeParams', '$location', '$http', '$window', '$interval', LoginController]);
+    .controller('LoginController', ['$scope', '$location', '$http', '$interval', LoginController]);

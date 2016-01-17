@@ -7,6 +7,7 @@ angular
         'ngLoadingSpinner',
         'angular-loading-bar',
         'angular-cloudinary',
+        'ui.utils.masks',
         'myApp.aviso',
         'myApp.empregos',
         'myApp.empresa',
