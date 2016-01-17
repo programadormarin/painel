@@ -18,11 +18,14 @@ function LoginController ($scope, $location, $http, $interval) {
         $interval(function () {
             if (localStorage.getItem('token')) {
                 $('#myModal').modal('hide');
-
+                $('.container-fluid').show();
+                $('nav').show();
                 return;
             }
 
             $('#myModal').modal('show');
+            $('.container-fluid').hide();
+            $('nav').hide();
         }, 100);
     };
 
