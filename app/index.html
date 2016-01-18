@@ -44,7 +44,18 @@
                     <li><a href="#/produtos"><i class="fa fa-book"></i> Produtos</a></li>
                     <li><a href="#/slides"><i class="fa fa-desktop"></i> Slides</a></li>
                     <li><a href="#/carrinhos"><i class="fa fa-shopping-cart"></i> Carrinhos</a></li>
-                    <li><a href="#/logout" ng-click="logout()">Sair</a></li>
+                    <li>
+                        <a href="javascript:;" class="btn btn-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-cog"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#/perfil">Editar Perfil</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/logout" ng-click="logout()">Sair</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
