@@ -24,7 +24,7 @@
             <div ng-show="linhas.itemCount" class="row">
 
                 <div ng-repeat="produto in linhas.data" class="col-lg-3">
-                    <a href="#"><img ng-src="{{ produto.imagem.url }}" alt="foto" class="thumbnail img-thumbnail img-responsive" style="max-height: 96px"></a>
+                    <a href="#"><img ng-src="{{ produto.imagem.url }}" alt="foto" class="thumbnail img-thumbnail img-responsive" style="height: 200px"></a>
 
                     <h5>{{ produto.titulo | limitTo : 20 }}</h5>
                     <p>{{ produto.codigo }}</p>
