@@ -1,0 +1,53 @@
+<div class="markdown-editor">
+    <ul class="markdown-editor__actions">
+        <li ng-click="markdownEditorCtrl.action('bold')">
+            <i class="ame-bold"></i>
+        </li>
+        <li ng-click="markdownEditorCtrl.action('italic')">
+            <i class="ame-italic"></i>
+        </li>
+        <li ng-click="markdownEditorCtrl.action('strikethrough')">
+            <i class="ame-strikethrough"></i>
+        </li>
+        <li class="separator"></li>
+        <li ng-click="markdownEditorCtrl.action('heading')">
+            <i class="ame-header"></i>
+        </li>
+        <li ng-click="markdownEditorCtrl.action('bullets')">
+            <i class="ame-list-ul"></i>
+        </li>
+        <li ng-click="markdownEditorCtrl.action('indent')">
+            <i class="ame-indent"></i>
+        </li>
+        <li ng-click="markdownEditorCtrl.action('code')">
+            <i class="ame-code"></i>
+        </li>
+        <li class="separator"></li>
+        <li ng-click="markdownEditorCtrl.action('link')">
+            <i class="ame-link"></i>
+        </li>
+        <li ng-click="markdownEditorCtrl.action('quote')">
+            <i class="ame-quote-right"></i>
+        </li>
+        <li class="separator"></li>
+        <li
+            ng-click="markdownEditorCtrl.preview = !markdownEditorCtrl.preview"
+            ng-show="markdownEditorCtrl.showdownEnabled"
+            ng-class="{enabled: markdownEditorCtrl.preview}"
+            class="preview"
+            >
+            {{markdownEditorCtrl.translations.textPreview}}
+        </li>
+    </ul>
+    <div class="markdown-editor__editorarea">
+        <div ng-class="{nopreview: !markdownEditorCtrl.preview}">
+            <textarea ng-model="markdownEditorCtrl.ngModel"></textarea>
+        </div>
+        <div
+            class="markdown-editor__editorarea__preview"
+            ng-if="markdownEditorCtrl.showdownEnabled"
+            ng-show="markdownEditorCtrl.preview"
+            ng-bind-html="markdownEditorCtrl.getHTML()">
+        </div>
+    </div>
+</div>

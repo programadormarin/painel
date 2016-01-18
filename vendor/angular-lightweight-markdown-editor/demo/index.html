@@ -1,0 +1,44 @@
+<html ng-app="demo">
+    <head>
+        <meta charset="utf-8">
+        <title>Angular Markdown Editor</title>
+
+        <!-- Required dependencies -->
+        <script src="../bower_components/angular/angular.min.js"></script>
+        <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+
+        <!-- Optional dependency -->
+        <script src="../bower_components/showdown/dist/showdown.min.js"></script>
+
+        <!-- include angular-lightweight-markdown-editor -->
+        <link  href="../dist/angular-lightweight-markdown-editor.css" rel="stylesheet">
+        <script src="../dist/angular-lightweight-markdown-editor.min.js"></script>
+
+        <!-- demo application that uses it -->
+        <script>
+            angular.module("demo", [
+                "angular-lightweight-markdown-editor"
+            ]).controller("demoCtrl", function() {
+                this.data = "# Hello\n\nThis is a markdown test\n\nThese are\ndifferent length\nsentences\nwe need even more\nof these short few word things";
+            });
+        </script>
+    </head>
+    <body ng-controller="demoCtrl as ctrl">
+        <form name="form">
+            <markdown-editor
+                ng-model="ctrl.data"
+                text-preview="Preview"
+                text-provide-text="Site name"
+                text-provide-link="Site link"
+                name="thearea"
+                max-length="40"
+                min-length="10"
+                placeholder="Input your text"
+                required
+                ></markdown-editor>
+            </div>
+
+            <input type="submit" value="Test submit button">
+        </form>
+    </body>
+</html>
