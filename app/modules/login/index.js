@@ -41,14 +41,7 @@ function LoginController ($scope, $location, $http, $interval) {
                 localStorage.setItem('site',  data.data.usuario.site._id);
                 localStorage.setItem('token', data.data.token.conteudo);
 
-                $scope.status = {
-                    type: 'info',
-                    message: 'Bem vindo'
-                };
-
-                setTimeout(function() {
-                    delete $scope.status;
-                }, 2000);
+                delete $scope.status;
 
                 $location.url('/inicio');
             })
