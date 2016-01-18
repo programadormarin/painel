@@ -127,7 +127,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
             };
 
         $http
-            .put($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, $scope.produto, config)
+            .put($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, $produto, config)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',

@@ -51,6 +51,16 @@
             </div>
         </div>
 
+        <div ng-class="{ 'has-error' : $parent.produtoForm.valor.$invalid && !$parent.produtoForm.valor.$pristine }" class="form-group">
+            <label class="control-label">Valor</label>
+
+            <div class="controls">
+                <input type="text" ng-model="$parent.produto.valor" name="valor" required="required" class="form-control" ui-number-mask>
+
+                <p ng-show="$parent.produtoForm.valor.$invalid && !$parent.produtoForm.valor.$pristine" class="help-block">Código inválido</p>
+            </div>
+        </div>
+
         <div ng-class="{ 'has-error' : $parent.produtoForm.imagem.$invalid && !$parent.produtoForm.imagem.$pristine }" ng-hide="$parent.produto.imagem.url" class="form-group">
             <label class="control-label">Imagem</label>
 
