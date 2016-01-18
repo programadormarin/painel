@@ -20,7 +20,8 @@
     "bootstrap-markdown": "~2.9.0",
     "cidades-estados.js": "~1.2.0",
     "components-font-awesome": "~4.4.0",
-    "ng-notify": "~0.7.1"
+    "ng-notify": "~0.7.1",
+    "angular-i18n": "~1.4.8"
   },
   "devDependencies": {
     "angular-loader": "~1.4.0",

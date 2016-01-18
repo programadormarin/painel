@@ -33,8 +33,6 @@ function CarrinhosController ($scope, $routeParams, $location, $http) {
                 }
 
                 $scope.paginas = paginas;
-
-                $('[data-toggle="tooltip"]').tooltip();
             });
     };
 
@@ -45,15 +43,6 @@ function CarrinhosController ($scope, $routeParams, $location, $http) {
         $scope.carrinho = carrinho;
 
         $('#cartModal').modal('show');
-    };
-
-    /**
-     * Atualizar Carrinho
-     */
-    $scope.check = function (carrinho) {
-        $scope.carrinho = carrinho;
-
-        alert('carrinho atualizado');
     };
 
     /**

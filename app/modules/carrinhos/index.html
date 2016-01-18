@@ -31,8 +31,7 @@
                     <td class="center">{{ carrinho.cadastro | date: 'dd/MM/yyyy HH:mm' }}</td>
                     <td class="center" ng-bind="total | currency : 'R$ '"></td>
                     <td class="center">
-                        <a class="btn btn-xs btn-default" ng-click="open(carrinho)" data-toggle="tooltip" data-placement="top" title="Visualizar Carrinho"><i class="fa fa-search-plus"></i></a>
-                        <a class="btn btn-xs btn-default" ng-click="check(carrinho._id)" data-toggle="tooltip" data-placement="top" title="Verificar Carrinho"><i class="fa fa-shopping-cart"></i></a>
+                        <a class="btn btn-xs btn-default" ng-click="open(carrinho)" data-toggle="tooltip" data-placement="top" title="Visualizar Carrinho"><i class="fa fa-shopping-cart"></i></a>
                         <a class="btn btn-xs btn-danger"  ng-click="delete(carrinho._id)" data-toggle="tooltip" data-placement="top" title="Remover o carrinho"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>

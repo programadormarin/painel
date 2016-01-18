@@ -21,7 +21,7 @@
             <label class="control-label">Salário</label>
 
             <div class="controls">
-                <input type="text" ng-model="$parent.emprego.salario" ng-minlength="5" name="salario" ui-money-mask class="form-control">
+                <input type="text" ng-model="$parent.emprego.salario" ng-minlength="5" name="salario" class="form-control" ui-number-mask="2">
                 <p ng-show="$parent.empregoForm.salario.$invalid && !$parent.empregoForm.salario.$pristine" class="help-block">Salário inválido</p>
             </div>
         </div>
