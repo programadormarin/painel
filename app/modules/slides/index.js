@@ -7,10 +7,10 @@
  * @param $routeParams
  * @param $location
  * @param $http
- * @param $cloudinary
+ * @param Upload
  * @constructor
  */
-function SlidesController ($scope, $routeParams, $location, $http, $cloudinary) {
+function SlidesController ($scope, $routeParams, $location, $http, $upload) {
     $scope.curPage  = 1;
     $scope.pageSize = 12;
 
@@ -38,46 +38,34 @@ function SlidesController ($scope, $routeParams, $location, $http, $cloudinary) 
     };
 
     /**
-     * Upload da imagem do Slide
-     */
-    $scope.upload = function() {
-        var $produto = $scope.produto;
-
-        $cloudinary
-            .upload($produto.imagem[0], {})
-            .then(function (resp) {
-                $produto.imagem = resp.data;
-
-                $scope.add($produto);
-            });
-    };
-
-    /**
      * Inserir Slide
      */
     $scope.add = function () {
         var $produto = $scope.produto;
 
-        $http
-            .post($('meta[name="api"]').attr('content') + 'slide', $produto, config)
-            .then(function (data) {
-                if (data.status === 201) {
-                    $scope.status = {
-                        type: 'success',
-                        message: 'Slide inserido com sucesso'
-                    };
-
-                    $scope.produto = '';
-                    $scope.produtoForm.$setPristine();
-                } else {
+        $upload
+            .upload({
+                url: $('meta[name="api"]').attr('content') + 'slide',
+                data: $produto,
+                headers: config.headers
+            })
+            .then(
+                function (resp) {
+                    $location.url('/slides');
+                    $scope.load();
+                },
+                function (resp) {
                     $scope.status = {
                         type: 'danger',
                         message: 'Erro cadastrando slide, tente novamente mais tarde'
                     };
+                },
+                function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 
-                    console.error(data);
+                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 }
-            });
+            );
     };
 
     /**
