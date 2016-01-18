@@ -7,11 +7,11 @@
  * @param $routeParams
  * @param $location
  * @param $http
- * @param $cloudinary
+ * @param Upload
  * 
  * @constructor
  */
-function EquipeController ($scope, $routeParams, $location, $http, $cloudinary) {
+function EquipeController ($scope, $routeParams, $location, $http, $upload) {
     $scope.curPage  = 1;
     $scope.pageSize = 12;
 
@@ -41,39 +41,34 @@ function EquipeController ($scope, $routeParams, $location, $http, $cloudinary) 
     };
 
     /**
-     * Faz o upload da foto do membro da equipe
-     */
-    $scope.upload = function() {
-        var $membro = $scope.membro;
-
-        $cloudinary
-            .upload($membro.imagem[0], {})
-            .then(function (resp) {
-                $membro.imagem = resp.data;
-
-                $scope.add($membro);
-            });
-    };
-
-    /**
      * Adiciona membro
      */
     $scope.add = function () {
         var $membro = $scope.membro;
 
-        $http
-            .post($('meta[name="api"]').attr('content') + 'equipe', $membro, config)
-            .then(function (data) {
-                if (data.status === 201) {
+        $upload
+            .upload({
+                url: $('meta[name="api"]').attr('content') + 'equipe',
+                data: $membro,
+                headers: config.headers
+            })
+            .then(
+                function (resp) {
                     $location.url('/equipe');
                     $scope.load();
-                } else {
+                },
+                function (resp) {
                     $scope.status = {
                         type: 'danger',
-                        message: 'Erro cadastrando membro, tente novamente mais tarde'
+                        message: 'Erro cadastrando produto, tente novamente mais tarde'
                     };
+                },
+                function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+
+                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 }
-            });
+            );
     };
 
     /**
@@ -86,7 +81,7 @@ function EquipeController ($scope, $routeParams, $location, $http, $cloudinary) 
             $http
                 .delete($('meta[name="api"]').attr('content') + 'equipe/' + id, config)
                 .then(function (data) {
-                    if (data.status == 200) {
+                    if (data.status == 204) {
                         $scope.status = {
                             type: 'success',
                             message: 'Membro removido com sucesso!'
