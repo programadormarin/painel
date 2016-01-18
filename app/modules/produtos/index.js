@@ -1,6 +1,6 @@
 'use strict';
 
-function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary) {
+function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
     $scope.curPage  = 1;
     $scope.pageSize = 12;
 
@@ -36,17 +36,15 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
     };
 
     /**
-     * Upload de imagem do Produto
+     * Carrega as categorias do site
+     *
+     * @param site
      */
-    $scope.upload = function() {
-        var $produto = $scope.produto;
-
-        $cloudinary
-            .upload($produto.imagem[0], {})
-            .then(function (resp) {
-                $produto.imagem = resp.data;
-
-                $scope.add();
+    $scope.categories = function() {
+        $http
+            .get($('meta[name="api"]').attr('content') + 'site/' + config.headers.Site, config)
+            .then(function (data) {
+                $scope.site = data.data.data;
             });
     };
 
@@ -62,19 +60,29 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
                 }
             };
 
-        $http
-            .post($('meta[name="api"]').attr('content') + 'produto', $produto, config)
-            .then(function (data) {
-                if (data.status === 201) {
+        $upload
+            .upload({
+                url: $('meta[name="api"]').attr('content') + 'produto',
+                data: $produto,
+                headers: config.headers
+            })
+            .then(
+                function (resp) {
                     $location.url('/produtos');
                     $scope.load();
-                } else {
+                },
+                function (resp) {
                     $scope.status = {
                         type: 'danger',
                         message: 'Erro cadastrando produto, tente novamente mais tarde'
                     };
+                },
+                function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+
+                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 }
-            });
+            );
     };
 
     /**
@@ -110,6 +118,14 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
      * Editar Produto
      */
     $scope.edit = function () {
+        var $produto = $scope.produto;
+            $produto.categoria = {
+                titulo: $scope.produtoForm.categoria.titulo,
+                categoria: {
+                    titulo: $scope.produtoForm.subCategoria.titulo
+                }
+            };
+
         $http
             .put($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, $scope.produto, config)
             .success(function (data) {
@@ -165,7 +181,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $cloudinary
 }
 
 angular
-    .module('myApp.produtos', ['ngRoute', 'angular-cloudinary'])
+    .module('myApp.produtos', ['ngRoute', 'ngFileUpload'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -184,4 +200,4 @@ angular
         ;
     }])
 
-    .controller('ProdutosController', ['$scope', '$routeParams', '$location', '$http', 'cloudinary', ProdutosController]);
+    .controller('ProdutosController', ['$scope', '$routeParams', '$location', '$http', 'Upload', ProdutosController]);

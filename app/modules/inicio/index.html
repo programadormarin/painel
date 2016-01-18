@@ -5,7 +5,10 @@
         </div>
         <div class="box-content">
             <div class="block">
-                <p>Olá, seja bem vindo(a).</p>
+                <div ng-show="status" class="alert alert-{{ status.type }}">
+                    <button type="button" data-dismiss="alert" class="close">&times;</button>
+                    {{ status.message}}
+                </div>
             </div>
         </div>
     </div>

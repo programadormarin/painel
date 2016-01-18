@@ -74,7 +74,7 @@ function CarrinhosController ($scope, $routeParams, $location, $http) {
 }
 
 angular
-    .module('myApp.carrinhos', ['ngRoute', 'angular-cloudinary'])
+    .module('myApp.carrinhos', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -93,4 +93,4 @@ angular
         ;
     }])
 
-    .controller('CarrinhosController', ['$scope', '$routeParams', '$location', '$http', 'cloudinary', CarrinhosController]);
+    .controller('CarrinhosController', ['$scope', '$routeParams', '$location', '$http', CarrinhosController]);

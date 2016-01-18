@@ -6,7 +6,6 @@ angular
         'ngRoute',
         'ngLoadingSpinner',
         'angular-loading-bar',
-        'angular-cloudinary',
         'ui.utils.masks',
         'myApp.aviso',
         'myApp.empregos',
@@ -20,15 +19,22 @@ angular
         'myApp.carrinhos'
     ])
 
-    .config(['$routeProvider', 'cloudinaryProvider', '$httpProvider', function ($route, $cloud, $http) {
-        var $usuario = localStorage.getItem('usuario');
+    .directive('file', function () {
+        return {
+            scope: {
+                file: '='
+            },
+            link: function (scope, el, attrs) {
+                el.bind('change', function (event) {
+                    var file = event.target.files[0];
+                    scope.file = file ? file : undefined;
+                    scope.$apply();
+                });
+            }
+        };
+    })
 
-        if ($usuario) {
-            var $config = (JSON.parse($usuario)).site.config.cloudinary;
-
-            $cloud.config($config);
-        }
-
+    .config(['$routeProvider', '$httpProvider', function ($route, $http) {
         $route.otherwise({redirectTo: '/inicio'});
 
         $http.defaults.cache = false;

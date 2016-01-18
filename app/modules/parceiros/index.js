@@ -133,7 +133,7 @@ function ParceirosController ($scope, $routeParams, $location, $http, $cloudinar
 }
 
 angular
-    .module('myApp.parceiros', ['ngRoute', 'angular-cloudinary'])
+    .module('myApp.parceiros', ['ngRoute', 'ngFileUpload'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -152,4 +152,4 @@ angular
         ;
     }])
 
-    .controller('ParceirosController', ['$scope', '$routeParams', '$location', '$http', 'cloudinary', ParceirosController]);
+    .controller('ParceirosController', ['$scope', '$routeParams', '$location', '$http', 'Upload', ParceirosController]);

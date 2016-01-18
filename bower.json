@@ -7,8 +7,8 @@
   "private": true,
   "dependencies": {
     "angular": "~1.4.0",
-    "angular-cloudinary": "~1.1.0",
     "angular-route": "~1.4.0",
+    "angular-i18n": "~1.4.8",
     "angular-resource": "~1.4.6",
     "angular-loading-bar": "~0.8.0",
     "angular-loading-spinner": "~0.0.3",
@@ -21,13 +21,14 @@
     "cidades-estados.js": "~1.2.0",
     "components-font-awesome": "~4.4.0",
     "ng-notify": "~0.7.1",
-    "angular-i18n": "~1.4.8"
+    "ng-file-upload": "~11.1.1"
   },
   "devDependencies": {
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0"
   },
   "resolutions": {
-    "angular": "1.4.8"
+    "angular": "1.4.8",
+    "ng-file-upload": "~11.1.1"
   }
 }

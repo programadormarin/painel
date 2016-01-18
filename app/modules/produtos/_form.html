@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-init="categories()">
     <div class="col-lg-6 col-sm-12">
         <div ng-class="{ 'has-error' : $parent.produtoForm.titulo.$invalid && !$parent.produtoForm.titulo.$pristine }" class="form-group">
             <label class="control-label">Título</label>
@@ -9,16 +9,20 @@
                 <p ng-show="$parent.produtoForm.titulo.$invalid && !$parent.produtoForm.titulo.$pristine" class="help-block">Título muito curto ou inválido</p>
             </div>
         </div>
+
         <div ng-class="{ 'has-error' : $parent.produtoForm.descricao.$invalid && !$parent.produtoForm.descricao.$pristine }" class="form-group hidden-xs">
             <label class="control-label">Descrição</label>
+
+            <div class="controls">
+                <textarea ng-model="$parent.produto.descricao" name="descricao" class="form-control" rows="8"></textarea>
+                <p ng-show="$parent.produtoForm.descricao.$invalid && !$parent.produtoForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
+            </div>
         </div>
-        <textarea ng-model="$parent.produto.descricao" name="descricao" class="form-control" rows="8"></textarea>
-        <p ng-show="$parent.produtoForm.descricao.$invalid && !$parent.produtoForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
     </div>
 
     <div class="col-lg-6 col-sm-12">
         <div ng-class="{ 'has-error' : $parent.produtoForm.tipo.$invalid && !$parent.produtoForm.tipo.$pristine }" class="form-group">
-            <label class="control-label">tipo</label>
+            <label class="control-label">Categoria</label>
 
             <div class="controls">
                 <select ng-model="$parent.produtoForm.categoria" ng-options="categoria.titulo for categoria in $parent.site.categorias" required="required" class="form-control"></select>
@@ -26,15 +30,17 @@
                 <p ng-show="$parent.produtoForm.tipo.$invalid && !$parent.produtoForm.tipo.$pristine" class="help-block">Selecione o tipo do produto</p>
             </div>
         </div>
+
         <div ng-class="{ 'has-error' : $parent.produtoForm.categoria.$invalid && !$parent.produtoForm.categoria.$pristine }" class="form-group">
-            <label class="control-label">categoria</label>
+            <label class="control-label">Sub Categoria</label>
 
             <div class="controls">
                 <select ng-model="$parent.produtoForm.subCategoria" ng-options="categoria.titulo for categoria in $parent.produtoForm.categoria.categorias" required="required" class="form-control"></select>
 
-                <p ng-show="$parent.produtoForm.categoria.$invalid && !$parent.produtoForm.categoria.$pristine" class="help-block">Selecione a categoria do produto</p>
+                <p ng-show="$parent.produtoForm.subCategoria.$invalid && !$parent.produtoForm.subCategoria.$pristine" class="help-block">Selecione a sub categoria do produto</p>
             </div>
         </div>
+
         <div ng-class="{ 'has-error' : $parent.produtoForm.codigo.$invalid && !$parent.produtoForm.codigo.$pristine }" class="form-group">
             <label class="control-label">Código</label>
 
@@ -44,11 +50,12 @@
                 <p ng-show="$parent.produtoForm.codigo.$invalid && !$parent.produtoForm.codigo.$pristine" class="help-block">Código inválido</p>
             </div>
         </div>
+
         <div ng-class="{ 'has-error' : $parent.produtoForm.imagem.$invalid && !$parent.produtoForm.imagem.$pristine }" ng-hide="$parent.produto.imagem.url" class="form-group">
             <label class="control-label">Imagem</label>
 
             <div class="controls">
-                <input type="file" ngf-select required="required" ng-model="$parent.produto.imagem" class="form-control">
+                <input type="file" name="imagem" ngf-select required="required" ng-model="$parent.produto.imagem" class="form-control">
 
                 <p ng-show="$parent.produtoForm.imagem.$invalid && !$parent.produtoForm.imagem.$pristine" class="help-block">Imagem é inválida</p>
             </div>

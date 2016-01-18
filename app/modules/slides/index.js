@@ -142,7 +142,7 @@ function SlidesController ($scope, $routeParams, $location, $http, $cloudinary) 
 }
 
 angular
-    .module('myApp.slides', ['ngRoute', 'angular-cloudinary'])
+    .module('myApp.slides', ['ngRoute', 'ngFileUpload'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -161,4 +161,4 @@ angular
         ;
     }])
 
-    .controller('SlidesController', ['$scope', '$routeParams', '$location', '$http', 'cloudinary', SlidesController]);
+    .controller('SlidesController', ['$scope', '$routeParams', '$location', '$http', 'Upload', SlidesController]);

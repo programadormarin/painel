@@ -137,7 +137,7 @@ function EquipeController ($scope, $routeParams, $location, $http, $cloudinary) 
 }
 
 angular
-    .module('myApp.equipe', ['ngRoute', 'angular-cloudinary'])
+    .module('myApp.equipe', ['ngRoute', 'ngFileUpload'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -156,4 +156,4 @@ angular
         ;
     }])
 
-    .controller('EquipeController', ['$scope', '$routeParams', '$location', '$http', 'cloudinary', EquipeController]);
+    .controller('EquipeController', ['$scope', '$routeParams', '$location', '$http', 'Upload', EquipeController]);
