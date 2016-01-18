@@ -34,17 +34,6 @@
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/logout" ng-click="logout()">Sair</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- start: Container -->
-    <div class="container-fluid hidden">
-        <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav nav-sidebar">
                     <li><a href="#/"><i class="fa fa-dashboard"></i> Início</a></li>
                     <li><a href="#/aviso"><i class="fa fa-bullhorn"></i> Avisos</a></li>
                     <li><a href="#/empregos"><i class="fa fa-suitcase"></i> Empregos</a></li>
@@ -54,9 +43,16 @@
                     <li><a href="#/produtos"><i class="fa fa-book"></i> Produtos</a></li>
                     <li><a href="#/slides"><i class="fa fa-desktop"></i> Slides</a></li>
                     <li><a href="#/carrinhos"><i class="fa fa-shopping-cart"></i> Carrinhos</a></li>
+                    <li><a href="#/logout" ng-click="logout()">Sair</a></li>
                 </ul>
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        </div>
+    </nav>
+
+    <!-- start: Container -->
+    <div class="container-fluid hidden">
+        <div class="row">
+            <div class="main">
                 <!--[if lt IE 7]>
                 <p class="browsehappy">
                     Você está usando um navegador <strong>desatualizado</strong>. <br>
