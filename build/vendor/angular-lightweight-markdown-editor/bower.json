@@ -1,0 +1,31 @@
+{
+  "name": "angular-lightweight-markdown-editor",
+  "version": "0.1.1",
+  "authors": [
+    "Juha-Pekka Rajaniemi <juha.rajaniemi@gmail.com>"
+  ],
+  "main": [
+    "dist/angular-lightweight-markdown-editor.min.js",
+    "dist/angular-lightweight-markdown-editor.css"
+  ],
+  "description": "Visual markdown editor for angular",
+  "keywords": [
+    "angular",
+    "markdown",
+    "wysiwyg",
+    "editor"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-sanitize": "~1.4.7",
+    "showdown": "~1.2.3"
+  }
+}

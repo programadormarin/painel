@@ -4,6 +4,8 @@
 angular
     .module('myApp', [
         'ngRoute',
+        'ngSanitize',
+        'angular-lightweight-markdown-editor',
         'ngLoadingSpinner',
         'angular-loading-bar',
         'ui.utils.masks',

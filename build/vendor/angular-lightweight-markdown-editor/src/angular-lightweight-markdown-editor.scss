@@ -1,0 +1,66 @@
+$main-background: #f2f1f7;
+$editor-background: #fff;
+
+@import "fonts.scss";
+.markdown-editor {
+    background: $main-background;
+    padding: 4px;
+    border-radius: 2px;
+
+    &__actions {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        padding: 2px 0px 6px 0px;
+
+        > li {
+            display: inline-block;
+            padding: 5px 8px 5px 8px;
+            border-radius: 2px;
+            color: #333;
+            background: rgba(0,0,0,0.05);
+            cursor: pointer;
+            box-shadow: 0px 0px 1px rgba(0,0,0,0.8);
+            user-select: none;
+
+            &:hover {
+                box-shadow: 0px 0px 1px rgba(0,0,0,0.8), inset 0px 0px 2px rgba(0,0,0,0.4);
+            }
+
+            &.enabled {
+                background: rgba(255,255,255,0.6);
+            }
+
+            &.separator {
+                box-shadow: none;
+                background: none;
+            }
+        }
+    }
+
+    &__editorarea {
+        display: flex;
+
+        & > div {
+            width: 50%;
+            box-sizing: border-box;
+
+            &.nopreview {
+                width: 100%;
+            }
+        }
+
+        &__preview {
+            padding: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            border: none;
+            background: $editor-background;
+            resize: vertical;
+            font-size: 16px;
+        }
+    }
+}

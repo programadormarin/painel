@@ -12,9 +12,9 @@
 </div>
 <div ng-class="{ 'has-error' : avisoForm.conteudo.$invalid && !avisoForm.conteudo.$pristine }"
      class="form-group hidden-xs">
-    <label class="control-label">Descrição</label>
+    <label class="control-label">Conteúdo</label>
 </div>
-<textarea ng-model="aviso.conteudo" name="conteudo" class="form-control input-lg"></textarea>
+<markdown-editor ng-model="aviso.conteudo" name="conteudo"></markdown-editor>
 <p ng-show="avisoForm.conteudo.$invalid && !avisoForm.conteudo.$pristine" class="help-block">
     conteudo muito curto</p>
 

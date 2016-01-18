@@ -15,7 +15,7 @@
                             <div ng-class="{ 'has-error' : empresaForm.descricao.$invalid && !empresaForm.descricao.$pristine }" class="form-group hidden-xs">
                                 <label class="control-label">Descrição</label>
                             </div>
-                            <textarea ng-model="empresa.descricao" name="descricao" contentEditable="contentEditable" class="editor1"></textarea>
+                            <markdown-editor ng-model="empresa.descricao" name="descricao"></markdown-editor>
 
                             <p ng-show="empresaForm.descricao.$invalid && !empresaForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
                         </div>

@@ -14,7 +14,7 @@
             <label class="control-label">Descrição</label>
 
             <div class="controls">
-                <textarea ng-model="$parent.produto.descricao" name="descricao" class="form-control" rows="8"></textarea>
+                <markdown-editor ng-model="$parent.produto.descricao" name="descricao"></markdown-editor>
                 <p ng-show="$parent.produtoForm.descricao.$invalid && !$parent.produtoForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
             </div>
         </div>

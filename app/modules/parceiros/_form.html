@@ -31,7 +31,7 @@
             <label class="control-label">Descrição</label>
 
             <div class="controls">
-                <textarea ng-model="$parent.parceiro.atuacao" name="atuacao" contentEditable="contentEditable" class="form-control" rows="10"></textarea>
+                <markdown-editor ng-model="$parent.parceiro.atuacao" name="atuacao"></markdown-editor>
                 <p ng-show="$parent.parceiroForm.atuacao.$invalid && !$parent.parceiroForm.atuacao.$pristine" class="help-block">Atuação muito curta</p>
             </div>
         </div>
