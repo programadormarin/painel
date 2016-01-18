@@ -7,10 +7,10 @@
  * @param $routeParams
  * @param $location
  * @param $http
- * @param $cloudinary
+ * @param Upload
  * @constructor
  */
-function ParceirosController ($scope, $routeParams, $location, $http, $cloudinary) {
+function ParceirosController ($scope, $routeParams, $location, $http, $upload) {
     $scope.curPage  = 1;
     $scope.pageSize = 12;
 
@@ -38,36 +38,32 @@ function ParceirosController ($scope, $routeParams, $location, $http, $cloudinar
     };
 
     /**
-     * Faz o upload da imagem do Parceiro
-     */
-    $scope.upload = function() {
-        var $parceiro = $scope.parceiro;
-
-        $cloudinary
-            .upload($parceiro.imagem[0], {})
-            .then(function (resp) {
-                $parceiro.imagem = resp.data;
-
-                $scope.add($parceiro);
-            });
-    };
-
-    /**
      * Adiciona Parceiro
      */
     $scope.add = function () {
-        $http
-            .post($('meta[name="api"]').attr('content') + 'parceiro', $scope.parceiro, config)
-            .success(function () {
-                $location.url('/parceiros');
-                $scope.load();
+        $upload
+            .upload({
+                url: $('meta[name="api"]').attr('content') + 'parceiro',
+                data: $scope.parceiro,
+                headers: config.headers
             })
-            .error(function () {
-                $scope.status = {
-                    type: 'danger',
-                    message: 'Erro inserindo parceiro'
-                };
-            });
+            .then(
+                function (resp) {
+                    $location.url('/parceiros');
+                    $scope.load();
+                },
+                function (resp) {
+                    $scope.status = {
+                        type: 'danger',
+                        message: 'Erro cadastrando parceiro, tente novamente mais tarde'
+                    };
+                },
+                function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+
+                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                }
+            );
     };
 
     /**

@@ -60,7 +60,7 @@ function EquipeController ($scope, $routeParams, $location, $http, $upload) {
                 function (resp) {
                     $scope.status = {
                         type: 'danger',
-                        message: 'Erro cadastrando produto, tente novamente mais tarde'
+                        message: 'Erro cadastrando membro, tente novamente mais tarde'
                     };
                 },
                 function (evt) {
