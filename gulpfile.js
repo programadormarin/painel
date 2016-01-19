@@ -70,7 +70,7 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('build/vendor'));
 
     gulp.src(['app/index.html'])
-        .pipe(replace('http://127.0.0.1:8081', 'https://api.mrprompt.com.br'))
+        .pipe(replace('http://127.0.0.1:8081', 'https://api.queroumaloja.net'))
         .pipe(minifyHTML({conditionals: true, spare:true}))
         .pipe(gulp.dest('build'));
 });

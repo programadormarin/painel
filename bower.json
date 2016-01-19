@@ -1,12 +1,12 @@
 {
-  "name": "painel-publiciti",
+  "name": "quero-uma-loja-painel",
   "description": "Um painel de controle em AngularJS",
   "version": "0.0.2",
-  "homepage": "http://painel.publiciti.com.br",
+  "homepage": "http://painel.queroumaloja.net",
   "license": "proprietary",
   "private": true,
   "dependencies": {
-    "angular": "~1.4.0",
+    "angular": "~1.4.8",
     "angular-route": "~1.4.0",
     "angular-i18n": "~1.4.8",
     "angular-resource": "~1.4.6",
@@ -27,9 +27,5 @@
   "devDependencies": {
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0"
-  },
-  "resolutions": {
-    "angular": "1.4.8",
-    "ng-file-upload": "~11.1.1"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "publiciti-painel",
+  "name": "quero-uma-loja-painel",
   "version": "0.0.2",
-  "description": "Painel da Publiciti",
+  "description": "Um painel de controle em AngularJS",
   "keywords": [
     "painel",
     "controle",
@@ -16,7 +16,7 @@
     "email": "mrprompt@gmail.com",
     "url": "http://www.mrprompt.com.br/"
   },
-  "homepage": "http://painel.publiciti.com.br",
+  "homepage": "http://painel.queroumaloja.net",
   "engines": {
     "node": "^0.12.4",
     "npm": ">= 2.10.1"
