@@ -11,9 +11,9 @@ var ghPages = require('gulp-gh-pages');
 var replace = require('gulp-replace');
 
 var paths = {
-    scripts : 'app/**/*.js',
+    scripts : ['app/modules/**/*.js'],
     css     : 'app/**/*.css',
-    pages   : 'app/**/*.html'
+    pages   : ['app/modules/**/*.html']
 };
 
 // Minify all JavaScript
@@ -22,7 +22,7 @@ gulp.task('minify-scripts', function() {
         .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('build/modules'));
 });
 
 // Copy all static images
@@ -41,7 +41,7 @@ gulp.task('minify-html', function() {
 
     return gulp.src(paths.pages)
         .pipe(minifyHTML(opts))
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('build/modules'));
 });
 
 // Minify all css files
@@ -50,7 +50,7 @@ gulp.task('minify-css', function() {
         .pipe(sourcemaps.init())
         .pipe(minifyCss())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('build/css'));
 });
 
 // Rerun the task when a file changes
