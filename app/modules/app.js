@@ -5,8 +5,8 @@ angular
     .module('myApp', [
         'ngRoute',
         'ngSanitize',
-        'angular-lightweight-markdown-editor',
         'ngLoadingSpinner',
+        'angular-lightweight-markdown-editor',
         'angular-loading-bar',
         'ui.utils.masks',
         'myApp.aviso',
@@ -24,7 +24,7 @@ angular
     .config(['$routeProvider', '$httpProvider', function ($route, $http) {
         $route.otherwise({redirectTo: '/inicio'});
 
-        $http.defaults.cache = false;
+        $http.defaults.cache = true;
 
         if (localStorage.getItem('site')) {
             $http.defaults.headers.common.site = JSON.parse(localStorage.getItem('site'))._id;

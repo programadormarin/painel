@@ -65,9 +65,11 @@ function LoginController ($scope, $location, $http, $interval, $window) {
     $scope.logout = function () {
         localStorage.clear();
 
-        $window.location.reload();
+        delete $scope.usuario;
+        delete $scope.site;
+        delete $scope.status;
 
-        $location.url('/inicio');
+        $location.url('/login');
     };
 }
 

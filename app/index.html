@@ -19,7 +19,7 @@
     <style type="text/css">
         /* Move down content because we have a fixed navbar that is 50px tall */
         body {
-            padding-top: 50px;
+            padding-top: 60px;
         }
 
         /*
@@ -45,27 +45,88 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand visible-lg" href="#/"><span ng-bind="site.nome"></span> - Painel de Controle</a>
+                <a class="navbar-brand visible-lg" href="#/inicio"><span ng-bind="site.nome"></span> - Painel de Controle</a>
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/"><i class="fa fa-dashboard"></i> Início</a></li>
-                    <li><a href="#/aviso"><i class="fa fa-bullhorn"></i> Avisos</a></li>
-                    <li><a href="#/empregos"><i class="fa fa-suitcase"></i> Empregos</a></li>
-                    <li><a href="#/empresa"><i class="fa fa-globe"></i> Empresa</a></li>
-                    <li><a href="#/equipe"><i class="fa fa-users"></i> Equipe</a></li>
-                    <li><a href="#/parceiros"><i class="fa fa-sitemap"></i> Parceiros</a></li>
-                    <li><a href="#/produtos"><i class="fa fa-book"></i> Produtos</a></li>
-                    <li><a href="#/slides"><i class="fa fa-desktop"></i> Slides</a></li>
-                    <li><a href="#/carrinhos"><i class="fa fa-shopping-cart"></i> Carrinhos</a></li>
                     <li>
                         <a href="javascript:;" class="btn btn-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <i class="fa fa-cog"></i>
+                            <i class="fa fa-bullhorn"></i> Avisos
                             <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#/aviso"><i class="fa fa-list-alt"></i> Listar</a></li>
+                            <li><a href="#/aviso/adicionar"><i class="fa fa-plus-circle"></i> Cadastrar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="btn btn-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-suitcase"></i> Empregos
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a href="#/empregos"><i class="fa fa-list-alt"></i> Listar</a></li>
+                            <li><a href="#/empregos/adicionar"><i class="fa fa-plus-circle"></i> Cadastrar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="btn btn-link dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-globe"></i> Empresa
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                            <li><a href="#/empresa"><i class="fa fa-list-alt"></i> Editar</a></li>
+                            <li><a href="#/equipe"><i class="fa fa-users"></i> Equipe</a></li>
+                            <li><a href="#/equipe/adicionar"><i class="fa fa-plus-circle"></i> Equipe</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="btn btn-link dropdown-toggle" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-sitemap"></i> Parceiros
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+                            <li><a href="#/parceiros"><i class="fa fa-list-alt"></i> Listar</a></li>
+                            <li><a href="#/parceiros/adicionar"><i class="fa fa-plus-circle"></i> Cadastrar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="btn btn-link dropdown-toggle" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-book"></i> Produtos
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu5">
+                            <li><a href="#/produtos"><i class="fa fa-list-alt"></i> Listar</a></li>
+                            <li><a href="#/produtos/adicionar"><i class="fa fa-plus-circle"></i> Cadastrar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="btn btn-link dropdown-toggle" id="dropdownMenu6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-desktop"></i> Slides
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu6">
+                            <li><a href="#/slides"><i class="fa fa-list-alt"></i> Listar</a></li>
+                            <li><a href="#/slides/adicionar"><i class="fa fa-plus-circle"></i> Cadastrar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#/carrinhos"><i class="fa fa-shopping-cart"></i> Carrinhos</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="btn btn-link dropdown-toggle" id="dropdownMenu9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-cog"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu9">
                             <li><a href="#/perfil" ng-bind="usuario.nome"></a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#/logout" ng-click="logout()">Sair</a></li>
@@ -77,55 +138,8 @@
     </nav>
 
     <!-- start: Container -->
-    <div class="container-fluid hidden">
-        <div class="row main" ng-view></div>
-    </div>
-
-    <!-- Auth Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form ng-submit="login()" name="loginForm" class="form-horizontal">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-key"></i><span class="break">&nbsp;</span>Login</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div ng-show="status" class="alert alert-{{ status.type }}">
-                            <button type="button" data-dismiss="alert" class="close">&times;</button>
-                            {{ status.message}}
-                        </div>
-
-                        <div class="input-wrap">
-                            <div title="Identificador do Site" class="input-prepend input-group">
-                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input id="site" name="site" type="text" placeholder="Site ID" ng-model="site" required="required" class="form-control input-lg" autocomplete="off">
-                            </div>
-                        </div>
-
-                        <hr class="clearfix">
-
-                        <div class="input-wrap">
-                            <div title="E-mail de acesso" class="input-prepend input-group">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input id="username" name="username" type="email" placeholder="Email de Acesso" ng-model="user.email" required="required" class="form-control input-lg" autocomplete="off">
-                            </div>
-                        </div>
-
-                        <hr class="clearfix">
-
-                        <div class="input-wrap">
-                            <div title="Senha de acesso" class="input-prepend input-group">
-                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input id="password" name="password" type="password" placeholder="Senha de Acesso" ng-model="user.password" required="required" class="form-control input-lg" autocomplete="off">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-lg">Entrar <i class="fa fa-sign-in"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="container-fluid">
+        <div class="row-fluid" ng-view></div>
     </div>
 
     <script src="vendor/jquery/dist/jquery.min.js"></script>
