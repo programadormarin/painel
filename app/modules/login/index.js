@@ -40,6 +40,7 @@ function LoginController ($scope, $location, $http, $interval) {
             .success(function (data) {
                 localStorage.setItem('site',  data.data.site._id);
                 localStorage.setItem('token', data.data.token.conteudo);
+                localStorage.setItem('usuario', data.data.usuario);
 
                 delete $scope.status;
 
