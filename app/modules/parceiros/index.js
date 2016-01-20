@@ -11,8 +11,9 @@
  * @constructor
  */
 function ParceirosController ($scope, $routeParams, $location, $http, $upload) {
-    $scope.curPage  = 1;
-    $scope.pageSize = 12;
+    $scope.curPage   = 1;
+    $scope.pageSize  = 12;
+    $scope.pageTitle = 'Empresas Parceiras';
 
     /**
      * Carrega Parceiros
