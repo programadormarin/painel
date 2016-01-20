@@ -22,6 +22,9 @@ function LoginController ($scope, $location, $http, $interval, $window) {
                 $('.container-fluid').removeClass('hidden').show();
                 $('nav').removeClass('hidden').show();
 
+                $scope.usuario  = JSON.parse(localStorage.getItem('usuario'));
+                $scope.site     = JSON.parse(localStorage.getItem('site'));
+
                 return;
             }
 
@@ -44,6 +47,8 @@ function LoginController ($scope, $location, $http, $interval, $window) {
 
                 delete $scope.status;
 
+                $window.location.reload();
+
                 $location.url('/inicio');
             })
             .error(function () {
@@ -60,6 +65,8 @@ function LoginController ($scope, $location, $http, $interval, $window) {
      */
     $scope.logout = function () {
         localStorage.clear();
+
+        $window.location.reload();
 
         $location.url('/inicio');
     };

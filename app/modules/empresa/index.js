@@ -11,8 +11,6 @@
  * @constructor
  */
 function EmpresaController ($scope, $routeParams, $location, $http) {
-    $scope.site_id = localStorage.getItem('site');
-
     /**
      * Remove um telefone do escopo
      *
@@ -94,11 +92,7 @@ function EmpresaController ($scope, $routeParams, $location, $http) {
      * Abrir Empresa
      */
     $scope.get = function () {
-        $http
-            .get($('meta[name="api"]').attr('content') + 'site/' + $scope.site_id)
-            .then(function (data) {
-                $scope.empresa = (data.data.data);
-            });
+        $scope.empresa = JSON.parse(localStorage.getItem('site'));
     };
 }
 

@@ -11,16 +11,6 @@
                 </div>
                 <form ng-submit="edit()" ng-init="get()" name="siteForm" novalidate="novalidate" class="form-vertical">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div ng-class="{ 'has-error' : empresaForm.descricao.$invalid && !empresaForm.descricao.$pristine }" class="form-group hidden-xs">
-                                <label class="control-label">Descrição</label>
-                            </div>
-                            <markdown-editor ng-model="empresa.descricao" name="descricao"></markdown-editor>
-
-                            <p ng-show="empresaForm.descricao.$invalid && !empresaForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-4">
                             <div ng-class="{ 'has-error' : empresaForm.endereco.$invalid && !empresaForm.endereco.$pristine }" class="form-group">
                                 <label class="control-label">Endereco</label>
