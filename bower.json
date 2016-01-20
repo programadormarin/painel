@@ -1,9 +1,12 @@
 {
   "name": "quero-uma-loja-painel",
-  "description": "Um painel de controle em AngularJS",
-  "version": "0.0.2",
+  "description": "Painel de Controle utilizando a api do Quero Uma Loja",
+  "version": "0.0.1",
   "homepage": "http://painel.queroumaloja.net",
-  "license": "proprietary",
+  "authors": [
+    "Thiago Paes <mrprompt@gmail.com>"
+  ],
+  "license": "GPLv3",
   "private": true,
   "dependencies": {
     "angular": "~1.4.8",

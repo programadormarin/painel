@@ -1,7 +1,7 @@
 {
   "name": "quero-uma-loja-painel",
-  "version": "0.0.2",
-  "description": "Um painel de controle em AngularJS",
+  "version": "0.0.1",
+  "description": "Painel de Controle utilizando a api do Quero Uma Loja",
   "keywords": [
     "painel",
     "controle",
