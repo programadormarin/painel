@@ -11,8 +11,9 @@
  * @constructor
  */
 function EmpregosController ($scope, $routeParams, $location, $http) {
-    $scope.curPage  = 1;
-    $scope.pageSize = 12;
+    $scope.curPage   = 1;
+    $scope.pageSize  = 12;
+    $scope.pageTitle = 'Ofertas de Empregos';
 
     /**
      * Carrega os Empregos

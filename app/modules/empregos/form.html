@@ -6,13 +6,13 @@
         <p ng-show="$parent.empregoForm.titulo.$invalid && !$parent.empregoForm.titulo.$pristine" class="help-block">Título muito curto ou inválido</p>
     </div>
 </div>
+
 <div ng-class="{ 'has-error' : $parent.empregoForm.descricao.$invalid && !$parent.empregoForm.descricao.$pristine }" class="form-group hidden-xs">
     <label class="control-label">Descrição</label>
 
-    <div class="controls">
-        <textarea ng-model="$parent.emprego.descricao" name="descricao" contentEditable="contentEditable" class="form-control input-lg" rows="25"></textarea>
-        <p ng-show="$parent.empregoForm.descricao.$invalid && !$parent.empregoForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
-    </div>
+    <markdown-editor ng-model="$parent.emprego.descricao" name="descricao"></markdown-editor>
+
+    <p ng-show="$parent.empregoForm.descricao.$invalid && !$parent.empregoForm.descricao.$pristine" class="help-block">Descricao muito curta</p>
 </div>
 
 <div class="row">
@@ -37,6 +37,7 @@
         </div>
     </div>
 </div>
+
 <div class="control-group">
     <div class="controls">
         <button type="submit" ng-disabled="$parent.empregoForm.$invalid" class="btn btn-primary">Salvar</button>
