@@ -32,8 +32,7 @@ function ParceirosController ($scope, $routeParams, $location, $http, $upload) {
         $upload
             .upload({
                 url: $('meta[name="api"]').attr('content') + 'parceiro',
-                data: $scope.parceiro,
-                headers: config.headers
+                data: $scope.parceiro
             })
             .then(
                 function (resp) {

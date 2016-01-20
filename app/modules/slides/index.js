@@ -34,8 +34,7 @@ function SlidesController ($scope, $routeParams, $location, $http, $upload) {
         $upload
             .upload({
                 url: $('meta[name="api"]').attr('content') + 'slide',
-                data: $produto,
-                headers: config.headers
+                data: $produto
             })
             .then(
                 function (resp) {

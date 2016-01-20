@@ -37,8 +37,7 @@ function EquipeController ($scope, $routeParams, $location, $http, $upload) {
         $upload
             .upload({
                 url: $('meta[name="api"]').attr('content') + 'equipe',
-                data: $membro,
-                headers: config.headers
+                data: $membro
             })
             .then(
                 function (resp) {

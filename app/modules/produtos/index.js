@@ -47,8 +47,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
         $upload
             .upload({
                 url: $('meta[name="api"]').attr('content') + 'produto',
-                data: $produto,
-                headers: config.headers
+                data: $produto
             })
             .then(
                 function (resp) {
