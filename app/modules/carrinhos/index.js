@@ -1,8 +1,17 @@
 'use strict';
 
-function CarrinhosController ($scope, $routeParams, $location, $http) {
-    $scope.curPage  = 1;
-    $scope.pageSize = 12;
+/**
+ * Carrinho de Compras
+ *
+ * @param $scope
+ * @param $http
+ *
+ * @constructor
+ */
+function CarrinhosController ($scope, $http) {
+    $scope.curPage   = 1;
+    $scope.pageSize  = 12;
+    $scope.pageTitle = 'Carrinhos de Compras';
 
     /**
      * Carregar Carrinhos
@@ -81,4 +90,4 @@ angular
         ;
     }])
 
-    .controller('CarrinhosController', ['$scope', '$routeParams', '$location', '$http', CarrinhosController]);
+    .controller('CarrinhosController', ['$scope', '$http', CarrinhosController]);
