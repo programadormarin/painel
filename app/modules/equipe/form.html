@@ -1,53 +1,51 @@
-<div class="row">
-    <div class="col-sm-6">
-        <div ng-class="{ 'has-error' : $parent.equipeForm.nome.$invalid && !$parent.equipeForm.nome.$pristine }" class="form-group">
-            <label class="control-label">Nome</label>
+<div class="col-sm-6">
+    <div ng-class="{ 'has-error' : $parent.equipeForm.nome.$invalid && !$parent.equipeForm.nome.$pristine }" class="form-group">
+        <label class="control-label">Nome</label>
 
-            <div class="controls">
-                <input type="text" ng-model="$parent.membro.nome" ng-minlength="5" name="nome" required="required" class="form-control"/>
+        <div class="controls">
+            <input type="text" ng-model="$parent.membro.nome" ng-minlength="5" name="nome" required="required" class="form-control"/>
 
-                <p ng-show="$parent.equipeForm.nome.$invalid && !$parent.equipeForm.nome.$pristine" class="help-block">Nome muito curto ou inválido</p>
-            </div>
-        </div>
-        <div ng-class="{ 'has-error' : $parent.equipeForm.email.$invalid && !$parent.equipeForm.email.$pristine }" class="form-group">
-            <label class="control-label">E-mail</label>
-
-            <div class="controls">
-                <input type="email" ng-model="$parent.membro.email" name="email" required="required" class="form-control"/>
-
-                <p ng-show="$parent.equipeForm.email.$invalid && !$parent.equipeForm.email.$pristine" class="help-block">E-mail inválido</p>
-            </div>
+            <p ng-show="$parent.equipeForm.nome.$invalid && !$parent.equipeForm.nome.$pristine" class="help-block">Nome muito curto ou inválido</p>
         </div>
     </div>
-    <div class="col-sm-6">
-        <div ng-class="{ 'has-error' : $parent.equipeForm.cargo.$invalid && !$parent.equipeForm.cargo.$pristine }" class="form-group">
-            <label class="control-label">Cargo</label>
+    <div ng-class="{ 'has-error' : $parent.equipeForm.email.$invalid && !$parent.equipeForm.email.$pristine }" class="form-group">
+        <label class="control-label">E-mail</label>
 
-            <div class="controls">
-                <input type="text" ng-model="$parent.membro.cargo" name="cargo" required="required" class="form-control"/>
+        <div class="controls">
+            <input type="email" ng-model="$parent.membro.email" name="email" required="required" class="form-control"/>
 
-                <p ng-show="$parent.equipeForm.cargo.$invalid && !$parent.equipeForm.cargo.$pristine" class="help-block">Cargo muito curto ou inválido</p>
-            </div>
+            <p ng-show="$parent.equipeForm.email.$invalid && !$parent.equipeForm.email.$pristine" class="help-block">E-mail inválido</p>
         </div>
-        <div ng-class="{ 'has-error' : $parent.equipeForm.imagem.$invalid && !$parent.equipeForm.imagem.$pristine }" ng-hide="$parent.membro.imagem.url" class="form-group">
-            <label class="control-label">Imagem</label>
-
-            <div class="controls">
-                <input type="file" ngf-select required="required" ng-model="$parent.membro.imagem" class="form-control">
-
-                <p ng-show="$parent.equipeForm.imagem.$invalid && !$parent.equipeForm.imagem.$pristine" class="help-block">Imagem é inválida</p>
-            </div>
-        </div>
-        <img ng-src="{{$parent.membro.imagem.url}}" ng-show="$parent.membro.imagem" class="img-responsive">
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="control-group">
-            <div class="controls">
-                <button type="submit" ng-disabled="$parent.equipeForm.$invalid" class="btn btn-primary">Salvar</button>
-                <a href="#/equipe" class="btn">voltar</a>
-            </div>
+
+<div class="col-sm-6">
+    <div ng-class="{ 'has-error' : $parent.equipeForm.cargo.$invalid && !$parent.equipeForm.cargo.$pristine }" class="form-group">
+        <label class="control-label">Cargo</label>
+
+        <div class="controls">
+            <input type="text" ng-model="$parent.membro.cargo" name="cargo" required="required" class="form-control"/>
+
+            <p ng-show="$parent.equipeForm.cargo.$invalid && !$parent.equipeForm.cargo.$pristine" class="help-block">Cargo muito curto ou inválido</p>
+        </div>
+    </div>
+    <div ng-class="{ 'has-error' : $parent.equipeForm.imagem.$invalid && !$parent.equipeForm.imagem.$pristine }" ng-hide="$parent.membro.imagem.url" class="form-group">
+        <label class="control-label">Imagem</label>
+
+        <div class="controls">
+            <input type="file" ngf-select required="required" ng-model="$parent.membro.imagem" class="form-control">
+
+            <p ng-show="$parent.equipeForm.imagem.$invalid && !$parent.equipeForm.imagem.$pristine" class="help-block">Imagem é inválida</p>
+        </div>
+    </div>
+    <img ng-src="{{$parent.membro.imagem.url}}" ng-show="$parent.membro.imagem" class="img-responsive">
+</div>
+
+<div class="col-sm-12">
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" ng-disabled="$parent.equipeForm.$invalid" class="btn btn-primary">Salvar</button>
+            <a href="#/equipe" class="btn">voltar</a>
         </div>
     </div>
 </div>

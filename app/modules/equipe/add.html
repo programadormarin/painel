@@ -1,18 +1,9 @@
-<div class="col-lg-12">
-    <div class="box">
-        <div data-original-title="" class="box-header">
-            <h2><i class="fa fa-users"></i> <span class="break">&nbsp;</span>Equipe</h2>
-        </div>
-        <div class="box-content">
-            <div class="block">
-                <div ng-show="status" class="alert alert-{{ status.type }}">
-                    <button type="button" data-dismiss="alert" class="close">&times;</button>
-                    {{ status.message}}
-                </div>
-                <form ng-submit="add()" name="equipeForm" novalidate="novalidate" class="form-vertical">
-                    <ng-include src="'modules/equipe/form.html'"></ng-include>
-                </form>
-            </div>
-        </div>
-    </div>
+<div class="well well-lg" ng-init="load()">
+    <h2><i class="fa fa-users"></i> <span ng-bind="pageTitle"></span></h2>
 </div>
+
+<ng-include src="'modules/alert.html'"></ng-include>
+
+<form ng-submit="add()" name="equipeForm" novalidate="novalidate" class="form-vertical">
+    <ng-include src="'modules/equipe/form.html'"></ng-include>
+</form>
