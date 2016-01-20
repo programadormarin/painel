@@ -11,15 +11,14 @@
  * @constructor
  */
 function LoginController ($scope, $location, $http, $interval, $window) {
+    $scope.pageTitle = 'Painel de Controle';
+
     /**
      * Efetua checagem de estado de autenticação
      */
     $scope.check = function () {
         $interval(function () {
             if (localStorage.getItem('token')) {
-                $('#myModal').modal('hide');
-
-                $('.container-fluid').removeClass('hidden').show();
                 $('nav').removeClass('hidden').show();
 
                 $scope.usuario  = JSON.parse(localStorage.getItem('usuario'));
@@ -28,9 +27,9 @@ function LoginController ($scope, $location, $http, $interval, $window) {
                 return;
             }
 
-            $('#myModal').modal('show');
-            $('.container-fluid').hide();
             $('nav').hide();
+
+            return $location.url('/login');
         }, 100);
     };
 
@@ -39,7 +38,7 @@ function LoginController ($scope, $location, $http, $interval, $window) {
      */
     $scope.login = function () {
         $http
-            .post($('meta[name="api"]').attr('content') + 'login', $scope.user, {headers: { site: $scope.site }})
+            .post($('meta[name="api"]').attr('content') + 'login', $scope.user, {headers: { site: $scope.user.site }})
             .success(function (data) {
                 localStorage.setItem('site',  JSON.stringify(data.data.site));
                 localStorage.setItem('token', data.data.token.conteudo);
@@ -76,7 +75,12 @@ angular
     .module('myApp.login', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        // :)
+        $routeProvider
+            .when('/login', {
+                templateUrl: 'modules/login/index.html',
+                controller: 'LoginController'
+            })
+        ;
     }])
 
     .controller('LoginController', ['$scope', '$location', '$http', '$interval', '$window', LoginController]);

@@ -1,0 +1,36 @@
+<div class="well well-lg">
+    <h2><i class="fa fa-key"></i> <span ng-bind="pageTitle"></span></h2>
+</div>
+
+<ng-include src="'modules/alert.html'"></ng-include>
+
+<form ng-submit="login()" name="loginForm" class="form-horizontal">
+    <div class="input-wrap">
+        <div title="Identificador do Site" class="input-prepend input-group">
+            <span class="input-group-addon"><i class="fa fa-home"></i></span>
+            <input id="site" name="site" type="text" placeholder="Site ID" ng-model="user.site" required="required" class="form-control input-lg" autocomplete="off">
+        </div>
+    </div>
+
+    <hr class="clearfix">
+
+    <div class="input-wrap">
+        <div title="E-mail de acesso" class="input-prepend input-group">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input id="username" name="username" type="email" placeholder="Email de Acesso" ng-model="user.email" required="required" class="form-control input-lg" autocomplete="off">
+        </div>
+    </div>
+
+    <hr class="clearfix">
+
+    <div class="input-wrap">
+        <div title="Senha de acesso" class="input-prepend input-group">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            <input id="password" name="password" type="password" placeholder="Senha de Acesso" ng-model="user.password" required="required" class="form-control input-lg" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-lg">Entrar <i class="fa fa-sign-in"></i></button>
+    </div>
+</form>
