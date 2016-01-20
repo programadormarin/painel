@@ -29,11 +29,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
      * @param site
      */
     $scope.categories = function() {
-        $http
-            .get($('meta[name="api"]').attr('content') + 'site/' + config.headers.Site)
-            .then(function (data) {
-                $scope.site = data.data.data;
-            });
+        $scope.site = JSON.parse(localStorage.getItem('site'));
     };
 
     /**
