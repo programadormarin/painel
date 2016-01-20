@@ -1,8 +1,9 @@
 'use strict';
 
 function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
-    $scope.curPage  = 1;
-    $scope.pageSize = 12;
+    $scope.curPage   = 1;
+    $scope.pageSize  = 12;
+    $scope.pageTitle = 'Produtos';
 
     /**
      * Carregar Produtos
