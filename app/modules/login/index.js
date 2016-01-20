@@ -44,7 +44,7 @@ function LoginController ($scope, $location, $http, $interval, $window) {
 
                 delete $scope.status;
 
-                $window.location.reload();
+                $location.url('/inicio');
             })
             .error(function () {
                 $scope.status = {
@@ -61,7 +61,7 @@ function LoginController ($scope, $location, $http, $interval, $window) {
     $scope.logout = function () {
         localStorage.clear();
 
-        $window.location.reload();
+        $location.url('/inicio');
     };
 }
 
