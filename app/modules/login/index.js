@@ -38,7 +38,7 @@ function LoginController ($scope, $location, $http, $interval) {
         $http
             .post($('meta[name="api"]').attr('content') + 'login', $scope.user, {headers: { site: '55743d2101fdb1d6a267a345' }})
             .success(function (data) {
-                localStorage.setItem('site',  data.data.usuario.site._id);
+                localStorage.setItem('site',  data.data.site._id);
                 localStorage.setItem('token', data.data.token.conteudo);
 
                 delete $scope.status;
