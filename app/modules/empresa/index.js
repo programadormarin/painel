@@ -14,18 +14,6 @@ function EmpresaController ($scope, $routeParams, $location, $http) {
     $scope.site_id = localStorage.getItem('site');
 
     /**
-     * General config
-     *
-     * @type {{headers: {Authorization, Site}}}
-     */
-    var config = {
-        headers: {
-            Authorization: localStorage.getItem('token'),
-            Site: localStorage.getItem('site')
-        }
-    };
-
-    /**
      * Remove um telefone do escopo
      *
      * @param indice
@@ -87,7 +75,7 @@ function EmpresaController ($scope, $routeParams, $location, $http) {
      */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'site/' + $scope.site_id, $scope.empresa, config)
+            .put($('meta[name="api"]').attr('content') + 'site/' + $scope.site_id, $scope.empresa)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -107,7 +95,7 @@ function EmpresaController ($scope, $routeParams, $location, $http) {
      */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'site/' + $scope.site_id, config)
+            .get($('meta[name="api"]').attr('content') + 'site/' + $scope.site_id)
             .then(function (data) {
                 $scope.empresa = (data.data.data);
             });

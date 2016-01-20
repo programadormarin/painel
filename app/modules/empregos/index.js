@@ -15,23 +15,11 @@ function EmpregosController ($scope, $routeParams, $location, $http) {
     $scope.pageSize = 12;
 
     /**
-     * General config
-     *
-     * @type {{headers: {Authorization, Site}}}
-     */
-    var config = {
-        headers: {
-            Authorization: localStorage.getItem('token'),
-            Site: localStorage.getItem('site')
-        }
-    };
-
-    /**
      * Carrega os Empregos
      */
     $scope.load = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'emprego?page=' + $scope.curPage + '&limit=' + $scope.pageSize, config)
+            .get($('meta[name="api"]').attr('content') + 'emprego?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
             .then(function (result) {
                 $scope.linhas = (result.data);
             });
@@ -42,7 +30,7 @@ function EmpregosController ($scope, $routeParams, $location, $http) {
      */
     $scope.add = function () {
         $http
-            .post($('meta[name="api"]').attr('content') + 'emprego', $scope.emprego, config)
+            .post($('meta[name="api"]').attr('content') + 'emprego', $scope.emprego)
             .success(function () {
                 $location.url('/empregos');
                 $scope.load();
@@ -65,7 +53,7 @@ function EmpregosController ($scope, $routeParams, $location, $http) {
             var toDelete = $scope.linhas.data[id];
 
             $http
-                .delete($('meta[name="api"]').attr('content') + 'emprego/' + toDelete._id, config)
+                .delete($('meta[name="api"]').attr('content') + 'emprego/' + toDelete._id)
                 .success(function (data) {
                     $scope.status = {
                         type: 'success',
@@ -88,7 +76,7 @@ function EmpregosController ($scope, $routeParams, $location, $http) {
      */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'emprego/' + $routeParams.id, $scope.emprego, config)
+            .put($('meta[name="api"]').attr('content') + 'emprego/' + $routeParams.id, $scope.emprego)
             .success(function () {
                 $scope.status = {
                     type: 'success',
@@ -108,7 +96,7 @@ function EmpregosController ($scope, $routeParams, $location, $http) {
      */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'emprego/' + $routeParams.id, config)
+            .get($('meta[name="api"]').attr('content') + 'emprego/' + $routeParams.id)
             .then(function (data) {
                 $scope.emprego = (data.data.data);
             });

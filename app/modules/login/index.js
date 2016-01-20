@@ -10,7 +10,7 @@
  *
  * @constructor
  */
-function LoginController ($scope, $location, $http, $interval) {
+function LoginController ($scope, $location, $http, $interval, $window) {
     /**
      * Efetua checagem de estado de autenticação
      */
@@ -36,15 +36,15 @@ function LoginController ($scope, $location, $http, $interval) {
      */
     $scope.login = function () {
         $http
-            .post($('meta[name="api"]').attr('content') + 'login', $scope.user, {headers: { site: '55743d2101fdb1d6a267a345' }})
+            .post($('meta[name="api"]').attr('content') + 'login', $scope.user, {headers: { site: $scope.site }})
             .success(function (data) {
-                localStorage.setItem('site',  data.data.site._id);
+                localStorage.setItem('site',  JSON.stringify(data.data.site));
                 localStorage.setItem('token', data.data.token.conteudo);
-                localStorage.setItem('usuario', data.data.usuario);
+                localStorage.setItem('usuario', JSON.stringify(data.data.usuario));
 
                 delete $scope.status;
 
-                $location.url('/inicio');
+                $window.location.reload();
             })
             .error(function () {
                 $scope.status = {
@@ -54,10 +54,14 @@ function LoginController ($scope, $location, $http, $interval) {
             });
     };
 
+    /**
+     * Logoff da applicação
+     *
+     */
     $scope.logout = function () {
         localStorage.clear();
 
-        $location.url('/inicio');
+        $window.location.reload();
     };
 }
 
@@ -68,4 +72,4 @@ angular
         // :)
     }])
 
-    .controller('LoginController', ['$scope', '$location', '$http', '$interval', LoginController]);
+    .controller('LoginController', ['$scope', '$location', '$http', '$interval', '$window', LoginController]);

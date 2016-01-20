@@ -5,23 +5,11 @@ function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
     $scope.pageSize = 12;
 
     /**
-     * General config
-     *
-     * @type {{headers: {Authorization, Site}}}
-     */
-    var config = {
-        headers: {
-            Authorization: localStorage.getItem('token'),
-            Site: localStorage.getItem('site')
-        }
-    };
-
-    /**
      * Carregar Produtos
      */
     $scope.load = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'produto?page=' + $scope.curPage + '&limit=' + $scope.pageSize, config)
+            .get($('meta[name="api"]').attr('content') + 'produto?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
             .then(function (result) {
                 $scope.linhas = (result.data);
 
@@ -42,7 +30,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
      */
     $scope.categories = function() {
         $http
-            .get($('meta[name="api"]').attr('content') + 'site/' + config.headers.Site, config)
+            .get($('meta[name="api"]').attr('content') + 'site/' + config.headers.Site)
             .then(function (data) {
                 $scope.site = data.data.data;
             });
@@ -95,7 +83,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
             var toDelete = $scope.linhas.data[id];
 
             $http
-                .delete($('meta[name="api"]').attr('content') + 'produto/' + toDelete._id, config)
+                .delete($('meta[name="api"]').attr('content') + 'produto/' + toDelete._id)
                 .then(function (data) {
                     if (data.status == 204) {
                         $scope.status = {
@@ -127,7 +115,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
             };
 
         $http
-            .put($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, $produto, config)
+            .put($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, $produto)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -147,7 +135,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
      */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id, config)
+            .get($('meta[name="api"]').attr('content') + 'produto/' + $routeParams.id)
             .then(function (data) {
                 $scope.produto = (data.data.data);
             });
@@ -165,7 +153,7 @@ function ProdutosController ($scope, $routeParams, $location, $http, $upload) {
             ;
 
         $http
-            .get(url, config)
+            .get(url)
             .then(function (result) {
                 $scope.linhas = (result.data);
 

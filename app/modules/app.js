@@ -25,5 +25,13 @@ angular
         $route.otherwise({redirectTo: '/inicio'});
 
         $http.defaults.cache = false;
+
+        if (localStorage.getItem('site')) {
+            $http.defaults.headers.common.site = JSON.parse(localStorage.getItem('site'))._id;
+        }
+
+        if (localStorage.getItem('token')) {
+            $http.defaults.headers.common.authorization = localStorage.getItem('token');
+        }
     }])
 ;

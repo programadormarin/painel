@@ -16,25 +16,13 @@ function EquipeController ($scope, $routeParams, $location, $http, $upload) {
     $scope.pageSize = 12;
 
     /**
-     * General config
-     *
-     * @type {{headers: {Authorization, Site}}}
-     */
-    var config = {
-        headers: {
-            Authorization: localStorage.getItem('token'),
-            Site: localStorage.getItem('site')
-        }
-    };
-
-    /**
      * Carrega Equipe
      */
     $scope.load = function () {
         var url = $('meta[name="api"]').attr('content') + 'equipe?page=' + $scope.curPage + '&limit=' + $scope.pageSize;
 
         $http
-            .get(url, config)
+            .get(url)
             .then(function (data) {
                 $scope.linhas = (data.data);
             });
@@ -79,7 +67,7 @@ function EquipeController ($scope, $routeParams, $location, $http, $upload) {
     $scope.delete = function (id) {
         if (confirm('Você deseja realmente apagar o membro?\nEste procedimento é irreversível!')) {
             $http
-                .delete($('meta[name="api"]').attr('content') + 'equipe/' + id, config)
+                .delete($('meta[name="api"]').attr('content') + 'equipe/' + id)
                 .then(function (data) {
                     if (data.status == 204) {
                         $scope.status = {
@@ -104,7 +92,7 @@ function EquipeController ($scope, $routeParams, $location, $http, $upload) {
      */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'equipe/' + $routeParams.id, $scope.membro, config)
+            .put($('meta[name="api"]').attr('content') + 'equipe/' + $routeParams.id, $scope.membro)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -124,7 +112,7 @@ function EquipeController ($scope, $routeParams, $location, $http, $upload) {
      */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'equipe/' + $routeParams.id, config)
+            .get($('meta[name="api"]').attr('content') + 'equipe/' + $routeParams.id)
             .then(function (data) {
                 $scope.membro = (data.data.data);
             });

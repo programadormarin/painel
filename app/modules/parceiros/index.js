@@ -15,23 +15,11 @@ function ParceirosController ($scope, $routeParams, $location, $http, $upload) {
     $scope.pageSize = 12;
 
     /**
-     * General config
-     *
-     * @type {{headers: {Authorization, Site}}}
-     */
-    var config = {
-        headers: {
-            Authorization: localStorage.getItem('token'),
-            Site: localStorage.getItem('site')
-        }
-    };
-
-    /**
      * Carrega Parceiros
      */
     $scope.load = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'parceiro?page=' + $scope.curPage + '&limit=' + $scope.pageSize, config)
+            .get($('meta[name="api"]').attr('content') + 'parceiro?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
             .then(function (data) {
                 $scope.linhas = (data.data);
             });
@@ -76,7 +64,7 @@ function ParceirosController ($scope, $routeParams, $location, $http, $upload) {
             var toDelete = $scope.linhas.data[id];
 
             $http
-                .delete($('meta[name="api"]').attr('content') + 'parceiro/' + toDelete._id, config)
+                .delete($('meta[name="api"]').attr('content') + 'parceiro/' + toDelete._id)
                 .then(function (data) {
                     if (data.status == 204) {
                         $scope.status = {
@@ -101,7 +89,7 @@ function ParceirosController ($scope, $routeParams, $location, $http, $upload) {
      */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'parceiro/' + $routeParams.id, $scope.parceiro, config)
+            .put($('meta[name="api"]').attr('content') + 'parceiro/' + $routeParams.id, $scope.parceiro)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -121,7 +109,7 @@ function ParceirosController ($scope, $routeParams, $location, $http, $upload) {
      */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'parceiro/' + $routeParams.id, config)
+            .get($('meta[name="api"]').attr('content') + 'parceiro/' + $routeParams.id)
             .then(function (data) {
                 $scope.parceiro = (data.data.data);
             });

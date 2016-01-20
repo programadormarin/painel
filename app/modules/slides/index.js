@@ -15,23 +15,11 @@ function SlidesController ($scope, $routeParams, $location, $http, $upload) {
     $scope.pageSize = 12;
 
     /**
-     * General config
-     *
-     * @type {{headers: {Authorization, Site}}}
-     */
-    var config = {
-        headers: {
-            Authorization: localStorage.getItem('token'),
-            Site: localStorage.getItem('site')
-        }
-    };
-
-    /**
      * Carregar Slides
      */
     $scope.load = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'slide?page=' + $scope.curPage + '&limit=' + $scope.pageSize, config)
+            .get($('meta[name="api"]').attr('content') + 'slide?page=' + $scope.curPage + '&limit=' + $scope.pageSize)
             .then(function (result) {
                 $scope.linhas = (result.data);
             });
@@ -76,7 +64,7 @@ function SlidesController ($scope, $routeParams, $location, $http, $upload) {
     $scope.delete = function (id) {
         if (confirm('Você deseja realmente apagar o slide?\nEste procedimento é irreversível!')) {
             $http
-                .delete($('meta[name="api"]').attr('content') + 'slide/' + id, config)
+                .delete($('meta[name="api"]').attr('content') + 'slide/' + id)
                 .then(function (data) {
                     if (data.status == 204) {
                         $scope.status = {
@@ -102,7 +90,7 @@ function SlidesController ($scope, $routeParams, $location, $http, $upload) {
      */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'slide/' + $routeParams.id, $scope.produto, config)
+            .put($('meta[name="api"]').attr('content') + 'slide/' + $routeParams.id, $scope.produto)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
@@ -122,7 +110,7 @@ function SlidesController ($scope, $routeParams, $location, $http, $upload) {
      */
     $scope.get = function () {
         $http
-            .get($('meta[name="api"]').attr('content') + 'slide/' + $routeParams.id, config)
+            .get($('meta[name="api"]').attr('content') + 'slide/' + $routeParams.id)
             .then(function (data) {
                 $scope.produto = (data.data.data);
             });
