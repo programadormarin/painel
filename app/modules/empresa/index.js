@@ -11,6 +11,8 @@
  * @constructor
  */
 function EmpresaController ($scope, $routeParams, $location, $http) {
+    $scope.pageTitle = 'Dados da Empresa';
+
     /**
      * Remove um telefone do escopo
      *
@@ -73,7 +75,7 @@ function EmpresaController ($scope, $routeParams, $location, $http) {
      */
     $scope.edit = function () {
         $http
-            .put($('meta[name="api"]').attr('content') + 'site/' + $scope.site_id, $scope.empresa)
+            .put($('meta[name="api"]').attr('content') + 'site/' + $scope.empresa._id, $scope.empresa)
             .success(function (data) {
                 $scope.status = {
                     type: 'success',
