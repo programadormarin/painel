@@ -11,8 +11,9 @@
  * @constructor
  */
 function AvisoController ($scope, $routeParams, $location, $http) {
-    $scope.curPage  = 1;
-    $scope.pageSize = 12;
+    $scope.curPage   = 1;
+    $scope.pageSize  = 12;
+    $scope.pageTitle = 'Avisos';
 
     /**
      * Carrega os Avisos cadastrados
