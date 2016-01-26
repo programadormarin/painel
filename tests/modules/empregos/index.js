@@ -1,7 +1,6 @@
 'use strict';
 
 describe('myApp.empregos module', function () {
-    beforeEach(module('ngApi'));
     beforeEach(module('myApp.empregos'));
 
     describe('Empregos controller', function () {

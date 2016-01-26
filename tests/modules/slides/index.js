@@ -1,7 +1,6 @@
 'use strict';
 
 describe('myApp.slides module', function () {
-    beforeEach(module('ngApi'));
     beforeEach(module('myApp.slides'));
 
     describe('Slides controller', function () {
